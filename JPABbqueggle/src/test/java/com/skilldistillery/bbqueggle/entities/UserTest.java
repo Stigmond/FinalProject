@@ -1,4 +1,4 @@
-package com.skilldistillery.bbqueggle;
+package com.skilldistillery.bbqueggle.entities;
 
 import static org.junit.jupiter.api.Assertions.*;
 
