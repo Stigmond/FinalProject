@@ -1,4 +1,4 @@
-package com.skilldistillery.bbqueggle.entities;
+package com.skilldistillery.bbqueggle;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

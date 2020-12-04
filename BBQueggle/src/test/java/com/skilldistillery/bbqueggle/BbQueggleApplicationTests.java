@@ -1,4 +1,4 @@
-package com.skilldistillery.bbqueggle.entities;
+package com.skilldistillery.bbqueggle;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
