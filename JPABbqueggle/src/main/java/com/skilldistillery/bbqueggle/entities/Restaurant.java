@@ -44,6 +44,7 @@ public class Restaurant {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "address_id")
+	@JsonIgnore
 	private Address address;
 
 	@OneToMany(mappedBy = "restaurant")
