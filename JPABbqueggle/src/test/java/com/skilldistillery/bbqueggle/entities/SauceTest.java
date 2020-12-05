@@ -45,5 +45,12 @@ class SauceTest {
 		assertNotNull(sauce);
 		assertEquals("ORIGINAL BAR-B-Q SAUCE", sauce.getName());
 	}
+	@Test
+	void test2() {
+		assertNotNull(sauce);
+		assertNotNull(sauce.getRestaurants());
+		assertTrue(sauce.getRestaurants().size() > 0);
+		assertEquals("Rudy's \"Country Store\" and Bar-B-Q", sauce.getRestaurants().get(0).getName());
+	}
 
 }

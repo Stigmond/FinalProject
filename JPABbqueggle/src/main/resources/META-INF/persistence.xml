@@ -11,6 +11,12 @@
 		<class>com.skilldistillery.bbqueggle.entities.Review</class>
 		<class>com.skilldistillery.bbqueggle.entities.SideDish</class>
 		<class>com.skilldistillery.bbqueggle.entities.User</class>
+		<class>com.skilldistillery.bbqueggle.entities.Chain</class>
+		<class>com.skilldistillery.bbqueggle.entities.Pitmaster</class>
+		<class>com.skilldistillery.bbqueggle.entities.Restaurant</class>
+		<class>com.skilldistillery.bbqueggle.entities.Sauce</class>
+		<class>com.skilldistillery.bbqueggle.entities.Style</class>
+		<class>com.skilldistillery.bbqueggle.entities.MainDish</class>
 		
 
 

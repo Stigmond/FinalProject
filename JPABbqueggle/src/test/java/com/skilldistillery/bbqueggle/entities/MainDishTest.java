@@ -51,5 +51,12 @@ class MainDishTest {
 				+ "extend about 6\" down from the spine.",mainDish.getDescription());
 		
 		}
+	@Test
+	void test2() {
+		assertNotNull(mainDish);
+		assertNotNull(mainDish.getRestaurant());
+		assertTrue(mainDish.getRestaurant().size() > 0);
+		assertEquals("Rudy's \"Country Store\" and Bar-B-Q", mainDish.getRestaurant().get(0).getName());
+		}
 
 }

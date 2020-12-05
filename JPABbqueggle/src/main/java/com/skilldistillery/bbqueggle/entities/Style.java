@@ -1,9 +1,15 @@
 package com.skilldistillery.bbqueggle.entities;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Style {
@@ -15,6 +21,11 @@ public class Style {
 	private String name;
 
 	private String description;
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "style_has_restaurant", inverseJoinColumns = @JoinColumn(name = "restaurant_id"), joinColumns = @JoinColumn(name = "style_id"))
+	private List<Restaurant> restaurant;
+	
 
 	public Style() {
 		super();
@@ -49,6 +60,14 @@ public class Style {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public List<Restaurant> getRestaurant() {
+		return restaurant;
+	}
+
+	public void setRestaurant(List<Restaurant> restaurant) {
+		this.restaurant = restaurant;
 	}
 
 	@Override

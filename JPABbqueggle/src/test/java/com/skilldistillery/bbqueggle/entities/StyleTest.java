@@ -49,4 +49,12 @@ class StyleTest {
 				+ " a slower burning wood than the mesquite used by others.", style.getDescription());
 		
 		}
+	
+	@Test
+	void test2() {
+		assertNotNull(style);
+		assertNotNull(style.getRestaurant());
+		assertTrue(style.getRestaurant().size() > 0);
+		assertEquals("Rudy's \"Country Store\" and Bar-B-Q", style.getRestaurant().get(0).getName());
+	}
 }

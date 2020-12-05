@@ -2,6 +2,7 @@ package com.skilldistillery.bbqueggle.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -45,8 +46,16 @@ class SideDishTest {
 	@Test
 	void test() {
 		assertNotNull(sideDish);
-		assertEquals("JUMBO SMOKED POTATO WITH 2 MEATS ", sideDish.getName());
+		assertEquals("JUMBO SMOKED POTATO WITH 2 MEATS", sideDish.getName());
 		assertEquals("Potato stacked with meat of your choice and cheese", sideDish.getDescription());
 		}
+	@Test
+	void test2() {
+		assertNotNull(sideDish);
+		assertNotNull(sideDish.getRestaurants());
+		assertTrue(sideDish.getRestaurants().size() >0);
+		assertEquals("Rudy's \"Country Store\" and Bar-B-Q", sideDish.getRestaurants().get(0).getName());
+		
+	}
 
 }

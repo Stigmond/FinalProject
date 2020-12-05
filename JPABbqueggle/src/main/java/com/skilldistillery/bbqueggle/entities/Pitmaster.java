@@ -1,43 +1,48 @@
 package com.skilldistillery.bbqueggle.entities;
 
-import java.util.List;
-
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 @Entity
-public class Sauce {
+public class Pitmaster {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	private String name;
+	@Column(name="first_name")
+	private String firstName;
+
+	@Column(name="last_name")
+	private String lastName;
 
 	private String description;
 
 	private String image;
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "sauce_has_restaurant", inverseJoinColumns = @JoinColumn(name = "restaurant_id"), joinColumns = @JoinColumn(name = "sauce_id"))
-	private List<Restaurant> restaurants;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "restaurant_id")
+	private Restaurant restaurant;
 
-	public Sauce() {
+	public Pitmaster() {
 		super();
 	}
 
-	public Sauce(int id, String name, String description, String image) {
+	public Pitmaster(int id, String firstName, String lastName, String description, String image,
+			Restaurant restaurant) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.description = description;
 		this.image = image;
+		this.restaurant = restaurant;
 	}
 
 	public int getId() {
@@ -48,12 +53,20 @@ public class Sauce {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getDescription() {
@@ -72,12 +85,12 @@ public class Sauce {
 		this.image = image;
 	}
 
-	public List<Restaurant> getRestaurants() {
-		return restaurants;
+	public Restaurant getRestaurant() {
+		return restaurant;
 	}
 
-	public void setRestaurants(List<Restaurant> restaurants) {
-		this.restaurants = restaurants;
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
 	}
 
 	@Override
@@ -96,7 +109,7 @@ public class Sauce {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Sauce other = (Sauce) obj;
+		Pitmaster other = (Pitmaster) obj;
 		if (id != other.id)
 			return false;
 		return true;
@@ -104,7 +117,8 @@ public class Sauce {
 
 	@Override
 	public String toString() {
-		return "Sauce [id=" + id + ", name=" + name + ", description=" + description + ", image=" + image + "]";
+		return "Pitmaster [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", description="
+				+ description + ", image=" + image + ", restaurant=" + restaurant + "]";
 	}
 
 }
