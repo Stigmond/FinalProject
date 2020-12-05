@@ -115,14 +115,7 @@ CREATE TABLE IF NOT EXISTS `main_dish` (
   `description` LONGTEXT NULL,
   `prep_type` VARCHAR(100) NULL,
   `image` LONGTEXT NULL,
-  `restaurant_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_main_dish_restaurants1_idx` (`restaurant_id` ASC),
-  CONSTRAINT `fk_main_dish_restaurants1`
-    FOREIGN KEY (`restaurant_id`)
-    REFERENCES `restaurant` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
@@ -136,14 +129,7 @@ CREATE TABLE IF NOT EXISTS `side_dish` (
   `name` VARCHAR(45) NULL,
   `description` VARCHAR(200) NULL,
   `image` LONGTEXT NULL,
-  `restaurant_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_side_dish_restaurants1_idx` (`restaurant_id` ASC),
-  CONSTRAINT `fk_side_dish_restaurants1`
-    FOREIGN KEY (`restaurant_id`)
-    REFERENCES `restaurant` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
@@ -185,14 +171,7 @@ CREATE TABLE IF NOT EXISTS `sauce` (
   `name` VARCHAR(45) NULL,
   `description` VARCHAR(200) NULL,
   `image` LONGTEXT NULL,
-  `restaurant_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_sauces_restaurants1_idx` (`restaurant_id` ASC),
-  CONSTRAINT `fk_sauces_restaurants1`
-    FOREIGN KEY (`restaurant_id`)
-    REFERENCES `restaurant` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
@@ -248,6 +227,78 @@ CREATE TABLE IF NOT EXISTS `pitmaster` (
   PRIMARY KEY (`id`),
   INDEX `fk_pitmaster_restaurant1_idx` (`restaurant_id` ASC),
   CONSTRAINT `fk_pitmaster_restaurant1`
+    FOREIGN KEY (`restaurant_id`)
+    REFERENCES `restaurant` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sauce_has_restaurant`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `sauce_has_restaurant` ;
+
+CREATE TABLE IF NOT EXISTS `sauce_has_restaurant` (
+  `sauce_id` INT NOT NULL,
+  `restaurant_id` INT NOT NULL,
+  PRIMARY KEY (`sauce_id`, `restaurant_id`),
+  INDEX `fk_sauce_has_restaurant_restaurant1_idx` (`restaurant_id` ASC),
+  INDEX `fk_sauce_has_restaurant_sauce1_idx` (`sauce_id` ASC),
+  CONSTRAINT `fk_sauce_has_restaurant_sauce1`
+    FOREIGN KEY (`sauce_id`)
+    REFERENCES `sauce` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_sauce_has_restaurant_restaurant1`
+    FOREIGN KEY (`restaurant_id`)
+    REFERENCES `restaurant` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `side_dish_has_restaurant`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `side_dish_has_restaurant` ;
+
+CREATE TABLE IF NOT EXISTS `side_dish_has_restaurant` (
+  `side_dish_id` INT NOT NULL,
+  `restaurant_id` INT NOT NULL,
+  PRIMARY KEY (`side_dish_id`, `restaurant_id`),
+  INDEX `fk_side_dish_has_restaurant_restaurant1_idx` (`restaurant_id` ASC),
+  INDEX `fk_side_dish_has_restaurant_side_dish1_idx` (`side_dish_id` ASC),
+  CONSTRAINT `fk_side_dish_has_restaurant_side_dish1`
+    FOREIGN KEY (`side_dish_id`)
+    REFERENCES `side_dish` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_side_dish_has_restaurant_restaurant1`
+    FOREIGN KEY (`restaurant_id`)
+    REFERENCES `restaurant` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `main_dish_has_restaurant`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `main_dish_has_restaurant` ;
+
+CREATE TABLE IF NOT EXISTS `main_dish_has_restaurant` (
+  `main_dish_id` INT NOT NULL,
+  `restaurant_id` INT NOT NULL,
+  PRIMARY KEY (`main_dish_id`, `restaurant_id`),
+  INDEX `fk_main_dish_has_restaurant_restaurant1_idx` (`restaurant_id` ASC),
+  INDEX `fk_main_dish_has_restaurant_main_dish1_idx` (`main_dish_id` ASC),
+  CONSTRAINT `fk_main_dish_has_restaurant_main_dish1`
+    FOREIGN KEY (`main_dish_id`)
+    REFERENCES `main_dish` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_main_dish_has_restaurant_restaurant1`
     FOREIGN KEY (`restaurant_id`)
     REFERENCES `restaurant` (`id`)
     ON DELETE NO ACTION
@@ -310,7 +361,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bbqdb`;
-INSERT INTO `main_dish` (`id`, `name`, `meat_type`, `description`, `prep_type`, `image`, `restaurant_id`) VALUES (1, 'Pork Spare Ribs', 'Pork', 'Pork spare ribs are taken from the belly side of the pig\'s rib cage above the sternum (breast bone) and below the back ribs which extend about 6\" down from the spine.', NULL, NULL, 1);
+INSERT INTO `main_dish` (`id`, `name`, `meat_type`, `description`, `prep_type`, `image`) VALUES (1, 'Pork Spare Ribs', 'Pork', 'Pork spare ribs are taken from the belly side of the pig\'s rib cage above the sternum (breast bone) and below the back ribs which extend about 6\" down from the spine.', NULL, NULL);
 
 COMMIT;
 
@@ -320,7 +371,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bbqdb`;
-INSERT INTO `side_dish` (`id`, `name`, `description`, `image`, `restaurant_id`) VALUES (1, 'JUMBO SMOKED POTATO WITH 2 MEATS ', 'Potato stacked with meat of your choice and cheese', 'https://s3-media0.fl.yelpcdn.com/bphoto/l9xszqZ5TBvMb39y8NEBGA/180s.jpg', 1);
+INSERT INTO `side_dish` (`id`, `name`, `description`, `image`) VALUES (1, 'JUMBO SMOKED POTATO WITH 2 MEATS ', 'Potato stacked with meat of your choice and cheese', 'https://s3-media0.fl.yelpcdn.com/bphoto/l9xszqZ5TBvMb39y8NEBGA/180s.jpg');
 
 COMMIT;
 
@@ -340,7 +391,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bbqdb`;
-INSERT INTO `sauce` (`id`, `name`, `description`, `image`, `restaurant_id`) VALUES (1, 'ORIGINAL BAR-B-Q SAUCE', 'This sause and our Texas brisket put us on the map.  Great for the pantry, a gift to a good friend or even a bloody mary.  ', 'https://cdn11.bigcommerce.com/s-vzdxh8cvru/images/stencil/1024x1024/products/112/378/DSC01232_1132x954__14831.1474916701.jpg?c=2', 1);
+INSERT INTO `sauce` (`id`, `name`, `description`, `image`) VALUES (1, 'ORIGINAL BAR-B-Q SAUCE', 'This sause and our Texas brisket put us on the map.  Great for the pantry, a gift to a good friend or even a bloody mary.  ', 'https://cdn11.bigcommerce.com/s-vzdxh8cvru/images/stencil/1024x1024/products/112/378/DSC01232_1132x954__14831.1474916701.jpg?c=2');
 
 COMMIT;
 
