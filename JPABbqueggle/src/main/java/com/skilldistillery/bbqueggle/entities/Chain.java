@@ -1,9 +1,12 @@
 package com.skilldistillery.bbqueggle.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Chain {
@@ -18,6 +21,8 @@ public class Chain {
 	
 	private String website;
 
+	@OneToMany(mappedBy="chain")
+	private List<Restaurant> restaurants;
 	
 	public Chain() {
 		super();
@@ -70,6 +75,17 @@ public class Chain {
 
 	public void setWebsite(String website) {
 		this.website = website;
+	}
+
+	
+
+	public List<Restaurant> getRestaurants() {
+		return restaurants;
+	}
+
+
+	public void setRestaurants(List<Restaurant> restaurants) {
+		this.restaurants = restaurants;
 	}
 
 

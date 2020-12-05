@@ -46,5 +46,12 @@ class ChainTest {
 		assertNotNull(chain);
 		assertEquals("Rudy's \"Country Store\" and Bar-B-Q", chain.getName());
 	}
+	@Test
+	void test2() {
+		assertNotNull(chain);
+		assertNotNull(chain.getRestaurants());
+		assertTrue(chain.getRestaurants().size() > 0);
+		assertEquals("Rudy's \"Country Store\" and Bar-B-Q", chain.getRestaurants().get(0).getName());
+	}
 
 }

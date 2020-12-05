@@ -2,11 +2,14 @@ package com.skilldistillery.bbqueggle.entities;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Review {
@@ -22,7 +25,15 @@ public class Review {
 	
 	@Column(name="review_date")
 	private LocalDateTime reviewDate;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="user_id")
+	private User user;
 
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="restaurant_id")
+	private Restaurant restaurant;
+	
 	public Review() {
 		super();
 	}
@@ -57,6 +68,24 @@ public class Review {
 
 	public void setReviewDate(LocalDateTime reviewDate) {
 		this.reviewDate = reviewDate;
+	}
+
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	
+	public Restaurant getRestaurant() {
+		return restaurant;
+	}
+
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
 	}
 
 	@Override

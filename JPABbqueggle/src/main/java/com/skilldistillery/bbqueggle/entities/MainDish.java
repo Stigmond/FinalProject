@@ -1,10 +1,16 @@
 package com.skilldistillery.bbqueggle.entities;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -27,6 +33,10 @@ public class MainDish {
 
 	private String image;
 
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "main_dish_has_restaurant", inverseJoinColumns = @JoinColumn(name = "restaurant_id"), joinColumns = @JoinColumn(name = "main_dish_id"))
+	private List<Restaurant> restaurant;
+	
 	public MainDish() {
 		super();
 	}
@@ -87,6 +97,15 @@ public class MainDish {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+	
+
+	public List<Restaurant> getRestaurant() {
+		return restaurant;
+	}
+
+	public void setRestaurant(List<Restaurant> restaurant) {
+		this.restaurant = restaurant;
 	}
 
 	@Override

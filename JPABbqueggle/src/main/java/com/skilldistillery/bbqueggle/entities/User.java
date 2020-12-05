@@ -1,10 +1,19 @@
 package com.skilldistillery.bbqueggle.entities;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class User {
@@ -30,6 +39,14 @@ public class User {
 	private String role;
 
 	private String image;
+	
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="address_id")
+	private Address address;
+	
+	@OneToMany(mappedBy="user")
+	@JsonIgnore
+	private List<Review> reviews;
 
 	public User() {
 		super();
@@ -119,6 +136,24 @@ public class User {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+	
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	
+
+	public List<Review> getReview() {
+		return reviews;
+	}
+
+	public void setReview(List<Review> reviews) {
+		this.reviews = reviews;
 	}
 
 	@Override

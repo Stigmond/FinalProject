@@ -1,7 +1,6 @@
 package com.skilldistillery.bbqueggle.entities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,11 +12,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class ReviewTest {
-	
+class PitMasterTest {
+
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Review review;
+	private Pitmaster pitmaster;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -33,37 +32,25 @@ class ReviewTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		review = em.find(Review.class, 1);
+		pitmaster = em.find(Pitmaster.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		review = null;
+		pitmaster = null;
 	}
-
 	@Test
 	void test() {
-		assertNotNull(review);
-		assertEquals("tasty food", review.getReview());
-		assertEquals(10, review.getReviewDate().getMonthValue());
-		
-		}
+		assertNotNull(pitmaster);
+		assertEquals("Larry", pitmaster.getFirstName());
+		assertEquals("Dude", pitmaster.getLastName());
+	}
 	@Test
 	void test2() {
-		assertNotNull(review);
-		assertNotNull(review.getUser());
-		assertEquals("Bob", review.getUser().getFirstName());
-		assertEquals("Jones", review.getUser().getLastName());
-		
+		assertNotNull(pitmaster);
+		assertNotNull(pitmaster.getRestaurant());
+		assertEquals("Rudy's \"Country Store\" and Bar-B-Q", pitmaster.getRestaurant().getName());
 	}
 
-	@Test
-	void test3() {
-		assertNotNull(review);
-		assertNotNull(review.getRestaurant());
-		assertEquals("Rudy's \"Country Store\" and Bar-B-Q", review.getRestaurant().getName());
-//		assertEquals(10, review.getReviewDate().getMonthValue());
-		
-		}
 }

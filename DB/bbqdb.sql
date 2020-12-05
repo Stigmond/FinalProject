@@ -351,7 +351,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bbqdb`;
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `enabled`, `role`, `image`, `address_id`) VALUES (1, 'Bob', 'Jones', 'admin', 'admin', 'fake@gmail.com', 1, 'ROLE_ADMIN', NULL, NULL);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `enabled`, `role`, `image`, `address_id`) VALUES (1, 'Bob', 'Jones', 'admin', 'admin', 'fake@gmail.com', 1, 'ROLE_ADMIN', NULL, 1);
 
 COMMIT;
 
@@ -371,7 +371,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bbqdb`;
-INSERT INTO `side_dish` (`id`, `name`, `description`, `image`) VALUES (1, 'JUMBO SMOKED POTATO WITH 2 MEATS ', 'Potato stacked with meat of your choice and cheese', 'https://s3-media0.fl.yelpcdn.com/bphoto/l9xszqZ5TBvMb39y8NEBGA/180s.jpg');
+INSERT INTO `side_dish` (`id`, `name`, `description`, `image`) VALUES (1, 'JUMBO SMOKED POTATO WITH 2 MEATS', 'Potato stacked with meat of your choice and cheese', 'https://s3-media0.fl.yelpcdn.com/bphoto/l9xszqZ5TBvMb39y8NEBGA/180s.jpg');
 
 COMMIT;
 
@@ -407,11 +407,51 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `style_has_restaurant`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `bbqdb`;
+INSERT INTO `style_has_restaurant` (`style_id`, `restaurant_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `pitmaster`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bbqdb`;
 INSERT INTO `pitmaster` (`id`, `first_name`, `last_name`, `description`, `image`, `restaurant_id`) VALUES (1, 'Larry', 'Dude', 'Amazing at smoking', NULL, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `sauce_has_restaurant`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `bbqdb`;
+INSERT INTO `sauce_has_restaurant` (`sauce_id`, `restaurant_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `side_dish_has_restaurant`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `bbqdb`;
+INSERT INTO `side_dish_has_restaurant` (`side_dish_id`, `restaurant_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `main_dish_has_restaurant`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `bbqdb`;
+INSERT INTO `main_dish_has_restaurant` (`main_dish_id`, `restaurant_id`) VALUES (1, 1);
 
 COMMIT;
 
