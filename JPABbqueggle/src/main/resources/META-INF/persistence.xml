@@ -7,9 +7,10 @@
 	<persistence-unit name="BBQPU">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider
     </provider>
-		<class>com.skilldistillery.bbqueggle.entities.User</class>
 		<class>com.skilldistillery.bbqueggle.entities.Address</class>
+		<class>com.skilldistillery.bbqueggle.entities.Review</class>
 		<class>com.skilldistillery.bbqueggle.entities.SideDish</class>
+		<class>com.skilldistillery.bbqueggle.entities.User</class>
 		
 
 
