@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS `address` (
   `city` VARCHAR(100) NULL,
   `state` VARCHAR(2) NULL,
   `zip` VARCHAR(5) NULL,
+  `enabled` TINYINT NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -321,7 +322,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bbqdb`;
-INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`) VALUES (1, '315 South 31st Street', 'Colorado Springs', 'CO', '80904');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `enabled`) VALUES (1, '315 South 31st Street', 'Colorado Springs', 'CO', '80904', 1);
 
 COMMIT;
 
