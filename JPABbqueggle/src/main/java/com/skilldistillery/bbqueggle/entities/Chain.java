@@ -78,7 +78,6 @@ public class Chain {
 	}
 
 	
-
 	public List<Restaurant> getRestaurants() {
 		return restaurants;
 	}
