@@ -12,6 +12,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="side_dish")
 public class SideDish {
@@ -66,6 +68,7 @@ public class SideDish {
 		this.image = image;
 	}
 
+	@JsonIgnore
 	public List<Restaurant> getRestaurants() {
 		return restaurants;
 	}
