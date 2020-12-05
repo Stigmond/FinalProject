@@ -6,4 +6,5 @@ import com.skilldistillery.bbqueggle.entities.Address;
 
 public interface AddressRepository extends JpaRepository<Address, Integer> {
 
+	Address findById(int id);
 }
