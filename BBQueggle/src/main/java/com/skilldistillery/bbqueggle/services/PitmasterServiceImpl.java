@@ -45,9 +45,8 @@ public class PitmasterServiceImpl implements PitmasterService{
 		}
 		if (newPitmaster.getImage() == null) {
 			newPitmaster.setImage("https://png.pngtree.com/png-clipart/20191120/original/pngtree-pig-chef-png-image_5084868.jpg");
-		}
-		
-		
+		}	
+		newPitmaster = pitmasterRepo.saveAndFlush(newPitmaster);
 		return newPitmaster;
 	}
 

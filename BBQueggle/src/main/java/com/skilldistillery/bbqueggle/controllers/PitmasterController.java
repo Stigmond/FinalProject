@@ -3,12 +3,15 @@ package com.skilldistillery.bbqueggle.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,5 +41,15 @@ public class PitmasterController {
 			response.setStatus(404);
 		}
 		return result;
+	}
+	
+	@PostMapping("pitmaster")
+	public Pitmaster addPitmaster(@RequestBody Pitmaster newPitmaster, HttpServletResponse response, HttpServletRequest request) {
+		System.out.println(newPitmaster);
+		newPitmaster = PSI.createPitmaster(newPitmaster);
+		StringBuffer strUrl = request.getRequestURL().append("/").append(newPitmaster.getId());
+		String url = strUrl.toString();
+		response.setHeader("Location", url);
+		return newPitmaster;
 	}
 }
