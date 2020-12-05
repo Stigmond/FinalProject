@@ -1,6 +1,7 @@
 package com.skilldistillery.bbqueggle.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,8 +24,12 @@ public class PitmasterServiceImpl implements PitmasterService{
 
 	@Override
 	public Pitmaster getPitmasterById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		Pitmaster pitmaster = null;
+		Optional<Pitmaster> optPm = pitmasterRepo.findById(id);
+		if (optPm.isPresent() ) {
+			pitmaster = optPm.get();
+		}
+		return pitmaster;
 	}
 
 	@Override
