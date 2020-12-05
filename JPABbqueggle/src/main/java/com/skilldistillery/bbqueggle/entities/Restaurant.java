@@ -50,6 +50,7 @@ public class Restaurant {
 	@JsonIgnore
 	private List<Review> reviews;
 
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "chain_id")
 	private Chain chain;
