@@ -2,6 +2,7 @@ package com.skilldistillery.bbqueggle.entities;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,11 +15,13 @@ public class Review {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@Column(name="review_score")
 	private int reviewScore;
 	
 	private String review;
 	
-	private LocalDateTime review_date;
+	@Column(name="review_date")
+	private LocalDateTime reviewDate;
 
 	public Review() {
 		super();
@@ -48,17 +51,17 @@ public class Review {
 		this.review = review;
 	}
 
-	public LocalDateTime getReview_date() {
-		return review_date;
+	public LocalDateTime getReviewDate() {
+		return reviewDate;
 	}
 
-	public void setReview_date(LocalDateTime review_date) {
-		this.review_date = review_date;
+	public void setReviewDate(LocalDateTime reviewDate) {
+		this.reviewDate = reviewDate;
 	}
 
 	@Override
 	public String toString() {
-		return "Review [id=" + id + ", reviewScore=" + reviewScore + ", review_date=" + review_date + "]";
+		return "Review [id=" + id + ", reviewScore=" + reviewScore + ", reviewDate=" + reviewDate + "]";
 	}
 
 	@Override
@@ -85,5 +88,7 @@ public class Review {
 			return false;
 		return true;
 	}
+
+
 	
 }

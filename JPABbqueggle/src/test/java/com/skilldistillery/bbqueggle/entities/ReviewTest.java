@@ -45,6 +45,8 @@ class ReviewTest {
 	@Test
 	void test() {
 		assertNotNull(review);
+		assertEquals("tasty food", review.getReview());
+		assertEquals(10, review.getReviewDate().getMonthValue());
 		
 		}
 
