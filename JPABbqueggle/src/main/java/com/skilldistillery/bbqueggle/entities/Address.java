@@ -20,11 +20,27 @@ public class Address {
 	private String state;
 	
 	private String zip;
+	
+	private Boolean enabled;
 
 	
 	public Address() {
 		super();
 	}
+	
+	
+
+	public Address(int id, String street, String city, String state, String zip, Boolean enabled) {
+		super();
+		this.id = id;
+		this.street = street;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+		this.enabled = enabled;
+	}
+
+
 
 	public int getId() {
 		return id;
@@ -65,6 +81,18 @@ public class Address {
 	public void setZip(String zip) {
 		this.zip = zip;
 	}
+
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+
+
 
 	@Override
 	public String toString() {

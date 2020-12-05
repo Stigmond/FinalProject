@@ -40,7 +40,7 @@ public class Restaurant {
 
 	private String hours;
 
-	private boolean enabled;
+	private Boolean enabled;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "address_id")
@@ -75,7 +75,7 @@ public class Restaurant {
 	}
 
 	public Restaurant(int id, String name, String phoneNumber, String description, String website, String logo,
-			Boolean dineIn, String hours, boolean enabled) {
+			Boolean dineIn, String hours, Boolean enabled) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -152,11 +152,11 @@ public class Restaurant {
 		this.hours = hours;
 	}
 
-	public boolean isEnabled() {
+	public Boolean isEnabled() {
 		return enabled;
 	}
 
-	public void setEnabled(boolean enabled) {
+	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 	}
 
