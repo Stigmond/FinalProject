@@ -156,7 +156,7 @@ CREATE TABLE IF NOT EXISTS `review` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `review_score` INT NOT NULL,
   `review` LONGTEXT NULL,
-  `review_date` DATETIME NULL,
+  `review_date` DATE NULL,
   `restaurant_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -300,7 +300,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bbqdb`;
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `enabled`, `role`, `image`, `address_id`) VALUES (DEFAULT, NULL, NULL, 'admin', 'admin', 'fake@gmail.com', 1, 'ROLE_ADMIN', NULL, NULL);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `enabled`, `role`, `image`, `address_id`) VALUES (1, 'Bob', 'Jones', 'admin', 'admin', 'fake@gmail.com', 1, 'ROLE_ADMIN', NULL, NULL);
 
 COMMIT;
 
@@ -326,6 +326,16 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `review`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `bbqdb`;
+INSERT INTO `review` (`id`, `review_score`, `review`, `review_date`, `restaurant_id`, `user_id`) VALUES (1, 5, 'tasty food', '2020/10/20', 1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `sauce`
 -- -----------------------------------------------------
 START TRANSACTION;
@@ -341,6 +351,16 @@ COMMIT;
 START TRANSACTION;
 USE `bbqdb`;
 INSERT INTO `style` (`id`, `name`, `description`) VALUES (1, 'Texas Style', 'Our pits are 100% wood fired with oak, a slower burning wood than the mesquite used by others.');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `pitmaster`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `bbqdb`;
+INSERT INTO `pitmaster` (`id`, `first_name`, `last_name`, `description`, `image`, `restaurant_id`) VALUES (1, 'Larry', 'Dude', 'Amazing at smoking', NULL, 1);
 
 COMMIT;
 
