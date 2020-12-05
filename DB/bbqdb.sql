@@ -266,11 +266,81 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
+-- Data for table `address`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `bbqdb`;
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`) VALUES (1, '315 South 31st Street', 'Colorado Springs', 'CO', '80904');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `chain`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `bbqdb`;
+INSERT INTO `chain` (`id`, `name`, `logo`, `website`) VALUES (1, 'Rudy\'s \"Country Store\" and Bar-B-Q', 'https://rudysbbq.com/img/logo.png', 'https://rudysbbq.com/');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `restaurant`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `bbqdb`;
+INSERT INTO `restaurant` (`id`, `name`, `phone_number`, `description`, `website`, `logo`, `dine_in`, `hours`, `enabled`, `address_id`, `chain_id`) VALUES (1, 'Rudy\'s \"Country Store\" and Bar-B-Q', '7194714120', 'Brisket, Ribs & sides served up cafeteria-style in a no fills settings with indoor picnic tables', 'https://rudysbbq.com/location/detail/colorado-springs-co', 'https://rudysbbq.com/img/logo.png', 1, 'Sun-Thu 7am-9pm\nFri-Sat 7am-10pm', 1, 1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `user`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bbqdb`;
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `enabled`, `role`, `image`, `address_id`) VALUES (DEFAULT, NULL, NULL, 'admin', 'admin', 'fake@gmail.com', 1, 'ROLE_ADMIN', NULL, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `main_dish`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `bbqdb`;
+INSERT INTO `main_dish` (`id`, `name`, `meat_type`, `description`, `prep_type`, `image`, `restaurant_id`) VALUES (1, 'Pork Spare Ribs', 'Pork', 'Pork spare ribs are taken from the belly side of the pig\'s rib cage above the sternum (breast bone) and below the back ribs which extend about 6\" down from the spine.', NULL, NULL, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `side_dish`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `bbqdb`;
+INSERT INTO `side_dish` (`id`, `name`, `description`, `image`, `restaurant_id`) VALUES (1, 'JUMBO SMOKED POTATO WITH 2 MEATS ', 'Potato stacked with meat of your choice and cheese', 'https://s3-media0.fl.yelpcdn.com/bphoto/l9xszqZ5TBvMb39y8NEBGA/180s.jpg', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `sauce`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `bbqdb`;
+INSERT INTO `sauce` (`id`, `name`, `description`, `image`, `restaurant_id`) VALUES (1, 'ORIGINAL BAR-B-Q SAUSE', 'This sause and our Texas brisket put us on the map.  Great for the pantry, a gift to a good friend or even a bloody mary.  ', 'https://cdn11.bigcommerce.com/s-vzdxh8cvru/images/stencil/1024x1024/products/112/378/DSC01232_1132x954__14831.1474916701.jpg?c=2', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `style`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `bbqdb`;
+INSERT INTO `style` (`id`, `name`, `description`) VALUES (1, 'Texas Style', 'Our pits are 100% wood fired with oak, a slower burning wood than the mesquite used by others.');
 
 COMMIT;
 
