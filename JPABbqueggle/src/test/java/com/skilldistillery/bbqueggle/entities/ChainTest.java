@@ -1,7 +1,6 @@
 package com.skilldistillery.bbqueggle.entities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,11 +12,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class UserTest {
-	
+class ChainTest {
+
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private User user;
+	private Chain chain;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -33,20 +32,19 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		chain = em.find(Chain.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		user = null;
+		chain = null;
 	}
 
 	@Test
 	void test() {
-		assertNotNull(user);
-		assertEquals("admin", user.getUsername());
-		assertEquals("fake@gmail.com", user.getEmail());
-		}
+		assertNotNull(chain);
+		assertEquals("Rudy's \"Country Store\" and Bar-B-Q", chain.getName());
+	}
 
 }
