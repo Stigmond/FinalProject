@@ -340,7 +340,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bbqdb`;
-INSERT INTO `sauce` (`id`, `name`, `description`, `image`, `restaurant_id`) VALUES (1, 'ORIGINAL BAR-B-Q SAUSE', 'This sause and our Texas brisket put us on the map.  Great for the pantry, a gift to a good friend or even a bloody mary.  ', 'https://cdn11.bigcommerce.com/s-vzdxh8cvru/images/stencil/1024x1024/products/112/378/DSC01232_1132x954__14831.1474916701.jpg?c=2', 1);
+INSERT INTO `sauce` (`id`, `name`, `description`, `image`, `restaurant_id`) VALUES (1, 'ORIGINAL BAR-B-Q SAUCE', 'This sause and our Texas brisket put us on the map.  Great for the pantry, a gift to a good friend or even a bloody mary.  ', 'https://cdn11.bigcommerce.com/s-vzdxh8cvru/images/stencil/1024x1024/products/112/378/DSC01232_1132x954__14831.1474916701.jpg?c=2', 1);
 
 COMMIT;
 
