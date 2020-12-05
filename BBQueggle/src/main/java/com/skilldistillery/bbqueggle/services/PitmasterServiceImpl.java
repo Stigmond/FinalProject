@@ -33,9 +33,22 @@ public class PitmasterServiceImpl implements PitmasterService{
 	}
 
 	@Override
-	public Pitmaster createPitmaster(Pitmaster pitmaster) {
-		// TODO Auto-generated method stub
-		return null;
+	public Pitmaster createPitmaster(Pitmaster newPitmaster) {
+		if (newPitmaster.getFirstName() == null) {
+			newPitmaster.setFirstName("N/A");
+		}
+		if (newPitmaster.getLastName() == null) {
+			newPitmaster.setLastName("N/A");
+		}
+		if (newPitmaster.getDescription() == null) {
+			newPitmaster.setDescription("N/A");
+		}
+		if (newPitmaster.getImage() == null) {
+			newPitmaster.setImage("https://png.pngtree.com/png-clipart/20191120/original/pngtree-pig-chef-png-image_5084868.jpg");
+		}
+		
+		
+		return newPitmaster;
 	}
 
 	@Override

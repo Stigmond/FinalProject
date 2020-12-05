@@ -10,7 +10,7 @@ public interface PitmasterService {
 	
 	Pitmaster getPitmasterById(Integer id);
 	
-	Pitmaster createPitmaster(Pitmaster pitmaster);
+	Pitmaster createPitmaster(Pitmaster newPitmaster);
 	
 	Pitmaster updatePitmaster(Integer id, Pitmaster pitmaster);
 	
