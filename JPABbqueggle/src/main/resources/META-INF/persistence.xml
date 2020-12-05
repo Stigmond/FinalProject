@@ -9,6 +9,7 @@
     </provider>
 		<class>com.skilldistillery.bbqueggle.entities.User</class>
 		<class>com.skilldistillery.bbqueggle.entities.Address</class>
+		<class>com.skilldistillery.bbqueggle.entities.SideDish</class>
 		
 
 
