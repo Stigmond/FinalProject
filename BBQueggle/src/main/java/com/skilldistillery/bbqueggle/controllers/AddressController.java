@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,6 +30,12 @@ public class AddressController {
 	@GetMapping("address/{addId}")
 	public Address findById(@PathVariable int addId) {
 		return addSvc.findById(addId);
+	}
+	
+	@PostMapping("address")
+	public Address create(@RequestBody Address address, @PathVariable int addId) {
+		address = addSvc.create(address, addId);
+		return address;
 	}
 
 }
