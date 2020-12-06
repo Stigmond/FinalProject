@@ -10,11 +10,11 @@ import com.skilldistillery.bbqueggle.entities.Pitmaster;
 import com.skilldistillery.bbqueggle.repositories.PitmasterRepository;
 
 @Service
-public class PitmasterServiceImpl implements PitmasterService{
+public class PitmasterServiceImpl implements PitmasterService {
 
 	@Autowired
 	PitmasterRepository pitmasterRepo;
-	
+
 	@Override
 	public List<Pitmaster> getAllPitmasters() {
 		List<Pitmaster> allPitmasters = null;
@@ -24,9 +24,9 @@ public class PitmasterServiceImpl implements PitmasterService{
 
 	@Override
 	public Pitmaster getPitmasterById(Integer id) {
-		Pitmaster pitmaster = null;
 		Optional<Pitmaster> optPm = pitmasterRepo.findById(id);
-		if (optPm.isPresent() ) {
+		Pitmaster pitmaster = null;
+		if (optPm.isPresent()) {
 			pitmaster = optPm.get();
 		}
 		return pitmaster;
@@ -44,16 +44,35 @@ public class PitmasterServiceImpl implements PitmasterService{
 			newPitmaster.setDescription("N/A");
 		}
 		if (newPitmaster.getImage() == null) {
-			newPitmaster.setImage("https://png.pngtree.com/png-clipart/20191120/original/pngtree-pig-chef-png-image_5084868.jpg");
-		}	
-		newPitmaster = pitmasterRepo.saveAndFlush(newPitmaster);
+			newPitmaster.setImage(
+					"https://png.pngtree.com/png-clipart/20191120/original/pngtree-pig-chef-png-image_5084868.jpg");
+		}
+
+		pitmasterRepo.saveAndFlush(newPitmaster);
 		return newPitmaster;
 	}
 
 	@Override
 	public Pitmaster updatePitmaster(Integer id, Pitmaster pitmaster) {
-		// TODO Auto-generated method stub
-		return null;
+		Pitmaster managedPitmaster = this.getPitmasterById(id);
+		if (managedPitmaster == null) {
+			return null;
+		}
+		if (pitmaster.getFirstName() != null) {
+			managedPitmaster.setFirstName(pitmaster.getFirstName());
+		}
+		if (pitmaster.getLastName() != null) {
+			managedPitmaster.setLastName(pitmaster.getLastName());
+		}
+		if (pitmaster.getDescription() != null) {
+			managedPitmaster.setDescription(pitmaster.getDescription());
+		}
+		if (pitmaster.getImage() != null) {
+			managedPitmaster.setImage(pitmaster.getImage());
+		}
+		pitmasterRepo.saveAndFlush(managedPitmaster);
+
+		return managedPitmaster;
 	}
 
 	@Override
