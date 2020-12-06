@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `restaurant` (
   `dine_in` TINYINT NULL,
   `hours` VARCHAR(1000) NULL,
   `enabled` TINYINT NOT NULL,
-  `address_id` INT NOT NULL,
+  `address_id` INT NULL,
   `chain_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_restaurants_address1_idx` (`address_id` ASC),
