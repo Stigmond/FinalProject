@@ -7,15 +7,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.bbqueggle.entities.Restaurant;
-import com.skilldistillery.bbqueggle.services.RestaurantService;
+import com.skilldistillery.bbqueggle.services.RestaurantServiceImpl;
 
 @CrossOrigin({ "*", "http://localhost:4210" })
 @RequestMapping("api")
@@ -23,7 +25,7 @@ import com.skilldistillery.bbqueggle.services.RestaurantService;
 public class RestaurantController {
 
 	@Autowired
-	private RestaurantService svc;
+	private RestaurantServiceImpl svc;
 
 	@GetMapping("restaurants")
 	public List<Restaurant> allRestaurants() {
@@ -38,11 +40,12 @@ public class RestaurantController {
 		}
 		return restaurant;
 	}
-	
-	//CRUD Methods
-	
+
+	// CRUD Methods
+
 	@PostMapping("restaurants")
-	public Restaurant createRestaurant(@RequestBody Restaurant restaurant, HttpServletResponse response, HttpServletRequest request) {
+	public Restaurant createRestaurant(@RequestBody Restaurant restaurant, HttpServletResponse response,
+			HttpServletRequest request) {
 		Restaurant createdRestaurant = null;
 		try {
 			createdRestaurant = svc.createRestaurant(restaurant);
@@ -59,4 +62,30 @@ public class RestaurantController {
 		return createdRestaurant;
 	}
 
+	@PutMapping("restaurants/{restaurantId}")
+	public Restaurant updateRestaurant(@PathVariable Integer restaurantId, @RequestBody Restaurant restaurant,
+			HttpServletResponse response) {
+		try {
+			restaurant = svc.updateRestaurant(restaurant, restaurantId);
+			if (restaurant == null) {
+				response.setStatus(404);
+				restaurant = null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.setStatus(400);
+			restaurant = null;
+		}
+		return restaurant;
+	}
+
+	@DeleteMapping("restaurants/{restaurantId}")
+	public void deleteRestaurant(@PathVariable Integer restaurantId, HttpServletResponse response) {
+		if (svc.deleteRestaurant(restaurantId)) {
+			response.setStatus(204);
+
+		} else {
+			response.setStatus(404);
+		}
+	}
 }

@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.bbqueggle.entities.Pitmaster;
 import com.skilldistillery.bbqueggle.entities.Restaurant;
 import com.skilldistillery.bbqueggle.repositories.RestaurantRepository;
 
@@ -41,26 +42,43 @@ public class RestaurantServiceImpl implements RestaurantService {
 	public Restaurant updateRestaurant(Restaurant restaurant, Integer id) {
 		Optional<Restaurant> restaurantOpt = repo.findById(id);
 		Restaurant managedRestaurant = null;
-		if(restaurantOpt.isPresent()) {
+		if (restaurantOpt.isPresent()) {
 			managedRestaurant = restaurantOpt.get();
-		
-		if(restaurant.getName() != null) {managedRestaurant.setName(restaurant.getName()); }
-		if(restaurant.getPhoneNumber() != null) {managedRestaurant.setPhoneNumber(restaurant.getPhoneNumber()); }
-		if(restaurant.getDescription() != null) {managedRestaurant.setDescription(restaurant.getDescription()); }
-		if(restaurant.getWebsite() != null) {managedRestaurant.setWebsite(restaurant.getWebsite()); }
-		if(restaurant.getLogo() != null) {managedRestaurant.setLogo(restaurant.getLogo()); }
-		if(restaurant.getDineIn() != null) {managedRestaurant.setDineIn(restaurant.getDineIn()); }
-		if(restaurant.getHours() != null) {managedRestaurant.setHours(restaurant.getHours()); }		if(restaurant.getName() != null) {managedRestaurant.setName(restaurant.getName()); }
-		
-		repo.flush();
+
+			if (restaurant.getName() != null) {
+				managedRestaurant.setName(restaurant.getName());
+			}
+			if (restaurant.getPhoneNumber() != null) {
+				managedRestaurant.setPhoneNumber(restaurant.getPhoneNumber());
+			}
+			if (restaurant.getDescription() != null) {
+				managedRestaurant.setDescription(restaurant.getDescription());
+			}
+			if (restaurant.getWebsite() != null) {
+				managedRestaurant.setWebsite(restaurant.getWebsite());
+			}
+			if (restaurant.getLogo() != null) {
+				managedRestaurant.setLogo(restaurant.getLogo());
+			}
+			if (restaurant.getDineIn() != null) {
+				managedRestaurant.setDineIn(restaurant.getDineIn());
+			}
+			if (restaurant.getHours() != null) {
+				managedRestaurant.setHours(restaurant.getHours());
+			}
+			repo.flush();
 		}
 		return managedRestaurant;
 	}
 
-	@Override
 	public boolean deleteRestaurant(Integer id) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean deleted = false;
+		Optional<Restaurant> restaurantOpt = repo.findById(id);
+		if (restaurantOpt.isPresent()) {
+			repo.deleteById(id);
+			deleted = true;
+		}
+		return deleted;
 	}
 
 }
