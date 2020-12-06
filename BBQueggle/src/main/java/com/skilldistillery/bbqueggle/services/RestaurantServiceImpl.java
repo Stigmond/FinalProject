@@ -39,8 +39,22 @@ public class RestaurantServiceImpl implements RestaurantService {
 
 	@Override
 	public Restaurant updateRestaurant(Restaurant restaurant, Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Restaurant> restaurantOpt = repo.findById(id);
+		Restaurant managedRestaurant = null;
+		if(restaurantOpt.isPresent()) {
+			managedRestaurant = restaurantOpt.get();
+		
+		if(restaurant.getName() != null) {managedRestaurant.setName(restaurant.getName()); }
+		if(restaurant.getPhoneNumber() != null) {managedRestaurant.setPhoneNumber(restaurant.getPhoneNumber()); }
+		if(restaurant.getDescription() != null) {managedRestaurant.setDescription(restaurant.getDescription()); }
+		if(restaurant.getWebsite() != null) {managedRestaurant.setWebsite(restaurant.getWebsite()); }
+		if(restaurant.getLogo() != null) {managedRestaurant.setLogo(restaurant.getLogo()); }
+		if(restaurant.getDineIn() != null) {managedRestaurant.setDineIn(restaurant.getDineIn()); }
+		if(restaurant.getHours() != null) {managedRestaurant.setHours(restaurant.getHours()); }		if(restaurant.getName() != null) {managedRestaurant.setName(restaurant.getName()); }
+		
+		repo.flush();
+		}
+		return managedRestaurant;
 	}
 
 	@Override
