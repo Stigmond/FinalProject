@@ -37,7 +37,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `chain` ;
 
 CREATE TABLE IF NOT EXISTS `chain` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NULL,
   `logo` LONGTEXT NULL,
   `website` VARCHAR(1000) NULL,
@@ -219,7 +219,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `pitmaster` ;
 
 CREATE TABLE IF NOT EXISTS `pitmaster` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(45) NULL,
   `last_name` VARCHAR(45) NULL,
   `description` LONGTEXT NULL,
