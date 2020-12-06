@@ -77,8 +77,13 @@ public class PitmasterServiceImpl implements PitmasterService {
 
 	@Override
 	public boolean deletePitmaster(Integer id) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean deleted = false;
+		Pitmaster pitmasterToDelete = this.getPitmasterById(id);
+		if (pitmasterToDelete != null) {
+			pitmasterRepo.delete(pitmasterToDelete);
+			deleted = true;
+		}
+		return deleted;
 	}
 
 }

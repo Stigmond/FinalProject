@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -60,7 +61,17 @@ public class PitmasterController {
 		if (updatedPitmaster == null) {
 			response.setStatus(404);
 		}
-		return updatedPitmaster;
+		return updatedPitmaster;	
+	}
+	
+	@DeleteMapping("pitmaster/{id}")
+	public void deletePitmaster(@PathVariable Integer id, HttpServletResponse response) {
+		boolean deleted = PSI.deletePitmaster(id);
+		if (deleted == true) {
+			response.setStatus(204);
+		} else {
+			response.setStatus(404);
+		}
 		
 	}
 	
