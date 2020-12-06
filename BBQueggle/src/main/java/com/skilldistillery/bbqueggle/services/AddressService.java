@@ -10,5 +10,9 @@ public interface AddressService {
 	
 	Address findById(int addId);
 	
-	Address create(Address address, int addId);
+	Address create(Address address);
+	
+	Address update(Integer addId, Address address);
+	
+	boolean delete(Integer addId);
 }

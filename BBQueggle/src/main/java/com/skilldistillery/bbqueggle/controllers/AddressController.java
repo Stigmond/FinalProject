@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,9 +35,20 @@ public class AddressController {
 	}
 	
 	@PostMapping("address")
-	public Address create(@RequestBody Address address, @PathVariable int addId) {
-		address = addSvc.create(address, addId);
+	public Address create(@RequestBody Address address) {
+		address = addSvc.create(address);
 		return address;
+	}
+	@PutMapping("address/{addId}")
+	public Address update(@RequestBody Address address, @PathVariable Integer addId) {
+		address = addSvc.update(addId, address);
+		return address;
+	}
+	
+	@DeleteMapping("address/{addId}")
+	public void delete(@PathVariable Integer addId) {
+		boolean deleted = addSvc.delete(addId);
+		
 	}
 
 }
