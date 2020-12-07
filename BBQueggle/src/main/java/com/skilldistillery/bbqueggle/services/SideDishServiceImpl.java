@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.skilldistillery.bbqueggle.entities.SideDish;
 import com.skilldistillery.bbqueggle.repositories.SideDishRepository;
 
+@Service
 public class SideDishServiceImpl implements SideDishService {
 
 	@Autowired
