@@ -1,21 +1,32 @@
 package com.skilldistillery.bbqueggle.services;
 
 import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.skilldistillery.bbqueggle.entities.MainDish;
+import com.skilldistillery.bbqueggle.repositories.MainDishRepository;
 
 public class MainDishServiceImpl implements MainDishService {
 
+	@Autowired
+	private MainDishRepository mainDishRepo;
+
 	@Override
 	public List<MainDish> index() {
-		// TODO Auto-generated method stub
-		return null;
+		List<MainDish> allMainDishes = mainDishRepo.findAll();
+		return allMainDishes;
 	}
 
 	@Override
 	public MainDish getMainDishById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<MainDish> mainDishOpt = mainDishRepo.findById(id);
+		MainDish mainDish = null;
+		if (mainDishOpt.isPresent()) {
+			mainDish = mainDishOpt.get();
+		}
+		return mainDish;
 	}
 
 	@Override
