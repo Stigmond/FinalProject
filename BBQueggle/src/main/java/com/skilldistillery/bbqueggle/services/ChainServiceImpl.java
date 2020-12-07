@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.bbqueggle.entities.Chain;
-import com.skilldistillery.bbqueggle.entities.Style;
 import com.skilldistillery.bbqueggle.repositories.ChainRepository;
 
 @Service
