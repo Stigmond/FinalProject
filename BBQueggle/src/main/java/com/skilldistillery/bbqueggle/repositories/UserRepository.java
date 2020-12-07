@@ -1,5 +1,9 @@
 package com.skilldistillery.bbqueggle.repositories;
 
-public interface UserRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.skilldistillery.bbqueggle.entities.User;
+
+public interface UserRepository extends JpaRepository<User, Integer> {
 
 }
