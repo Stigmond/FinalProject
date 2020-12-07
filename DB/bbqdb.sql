@@ -442,6 +442,7 @@ START TRANSACTION;
 USE `bbqdb`;
 INSERT INTO `style_has_restaurant` (`style_id`, `restaurant_id`) VALUES (1, 1);
 INSERT INTO `style_has_restaurant` (`style_id`, `restaurant_id`) VALUES (2, 2);
+INSERT INTO `style_has_restaurant` (`style_id`, `restaurant_id`) VALUES (3, 2);
 
 COMMIT;
 
