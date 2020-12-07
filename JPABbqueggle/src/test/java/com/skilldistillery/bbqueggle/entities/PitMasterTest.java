@@ -46,11 +46,5 @@ class PitMasterTest {
 		assertEquals("Larry", pitmaster.getFirstName());
 		assertEquals("Dude", pitmaster.getLastName());
 	}
-	@Test
-	void test2() {
-		assertNotNull(pitmaster);
-		assertNotNull(pitmaster.getRestaurant());
-		assertEquals("Rudy's \"Country Store\" and Bar-B-Q", pitmaster.getRestaurant().getName());
-	}
 
 }

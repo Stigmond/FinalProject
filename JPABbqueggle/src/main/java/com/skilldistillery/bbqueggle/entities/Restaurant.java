@@ -43,6 +43,10 @@ public class Restaurant {
 	private Boolean enabled;
 
 	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "pitmaster_id")
+	private Pitmaster pitmaster;
+	
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "address_id")
 	@JsonIgnore
 	private Address address;
@@ -56,38 +60,28 @@ public class Restaurant {
 	@JoinColumn(name = "chain_id")
 	private Chain chain;
 
+	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "side_dish_has_restaurant", inverseJoinColumns = @JoinColumn(name = "side_dish_id"), joinColumns = @JoinColumn(name = "restaurant_id"))
 	private List<SideDish> sideDishes;
 
+	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "sauce_has_restaurant", inverseJoinColumns = @JoinColumn(name = "sauce_id"), joinColumns = @JoinColumn(name = "restaurant_id"))
 	private List<Sauce> sauces;
 
+	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "main_dish_has_restaurant", inverseJoinColumns = @JoinColumn(name = "main_dish_id"), joinColumns = @JoinColumn(name = "restaurant_id"))
 	private List<MainDish> mainDishes;
 
+	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "style_has_restaurant", inverseJoinColumns = @JoinColumn(name = "style_id"), joinColumns = @JoinColumn(name = "restaurant_id"))
 	private List<Style> style;
 
 	public Restaurant() {
 		super();
-	}
-
-	public Restaurant(int id, String name, String phoneNumber, String description, String website, String logo,
-			Boolean dineIn, String hours, Boolean enabled) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.phoneNumber = phoneNumber;
-		this.description = description;
-		this.website = website;
-		this.logo = logo;
-		this.dineIn = dineIn;
-		this.hours = hours;
-		this.enabled = enabled;
 	}
 
 	public int getId() {
@@ -154,12 +148,20 @@ public class Restaurant {
 		this.hours = hours;
 	}
 
-	public Boolean isEnabled() {
+	public Boolean getEnabled() {
 		return enabled;
 	}
 
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public Pitmaster getPitmaster() {
+		return pitmaster;
+	}
+
+	public void setPitmaster(Pitmaster pitmaster) {
+		this.pitmaster = pitmaster;
 	}
 
 	public Address getAddress() {
@@ -219,6 +221,12 @@ public class Restaurant {
 	}
 
 	@Override
+	public String toString() {
+		return "Restaurant [id=" + id + ", name=" + name + ", phoneNumber=" + phoneNumber + ", address=" + address
+				+ "]";
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -240,11 +248,6 @@ public class Restaurant {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Restaurant [id=" + id + ", name=" + name + ", phoneNumber=" + phoneNumber + ", description="
-				+ description + ", website=" + website + ", logo=" + logo + ", dineIn=" + dineIn + ", hours=" + hours
-				+ ", enabled=" + enabled + "]";
-	}
+	
 
 }

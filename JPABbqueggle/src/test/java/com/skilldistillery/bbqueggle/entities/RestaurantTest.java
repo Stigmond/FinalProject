@@ -100,4 +100,11 @@ class RestaurantTest {
 		assertTrue(restaurant.getStyle().size() > 0);
 		assertEquals("Texas Style", restaurant.getStyle().get(0).getName());
 	}
+	
+	@Test
+	void test9() {
+		assertNotNull(restaurant);
+		assertEquals("Larry", restaurant.getPitmaster().getFirstName());
+		assertEquals("Dude", restaurant.getPitmaster().getLastName());
+	}
 }
