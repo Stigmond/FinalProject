@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.bbqueggle.entities.MainDish;
 import com.skilldistillery.bbqueggle.entities.Style;
 import com.skilldistillery.bbqueggle.services.StyleServiceImpl;
 
@@ -56,5 +58,22 @@ public class StyleController {
 		}
 		return createdStyle;
 
+	}
+
+	@PutMapping("style/{styleId}")
+	public Style updateStyle(@PathVariable Integer styleId, @RequestBody Style updatedStyle,
+			HttpServletResponse response) {
+		try {
+			updatedStyle = svc.updateStyle(updatedStyle, styleId);
+			if (updatedStyle == null) {
+				response.setStatus(404);
+				updatedStyle = null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.setStatus(400);
+			updatedStyle = null;
+		}
+		return updatedStyle;
 	}
 }
