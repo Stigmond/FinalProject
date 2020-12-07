@@ -30,21 +30,49 @@ public class MainDishServiceImpl implements MainDishService {
 	}
 
 	@Override
-	public MainDish createMainDIsh(MainDish newMainDIsh) {
-		// TODO Auto-generated method stub
-		return null;
+	public MainDish createMainDIsh(MainDish newMainDish) {
+		mainDishRepo.saveAndFlush(newMainDish);
+		return mainDishRepo.save(newMainDish);
 	}
 
 	@Override
 	public MainDish updateMainDish(Integer id, MainDish mainDish) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<MainDish> mainDishOpt = mainDishRepo.findById(id);
+		MainDish managedMainDish = null;
+		if (mainDishOpt.isPresent()) {
+			managedMainDish = mainDishOpt.get();
+
+			if (mainDish.getName() != null) {
+				managedMainDish.setName(mainDish.getName());
+			}
+			if (mainDish.getMeatType() != null) {
+				managedMainDish.setMeatType(mainDish.getMeatType());
+			}
+			if (mainDish.getDescription() != null) {
+				managedMainDish.setDescription(mainDish.getDescription());
+			}
+			if (mainDish.getPrepType() != null) {
+				managedMainDish.setPrepType(mainDish.getPrepType());
+			}
+			if (mainDish.getImage() != null) {
+				managedMainDish.setImage(mainDish.getImage());
+			}
+
+			mainDishRepo.flush();
+		}
+		return managedMainDish;
 	}
 
 	@Override
 	public boolean deleteMainDish(Integer id) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean deleted = false;
+		Optional<MainDish> restaurantOpt = mainDishRepo.findById(id);
+		if (restaurantOpt.isPresent()) {
+			mainDishRepo.deleteById(id);
+			deleted = true;
+		}
+		return deleted;
 	}
+	
 
 }
