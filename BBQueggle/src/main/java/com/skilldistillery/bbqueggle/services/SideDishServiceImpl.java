@@ -14,19 +14,19 @@ public class SideDishServiceImpl implements SideDishService {
 
 	@Autowired
 	private SideDishRepository sRepo;
-	
+
 	@Override
 	public List<SideDish> getAllSideDishes() {
 		return sRepo.findAll();
 	}
 
 	@Override
-	public SideDish getSideDishById(Integer id) {
+	public SideDish findById(Integer id) {
 		SideDish sideDish = null;
 		Optional<SideDish> sideOpt = sRepo.findById(id);
-		if(sideOpt.isPresent()) {
+		if (sideOpt.isPresent()) {
 			sideDish = sideOpt.get();
-			}
+		}
 		sRepo.findById(id);
 		return sideDish;
 	}
@@ -39,14 +39,32 @@ public class SideDishServiceImpl implements SideDishService {
 
 	@Override
 	public SideDish update(Integer id, SideDish sideDish) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<SideDish> sdOpt = sRepo.findById(id);
+		SideDish manageSd = null;
+		if (sdOpt.isPresent()) {
+			manageSd = sdOpt.get();
+			if (sideDish.getName() != null) {
+				manageSd.setName(sideDish.getName());
+			}
+			if (sideDish.getDescription() != null) {
+				manageSd.setDescription(sideDish.getDescription());
+			}
+			if (sideDish.getImage() != null) {
+				manageSd.setImage(sideDish.getImage());
+			}
+			sRepo.flush();
+		}
+		return manageSd;
 	}
 
 	@Override
 	public boolean delete(Integer id) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean deleted = false;
+		Optional<SideDish> sOpt = sRepo.findById(id);
+		if (sOpt.isPresent()) {
+			sRepo.delete(sOpt.get());
+		}
+		return deleted;
 	}
 
 }
