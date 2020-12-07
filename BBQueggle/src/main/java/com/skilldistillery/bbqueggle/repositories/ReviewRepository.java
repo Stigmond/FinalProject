@@ -8,5 +8,6 @@ import com.skilldistillery.bbqueggle.entities.Review;
 
 public interface ReviewRepository extends JpaRepository<Review, Integer>{
 
-	List<Review> findByRestaurant_Id(Integer id);
+	List<Review> findByRestaurant_Id(Integer restId);
+	Review findByIdAndRestaurant_Id(Integer id, Integer restId);
 }
