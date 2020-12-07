@@ -40,8 +40,42 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User updateUser(User user, Integer Id) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<User> userOpt = userRepo.findById(Id);
+		User managedUser = null;
+		if (userOpt.isPresent()) {
+			managedUser = userOpt.get();
+
+			if (user.getFirstName() != null) {
+				managedUser.setFirstName(user.getFirstName());
+			}
+			if (user.getLastName() != null) {
+				managedUser.setLastName(user.getLastName());
+			}
+			if (user.getUsername() != null) {
+				managedUser.setUsername(user.getUsername());
+			}
+			if (user.getPassword() != null) {
+				managedUser.setPassword(user.getPassword());
+			}
+			if (user.getLastName() != null) {
+				managedUser.setEmail(user.getEmail());
+			}
+			if (user.getEnabled() != null) {
+				managedUser.setEnabled(user.getEnabled());
+			}
+			if (user.getRole() != null) {
+				managedUser.setRole(user.getRole());
+			}
+			if (user.getImage() != null) {
+				managedUser.setImage(user.getImage());
+			}
+			if (user.getAddress() != null) {
+				managedUser.setAddress(user.getAddress());
+			}
+
+			userRepo.flush();
+		}
+		return managedUser;
 	}
 
 	@Override
