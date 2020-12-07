@@ -324,6 +324,7 @@ START TRANSACTION;
 USE `bbqdb`;
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `enabled`) VALUES (1, '315 South 31st Street', 'Colorado Springs', 'CO', '80904', 1);
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `enabled`) VALUES (2, '1727 Brooklyn Avenue', 'Kansas City', 'MO', '64127', 1);
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `enabled`) VALUES (3, '553 Central Ave', 'Kansas City', 'KS', '66101', 1);
 
 COMMIT;
 
@@ -345,6 +346,7 @@ START TRANSACTION;
 USE `bbqdb`;
 INSERT INTO `pitmaster` (`id`, `first_name`, `last_name`, `description`, `image`) VALUES (1, 'Larry', 'Dude', 'Amazing at smoking', NULL);
 INSERT INTO `pitmaster` (`id`, `first_name`, `last_name`, `description`, `image`) VALUES (2, 'Timmie', 'Brown', '38 years at Arthur Bryant\'s', 'https://www.kansascitymag.com/content/uploads/data-import/1e5a5296/LOVE-THIS-GUYDSC1903.jpg');
+INSERT INTO `pitmaster` (`id`, `first_name`, `last_name`, `description`, `image`) VALUES (3, 'Joe', 'Pearce', 'Award Winning Pitmaster', 'https://slapsbbqkc.com/wp-content/uploads/2020/12/Awards-1200x1200.png');
 
 COMMIT;
 
@@ -356,6 +358,7 @@ START TRANSACTION;
 USE `bbqdb`;
 INSERT INTO `restaurant` (`id`, `name`, `phone_number`, `description`, `website`, `logo`, `dine_in`, `hours`, `enabled`, `address_id`, `chain_id`, `pitmaster_id`) VALUES (1, 'Rudy\'s \"Country Store\" and Bar-B-Q', '7194714120', 'Brisket, Ribs & sides served up cafeteria-style in a no fills settings with indoor picnic tables', 'https://rudysbbq.com/location/detail/colorado-springs-co', 'https://rudysbbq.com/img/logo.png', 1, 'Sun-Thu 7am-9pm\nFri-Sat 7am-10pm', 1, 1, 1, 1);
 INSERT INTO `restaurant` (`id`, `name`, `phone_number`, `description`, `website`, `logo`, `dine_in`, `hours`, `enabled`, `address_id`, `chain_id`, `pitmaster_id`) VALUES (2, 'Arthur Bryant\'s Barbeque', '8162311123', 'Welcome to Arthur Bryant\'s Barbeque featuring succulent meat that\'s slow-smoked with a combination of hickory and oak woods, mellowed to the peak of flavor, then splashed with Arthur Bryant\'s Original or Rich & Spicy Sauce – our secret recipe.', 'https://www.arthurbryantsbbq.com/', 'https://www.arthurbryantsbbq.com/images/arthur-bryants-logo-small.png', 1, 'Hours\nFriday 10:30 AM – 8:00 PM\nSaturday 10:30 AM – 8:00 PM\nSunday 11:00 AM – 7:00 PM\nMonday 10:30 AM – 7:30 PM\nTuesday 10:30 AM – 7:30 PM\nWednesday 10:30 AM – 7:30 PM\nThursday 10:30 AM – 7:30 PM', 1, 2, NULL, 2);
+INSERT INTO `restaurant` (`id`, `name`, `phone_number`, `description`, `website`, `logo`, `dine_in`, `hours`, `enabled`, `address_id`, `chain_id`, `pitmaster_id`) VALUES (3, 'Slap\'s BBQ', '9132133736', 'lap\'s BBQ (Squeal Like a Pig) opened in June of 2014 and started with just a few hundred pounds of meat. ', 'https://slapsbbqkc.com/', 'https://slapsbbqkc.com/wp-content/uploads/2018/10/LOGO-Small-300x186.png', 1, 'Our Hours:\nMon - 11-7 (or sold out)\nTue - 11-7 (or sold out)\nWed - 11-7 (or sold out)\nThur - 11-7 (or sold out)\nFri - 11-7 (or sold out)\nSat - 11-7 (or sold out)\nSun - 11-7 (or sold out) ', 1, 3, NULL, 3);
 
 COMMIT;
 
@@ -406,6 +409,7 @@ USE `bbqdb`;
 INSERT INTO `review` (`id`, `review_score`, `review`, `review_date`, `restaurant_id`, `user_id`) VALUES (1, 4, 'tasty food', '2020/10/20', 1, 1);
 INSERT INTO `review` (`id`, `review_score`, `review`, `review_date`, `restaurant_id`, `user_id`) VALUES (2, 5, 'best KC bbq', '2020/11/10', 2, 3);
 INSERT INTO `review` (`id`, `review_score`, `review`, `review_date`, `restaurant_id`, `user_id`) VALUES (3, 3, 'lacks something special', '2020/12/1', 1, 2);
+INSERT INTO `review` (`id`, `review_score`, `review`, `review_date`, `restaurant_id`, `user_id`) VALUES (4, 5, 'best bbq in the midwest', '2020/12/9', 3, 2);
 
 COMMIT;
 
@@ -443,6 +447,8 @@ USE `bbqdb`;
 INSERT INTO `style_has_restaurant` (`style_id`, `restaurant_id`) VALUES (1, 1);
 INSERT INTO `style_has_restaurant` (`style_id`, `restaurant_id`) VALUES (2, 2);
 INSERT INTO `style_has_restaurant` (`style_id`, `restaurant_id`) VALUES (3, 2);
+INSERT INTO `style_has_restaurant` (`style_id`, `restaurant_id`) VALUES (3, 3);
+INSERT INTO `style_has_restaurant` (`style_id`, `restaurant_id`) VALUES (2, 3);
 
 COMMIT;
 
@@ -460,6 +466,10 @@ INSERT INTO `sauce_has_restaurant` (`sauce_id`, `restaurant_id`) VALUES (1, 2);
 INSERT INTO `sauce_has_restaurant` (`sauce_id`, `restaurant_id`) VALUES (2, 2);
 INSERT INTO `sauce_has_restaurant` (`sauce_id`, `restaurant_id`) VALUES (3, 2);
 INSERT INTO `sauce_has_restaurant` (`sauce_id`, `restaurant_id`) VALUES (4, 2);
+INSERT INTO `sauce_has_restaurant` (`sauce_id`, `restaurant_id`) VALUES (1, 3);
+INSERT INTO `sauce_has_restaurant` (`sauce_id`, `restaurant_id`) VALUES (2, 3);
+INSERT INTO `sauce_has_restaurant` (`sauce_id`, `restaurant_id`) VALUES (3, 3);
+INSERT INTO `sauce_has_restaurant` (`sauce_id`, `restaurant_id`) VALUES (4, 3);
 
 COMMIT;
 
@@ -479,6 +489,11 @@ INSERT INTO `side_dish_has_restaurant` (`side_dish_id`, `restaurant_id`) VALUES 
 INSERT INTO `side_dish_has_restaurant` (`side_dish_id`, `restaurant_id`) VALUES (4, 2);
 INSERT INTO `side_dish_has_restaurant` (`side_dish_id`, `restaurant_id`) VALUES (5, 2);
 INSERT INTO `side_dish_has_restaurant` (`side_dish_id`, `restaurant_id`) VALUES (5, 1);
+INSERT INTO `side_dish_has_restaurant` (`side_dish_id`, `restaurant_id`) VALUES (2, 3);
+INSERT INTO `side_dish_has_restaurant` (`side_dish_id`, `restaurant_id`) VALUES (1, 3);
+INSERT INTO `side_dish_has_restaurant` (`side_dish_id`, `restaurant_id`) VALUES (3, 3);
+INSERT INTO `side_dish_has_restaurant` (`side_dish_id`, `restaurant_id`) VALUES (4, 3);
+INSERT INTO `side_dish_has_restaurant` (`side_dish_id`, `restaurant_id`) VALUES (5, 3);
 
 COMMIT;
 
@@ -494,6 +509,9 @@ INSERT INTO `main_dish_has_restaurant` (`main_dish_id`, `restaurant_id`) VALUES 
 INSERT INTO `main_dish_has_restaurant` (`main_dish_id`, `restaurant_id`) VALUES (2, 2);
 INSERT INTO `main_dish_has_restaurant` (`main_dish_id`, `restaurant_id`) VALUES (3, 1);
 INSERT INTO `main_dish_has_restaurant` (`main_dish_id`, `restaurant_id`) VALUES (3, 2);
+INSERT INTO `main_dish_has_restaurant` (`main_dish_id`, `restaurant_id`) VALUES (3, 3);
+INSERT INTO `main_dish_has_restaurant` (`main_dish_id`, `restaurant_id`) VALUES (2, 3);
+INSERT INTO `main_dish_has_restaurant` (`main_dish_id`, `restaurant_id`) VALUES (1, 3);
 
 COMMIT;
 
