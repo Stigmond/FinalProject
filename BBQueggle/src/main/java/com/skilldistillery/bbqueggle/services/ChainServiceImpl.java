@@ -16,8 +16,8 @@ public class ChainServiceImpl implements ChainService {
 
 	@Override
 	public List<Chain> index() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Chain> allChains = chainRepo.findAll();
+		return allChains;
 	}
 
 	@Override
