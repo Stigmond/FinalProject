@@ -46,6 +46,21 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `pitmaster`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `pitmaster` ;
+
+CREATE TABLE IF NOT EXISTS `pitmaster` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `first_name` VARCHAR(45) NULL,
+  `last_name` VARCHAR(45) NULL,
+  `description` LONGTEXT NULL,
+  `image` LONGTEXT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `restaurant`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `restaurant` ;
@@ -62,9 +77,11 @@ CREATE TABLE IF NOT EXISTS `restaurant` (
   `enabled` TINYINT NOT NULL,
   `address_id` INT NULL,
   `chain_id` INT NULL,
+  `pitmaster_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_restaurants_address1_idx` (`address_id` ASC),
   INDEX `fk_restaurant_chain1_idx` (`chain_id` ASC),
+  INDEX `fk_restaurant_pitmaster1_idx` (`pitmaster_id` ASC),
   CONSTRAINT `fk_restaurants_address1`
     FOREIGN KEY (`address_id`)
     REFERENCES `address` (`id`)
@@ -73,6 +90,11 @@ CREATE TABLE IF NOT EXISTS `restaurant` (
   CONSTRAINT `fk_restaurant_chain1`
     FOREIGN KEY (`chain_id`)
     REFERENCES `chain` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_restaurant_pitmaster1`
+    FOREIGN KEY (`pitmaster_id`)
+    REFERENCES `pitmaster` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -214,28 +236,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `pitmaster`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `pitmaster` ;
-
-CREATE TABLE IF NOT EXISTS `pitmaster` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `first_name` VARCHAR(45) NULL,
-  `last_name` VARCHAR(45) NULL,
-  `description` LONGTEXT NULL,
-  `image` LONGTEXT NULL,
-  `restaurant_id` INT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_pitmaster_restaurant1_idx` (`restaurant_id` ASC),
-  CONSTRAINT `fk_pitmaster_restaurant1`
-    FOREIGN KEY (`restaurant_id`)
-    REFERENCES `restaurant` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `sauce_has_restaurant`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `sauce_has_restaurant` ;
@@ -338,11 +338,21 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `pitmaster`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `bbqdb`;
+INSERT INTO `pitmaster` (`id`, `first_name`, `last_name`, `description`, `image`) VALUES (1, 'Larry', 'Dude', 'Amazing at smoking', NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `restaurant`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bbqdb`;
-INSERT INTO `restaurant` (`id`, `name`, `phone_number`, `description`, `website`, `logo`, `dine_in`, `hours`, `enabled`, `address_id`, `chain_id`) VALUES (1, 'Rudy\'s \"Country Store\" and Bar-B-Q', '7194714120', 'Brisket, Ribs & sides served up cafeteria-style in a no fills settings with indoor picnic tables', 'https://rudysbbq.com/location/detail/colorado-springs-co', 'https://rudysbbq.com/img/logo.png', 1, 'Sun-Thu 7am-9pm\nFri-Sat 7am-10pm', 1, 1, 1);
+INSERT INTO `restaurant` (`id`, `name`, `phone_number`, `description`, `website`, `logo`, `dine_in`, `hours`, `enabled`, `address_id`, `chain_id`, `pitmaster_id`) VALUES (1, 'Rudy\'s \"Country Store\" and Bar-B-Q', '7194714120', 'Brisket, Ribs & sides served up cafeteria-style in a no fills settings with indoor picnic tables', 'https://rudysbbq.com/location/detail/colorado-springs-co', 'https://rudysbbq.com/img/logo.png', 1, 'Sun-Thu 7am-9pm\nFri-Sat 7am-10pm', 1, 1, 1, NULL);
 
 COMMIT;
 
@@ -413,16 +423,6 @@ COMMIT;
 START TRANSACTION;
 USE `bbqdb`;
 INSERT INTO `style_has_restaurant` (`style_id`, `restaurant_id`) VALUES (1, 1);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `pitmaster`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `bbqdb`;
-INSERT INTO `pitmaster` (`id`, `first_name`, `last_name`, `description`, `image`, `restaurant_id`) VALUES (1, 'Larry', 'Dude', 'Amazing at smoking', NULL, 1);
 
 COMMIT;
 
