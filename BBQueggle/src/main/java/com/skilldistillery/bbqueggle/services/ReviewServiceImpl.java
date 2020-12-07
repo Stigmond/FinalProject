@@ -1,5 +1,7 @@
 package com.skilldistillery.bbqueggle.services;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,20 +18,27 @@ public class ReviewServiceImpl implements ReviewService{
 	
 	@Override
 	public List<Review> getAllReviewsByRestaurantId(Integer RestaurantId) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Review> reviews = new ArrayList<>();
+		reviews = reviewRepo.findByRestaurant_Id(RestaurantId);
+		return reviews;
 	}
 
 	@Override
 	public Review getRestaurantReviewByReviewId(Integer RestaurantId, Integer ReviewId) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Review createRestaurantReview(Integer RestaurantId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Review createRestaurantReview(Review review) {
+		if (review == null) {
+			return null;
+		}
+		review.setReviewDate(LocalDate.now());
+		if (review.getReview() == null || review.getReview().equals("")) {
+			review.setReview("No comments given.");
+		}
+		reviewRepo.saveAndFlush(review);
+		return review;
 	}
 
 	@Override

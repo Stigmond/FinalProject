@@ -1,6 +1,6 @@
 package com.skilldistillery.bbqueggle.entities;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Review {
@@ -24,8 +26,9 @@ public class Review {
 	private String review;
 	
 	@Column(name="review_date")
-	private LocalDateTime reviewDate;
+	private LocalDate reviewDate;
 	
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="user_id")
 	private User user;
@@ -62,11 +65,11 @@ public class Review {
 		this.review = review;
 	}
 
-	public LocalDateTime getReviewDate() {
+	public LocalDate getReviewDate() {
 		return reviewDate;
 	}
 
-	public void setReviewDate(LocalDateTime reviewDate) {
+	public void setReviewDate(LocalDate reviewDate) {
 		this.reviewDate = reviewDate;
 	}
 
