@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,17 +31,26 @@ public class ReviewController {
 	RestaurantService restServ;
 
 	
-	@GetMapping("reviews/{restId}/getAll")
+	@GetMapping("reviews/{restId}")
 	public List<Review> getAllReviewsByRestaurant(@PathVariable Integer restId, HttpServletResponse response) {
 		List<Review> reviews = revServ.getAllReviewsByRestaurantId(restId);
+		if (reviews.isEmpty() || reviews == null) {
+			response.setStatus(404);
+			return null;
+		}
 		return reviews;
 	}
 	
-	@GetMapping("reviews/{revId}")
-	public Review getReviewById(@PathVariable Integer revId, HttpServletResponse response) {
-		Review review = revServ.getReviewByReviewId(revId);
+	@GetMapping("reviews/{restId}/{revId}")
+	public Review getReviewById(@PathVariable Integer restId, @PathVariable Integer revId, HttpServletResponse response) {
+		if (restId == null || revId == null) {
+			response.setStatus(404);
+			return null;
+		}
+		Review review = revServ.getReviewByReviewId(restId, revId);
 		if (review == null) {
 			response.setStatus(404);
+			return null;
 		}
 		return review;
 	}
@@ -64,7 +74,19 @@ public class ReviewController {
 		return review;
 	}
 	
-	
+	@PutMapping("reviews/{restId}/{revId}")
+	public Review updateRestaurantReview(@PathVariable Integer restId, @PathVariable Integer revId, @RequestBody Review review, HttpServletResponse response) {
+		if (restId == null || revId == null) {
+			response.setStatus(404);
+			return null;
+		}
+		review = revServ.updateRestaurantReview(restId, revId, review);
+		if (review == null) {
+			response.setStatus(404);
+			return null;
+		}
+		return review;
+	}
 	
 }
 

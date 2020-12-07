@@ -8,13 +8,11 @@ public interface ReviewService {
 
 	List<Review> getAllReviewsByRestaurantId(Integer RestaurantId);
 	
-//	Review getRestaurantReviewByReviewId(Integer RestaurantId, Integer ReviewId);
-	
-	Review getReviewByReviewId(Integer ReviewId);
+	public Review getReviewByReviewId(Integer restaurantId, Integer reviewId);
 	
 	Review createRestaurantReview(Review review);
 	
-	Review updateRestaurantReview(Integer RestaurantId, Integer ReviewId, Review review);
+	Review updateRestaurantReview(Integer restaurantId, Integer reviewId, Review review);
 	
 	boolean deleteRestaurantReview(Integer ReviewId);
 }
