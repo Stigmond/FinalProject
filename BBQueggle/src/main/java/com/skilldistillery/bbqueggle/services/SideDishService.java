@@ -6,9 +6,9 @@ import com.skilldistillery.bbqueggle.entities.SideDish;
 
 public interface SideDishService {
 
-	List<SideDish> index();
+	List<SideDish> getAllSideDishes();
 
-	SideDish getSideDishById(Integer id);
+	SideDish findById(Integer id);
 
 	SideDish create(SideDish sideDish);
 
