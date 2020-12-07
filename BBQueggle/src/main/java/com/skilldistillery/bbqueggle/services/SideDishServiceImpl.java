@@ -14,7 +14,7 @@ public class SideDishServiceImpl implements SideDishService {
 	private SideDishRepository sRepo;
 	
 	@Override
-	public List<SideDish> index() {
+	public List<SideDish> getAllSideDishes() {
 		return sRepo.findAll();
 	}
 
@@ -31,8 +31,8 @@ public class SideDishServiceImpl implements SideDishService {
 
 	@Override
 	public SideDish create(SideDish sideDish) {
-		
-		return null;
+		sideDish = sRepo.saveAndFlush(sideDish);
+		return sideDish;
 	}
 
 	@Override
