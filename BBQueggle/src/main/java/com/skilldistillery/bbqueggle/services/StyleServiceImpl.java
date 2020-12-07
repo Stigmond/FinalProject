@@ -39,14 +39,31 @@ public class StyleServiceImpl implements StyleService {
 
 	@Override
 	public Style updateStyle(Style style, Integer Id) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Style> styleOpt = styleRepo.findById(Id);
+		Style managedStyle = null;
+		if (styleOpt.isPresent()) {
+			managedStyle = styleOpt.get();
+
+			if (style.getName() != null) {
+				managedStyle.setName(style.getName());
+			}
+			if (style.getDescription() != null) {
+				managedStyle.setDescription(style.getDescription());
+			}
+			styleRepo.flush();
+		}
+		return managedStyle;
 	}
 
 	@Override
 	public boolean deleteStyle(Integer Id) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean deleted = false;
+		Optional<Style> styleOpt = styleRepo.findById(Id);
+		if (styleOpt.isPresent()) {
+			styleRepo.deleteById(Id);
+			deleted = true;
+		}
+		return deleted;
 	}
 
 }
