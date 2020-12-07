@@ -28,24 +28,13 @@ public class Pitmaster {
 
 	private String image;
 
-	@JsonIgnore
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "restaurant_id")
-	private Restaurant restaurant;
+//	@JsonIgnore
+//	@OneToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "restaurant_id")
+//	private Restaurant restaurant;
 
 	public Pitmaster() {
 		super();
-	}
-
-	public Pitmaster(int id, String firstName, String lastName, String description, String image,
-			Restaurant restaurant) {
-		super();
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.description = description;
-		this.image = image;
-		this.restaurant = restaurant;
 	}
 
 	public int getId() {
@@ -88,19 +77,18 @@ public class Pitmaster {
 		this.image = image;
 	}
 
-	public Restaurant getRestaurant() {
-		return restaurant;
-	}
-
-	public void setRestaurant(Restaurant restaurant) {
-		this.restaurant = restaurant;
+	@Override
+	public String toString() {
+		return "Pitmaster [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + id;
+		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		return result;
 	}
 
@@ -113,15 +101,21 @@ public class Pitmaster {
 		if (getClass() != obj.getClass())
 			return false;
 		Pitmaster other = (Pitmaster) obj;
+		if (firstName == null) {
+			if (other.firstName != null)
+				return false;
+		} else if (!firstName.equals(other.firstName))
+			return false;
 		if (id != other.id)
+			return false;
+		if (lastName == null) {
+			if (other.lastName != null)
+				return false;
+		} else if (!lastName.equals(other.lastName))
 			return false;
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Pitmaster [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", description="
-				+ description + ", image=" + image + ", restaurant=" + restaurant + "]";
-	}
+	
 
 }
