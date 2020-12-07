@@ -1,6 +1,7 @@
 package com.skilldistillery.bbqueggle.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,8 +23,12 @@ public class StyleServiceImpl implements StyleService {
 
 	@Override
 	public Style getStyleById(Integer Id) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Style> styleOpt = styleRepo.findById(Id);
+		Style style = null;
+		if (styleOpt.isPresent()) {
+			style = styleOpt.get();
+		}
+		return style;
 	}
 
 	@Override
