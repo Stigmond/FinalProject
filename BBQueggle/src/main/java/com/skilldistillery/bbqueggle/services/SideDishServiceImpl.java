@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.bbqueggle.entities.Address;
 import com.skilldistillery.bbqueggle.entities.SideDish;
 import com.skilldistillery.bbqueggle.repositories.SideDishRepository;
 
@@ -21,7 +22,7 @@ public class SideDishServiceImpl implements SideDishService {
 	}
 
 	@Override
-	public SideDish getSideDishById(Integer id) {
+	public SideDish findById(Integer id) {
 		SideDish sideDish = null;
 		Optional<SideDish> sideOpt = sRepo.findById(id);
 		if(sideOpt.isPresent()) {
@@ -39,13 +40,31 @@ public class SideDishServiceImpl implements SideDishService {
 
 	@Override
 	public SideDish update(Integer id, SideDish sideDish) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<SideDish> sdOpt = sRepo.findById(id);
+		SideDish manageSd = null;
+		if (sdOpt.isPresent()) {
+			manageSd = sdOpt.get();
+			if (sideDish.getName() != null) {
+				manageSd.setName(sideDish.getName());
+			}
+			if (sideDish.getDescription() != null) {
+				manageSd.setDescription(sideDish.getDescription());
+			}
+			if (sideDish.getImage() != null) {
+				manageSd.setImage(sideDish.getImage());
+			}
+			sRepo.flush();
+		}
+		return manageSd;
 	}
 
 	@Override
 	public boolean delete(Integer id) {
-		// TODO Auto-generated method stub
+		boolean deleted = false;
+		Optional<SideDish> sOpt = sRepo.findById(id);
+		if(sOpt.isPresent()) {
+			sRepo.delete(sOpt.get());
+		}
 		return false;
 	}
 

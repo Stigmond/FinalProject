@@ -8,7 +8,7 @@ public interface SideDishService {
 
 	List<SideDish> getAllSideDishes();
 
-	SideDish getSideDishById(Integer id);
+	SideDish findById(Integer id);
 
 	SideDish create(SideDish sideDish);
 
