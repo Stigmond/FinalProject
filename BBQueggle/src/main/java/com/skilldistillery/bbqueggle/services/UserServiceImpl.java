@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.bbqueggle.entities.Chain;
 import com.skilldistillery.bbqueggle.entities.User;
 import com.skilldistillery.bbqueggle.repositories.UserRepository;
 
