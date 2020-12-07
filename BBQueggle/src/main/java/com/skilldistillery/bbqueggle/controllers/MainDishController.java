@@ -16,76 +16,76 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.bbqueggle.entities.Restaurant;
-import com.skilldistillery.bbqueggle.services.RestaurantServiceImpl;
+import com.skilldistillery.bbqueggle.entities.MainDish;
+import com.skilldistillery.bbqueggle.services.MainDishServiceImpl;
 
 @CrossOrigin({ "*", "http://localhost:4210" })
 @RequestMapping("api")
 @RestController
-public class RestaurantController {
+public class MainDishController {
 
 	@Autowired
-	private RestaurantServiceImpl svc;
+	private MainDishServiceImpl svc;
 
-	@GetMapping("restaurants")
-	public List<Restaurant> allRestaurants() {
+	@GetMapping("mainDish")
+	public List<MainDish> index() {
 		return svc.index();
 	}
 
-	@GetMapping("restaurants/{restaurantId}")
-	public Restaurant showRestaurant(@PathVariable Integer restaurantId, HttpServletResponse response) {
-		Restaurant restaurant = svc.showRestaurant(restaurantId);
-		if (restaurant == null) {
+	@GetMapping("mainDish/{mainDishId}")
+	public MainDish getMainDishById(@PathVariable Integer mainDishId, HttpServletResponse response) {
+		MainDish mainDish = svc.getMainDishById(mainDishId);
+		if (mainDish == null) {
 			response.setStatus(404);
 		}
-		return restaurant;
+		return mainDish;
 	}
 
-	// CRUD Methods
-
-	@PostMapping("restaurants")
-	public Restaurant createRestaurant(@RequestBody Restaurant restaurant, HttpServletResponse response,
+	@PostMapping("mainDish")
+	public MainDish createMainDish(@RequestBody MainDish newMainDish, HttpServletResponse response,
 			HttpServletRequest request) {
-		Restaurant createdRestaurant = null;
+		MainDish createdMainDish = null;
 		try {
-			createdRestaurant = svc.createRestaurant(restaurant);
+			createdMainDish = svc.createMainDish(newMainDish);
 			response.setStatus(201);
 			StringBuffer url = request.getRequestURL();
-			url.append("/").append(restaurant.getId());
+			url.append("/").append(newMainDish.getId());
 			response.setHeader("Location", url.toString());
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.setStatus(400);
-			restaurant = null;
+			newMainDish = null;
 		}
-		return createdRestaurant;
+		return createdMainDish;
+
 	}
 
-	@PutMapping("restaurants/{restaurantId}")
-	public Restaurant updateRestaurant(@PathVariable Integer restaurantId, @RequestBody Restaurant restaurant,
+	@PutMapping("mainDish/{mainDishId}")
+	public MainDish updateMainDish(@PathVariable Integer mainDishId, @RequestBody MainDish updatedMainDish,
 			HttpServletResponse response) {
 		try {
-			restaurant = svc.updateRestaurant(restaurant, restaurantId);
-			if (restaurant == null) {
+			updatedMainDish = svc.updateMainDish(mainDishId, updatedMainDish);
+			if (updatedMainDish == null) {
 				response.setStatus(404);
-				restaurant = null;
+				updatedMainDish = null;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.setStatus(400);
-			restaurant = null;
+			updatedMainDish = null;
 		}
-		return restaurant;
+		return updatedMainDish;
 	}
 
-	@DeleteMapping("restaurants/{restaurantId}")
-	public void deleteRestaurant(@PathVariable Integer restaurantId, HttpServletResponse response) {
-		if (svc.deleteRestaurant(restaurantId)) {
+	@DeleteMapping("mainDish/{mainDishId}")
+	public void deleteMainDish(@PathVariable Integer mainDishId, HttpServletResponse response) {
+		if (svc.deleteMainDish(mainDishId)) {
 			response.setStatus(204);
 
 		} else {
 			response.setStatus(404);
 		}
 	}
+
 }
