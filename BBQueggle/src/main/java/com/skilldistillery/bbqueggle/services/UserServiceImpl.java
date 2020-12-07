@@ -34,8 +34,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User createUser(User newUser) {
-		// TODO Auto-generated method stub
-		return null;
+		userRepo.saveAndFlush(newUser);
+		return userRepo.save(newUser);
 	}
 
 	@Override
