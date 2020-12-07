@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.bbqueggle.entities.Restaurant;
 import com.skilldistillery.bbqueggle.entities.Review;
 import com.skilldistillery.bbqueggle.repositories.ReviewRepository;
 
@@ -15,6 +16,9 @@ public class ReviewServiceImpl implements ReviewService{
 
 	@Autowired
 	ReviewRepository reviewRepo;
+	@Autowired
+	RestaurantService restServ;
+	
 	
 	@Override
 	public List<Review> getAllReviewsByRestaurantId(Integer restaurantId) {
@@ -23,28 +27,50 @@ public class ReviewServiceImpl implements ReviewService{
 		return reviews;
 	}
 
+	public Review getReviewByReviewId(Integer restaurantId, Integer reviewId) {
+		return reviewRepo.findByIdAndRestaurant_Id(reviewId, restaurantId);
+		
+	}
+	
 	@Override
-	public Review getRestaurantReviewByReviewId(Integer restaurantId, Integer reviewId) {
-		Review review = reviewRepo.findByIdAndRestaurant_Id(reviewId, restaurantId);
+	public Review createRestaurantReview(Review review) {
+		review.setReviewDate(LocalDate.now());
+		if (review.getReview() == null || review.getReview().equals("")) {
+			review.setReview("No comment available");
+		}
+		review = reviewRepo.saveAndFlush(review);
 		return review;
 	}
 
 	@Override
-	public Review createRestaurantReview(Review review) {
-		return null;
-	}
-
-	@Override
 	public Review updateRestaurantReview(Integer restaurantId, Integer reviewId, Review review) {
-		// TODO Auto-generated method stub
-		return null;
+		Review managedReview = this.getReviewByReviewId(restaurantId, reviewId);
+		
+		if (managedReview == null) {
+			return null;
+		}
+		
+		managedReview.setReviewScore(review.getReviewScore());
+		
+		StringBuilder updatedReview = new StringBuilder();
+		updatedReview.append("[UPDATED ON: " + LocalDate.now() + "]\s");
+		updatedReview.append(review.getReview());
+		updatedReview.append("\s-----\s" + managedReview.getReview());
+		
+		managedReview.setReview(updatedReview.toString());
+		review = reviewRepo.saveAndFlush(managedReview);
+		return review;
+		
 	}
 
 	@Override
 	public boolean deleteRestaurantReview(Integer restaurantId, Integer reviewId) {
 		boolean deleted = false;
-		Review reviewToDelete = this.getRestaurantReviewByReviewId(restaurantId, reviewId);
+		Review reviewToDelete = this.getReviewByReviewId(restaurantId, reviewId);
+		
 		if (reviewToDelete != null) {
+			Restaurant managedRestaurant = restServ.showRestaurant(restaurantId);
+			managedRestaurant.getReviews().remove(reviewToDelete);
 			reviewRepo.delete(reviewToDelete);
 			deleted = true;
 		}
