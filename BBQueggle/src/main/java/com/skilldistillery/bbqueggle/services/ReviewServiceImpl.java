@@ -66,9 +66,11 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public boolean deleteRestaurantReview(Integer restaurantId, Integer reviewId) {
 		boolean deleted = false;
-		
 		Review reviewToDelete = this.getReviewByReviewId(restaurantId, reviewId);
+		
 		if (reviewToDelete != null) {
+			Restaurant managedRestaurant = restServ.showRestaurant(restaurantId);
+			managedRestaurant.getReviews().remove(reviewToDelete);
 			reviewRepo.delete(reviewToDelete);
 			deleted = true;
 		}
