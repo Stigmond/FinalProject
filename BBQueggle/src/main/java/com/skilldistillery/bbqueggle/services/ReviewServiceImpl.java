@@ -3,6 +3,7 @@ package com.skilldistillery.bbqueggle.services;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ public class ReviewServiceImpl implements ReviewService{
 
 	@Autowired
 	ReviewRepository reviewRepo;
-	RestaurantService restServ;
+	
 	
 	@Override
 	public List<Review> getAllReviewsByRestaurantId(Integer restaurantId) {
@@ -25,17 +26,17 @@ public class ReviewServiceImpl implements ReviewService{
 		return reviews;
 	}
 
-	@Override
-	public Review getRestaurantReviewByReviewId(Integer restaurantId, Integer reviewId) {
-		Review review = reviewRepo.findByIdAndRestaurant_Id(reviewId, restaurantId);
+	public Review getReviewByReviewId(Integer reviewId) {
+		Optional<Review> optRev = reviewRepo.findById(reviewId);
+		Review review = null;
+		if (optRev.isPresent()) {
+			review = optRev.get();
+		}
 		return review;
 	}
-
+	
 	@Override
-	public Review createRestaurantReview(Review review, Integer restId) {
-		Restaurant restaurant = new Restaurant();
-		restaurant = restServ.showRestaurant(restId);
-		review.setRestaurant(restaurant);
+	public Review createRestaurantReview(Review review) {
 		review.setReviewDate(LocalDate.now());
 		if (review.getReview() == null || review.getReview().equals("")) {
 			review.setReview("No comment available");
@@ -51,14 +52,8 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public boolean deleteRestaurantReview(Integer restaurantId, Integer reviewId) {
-		boolean deleted = false;
-		Review reviewToDelete = this.getRestaurantReviewByReviewId(restaurantId, reviewId);
-		if (reviewToDelete != null) {
-			reviewRepo.delete(reviewToDelete);
-			deleted = true;
-		}
-		return deleted;
+	public boolean deleteRestaurantReview(Integer reviewId) {
+		return false;
 	}
 
 	
