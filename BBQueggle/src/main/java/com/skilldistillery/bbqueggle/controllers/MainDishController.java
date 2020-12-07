@@ -27,12 +27,12 @@ public class MainDishController {
 	@Autowired
 	private MainDishServiceImpl svc;
 
-	@GetMapping("mainDishes")
+	@GetMapping("mainDish")
 	public List<MainDish> index() {
 		return svc.index();
 	}
 
-	@GetMapping("mainDishes/{mainDishId}")
+	@GetMapping("mainDish/{mainDishId}")
 	public MainDish getMainDishById(@PathVariable Integer mainDishId, HttpServletResponse response) {
 		MainDish mainDish = svc.getMainDishById(mainDishId);
 		if (mainDish == null) {
@@ -41,7 +41,7 @@ public class MainDishController {
 		return mainDish;
 	}
 
-	@PostMapping("mainDishes/{mainDishId}")
+	@PostMapping("mainDish")
 	public MainDish createMainDish(@RequestBody MainDish newMainDish, HttpServletResponse response,
 			HttpServletRequest request) {
 		MainDish createdMainDish = null;
@@ -61,7 +61,7 @@ public class MainDishController {
 
 	}
 
-	@PutMapping("mainDishes/{mainDisheId}")
+	@PutMapping("mainDish/{mainDishId}")
 	public MainDish updateMainDish(@PathVariable Integer mainDishId, @RequestBody MainDish updatedMainDish,
 			HttpServletResponse response) {
 		try {
@@ -77,9 +77,8 @@ public class MainDishController {
 		}
 		return updatedMainDish;
 	}
-	
 
-	@DeleteMapping("mainDishes/{mainDishId}")
+	@DeleteMapping("mainDish/{mainDishId}")
 	public void deleteMainDish(@PathVariable Integer mainDishId, HttpServletResponse response) {
 		if (svc.deleteMainDish(mainDishId)) {
 			response.setStatus(204);
@@ -88,6 +87,5 @@ public class MainDishController {
 			response.setStatus(404);
 		}
 	}
-
 
 }
