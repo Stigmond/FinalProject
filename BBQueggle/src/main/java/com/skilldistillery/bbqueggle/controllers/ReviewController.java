@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -86,6 +87,19 @@ public class ReviewController {
 			return null;
 		}
 		return review;
+	}
+	
+	@DeleteMapping("reviews/{restId}/{revId}")
+	public void deleteRestaurantReview(@PathVariable Integer restId, @PathVariable Integer revId, HttpServletResponse response) {
+		if (restId == null || revId == null) {
+			response.setStatus(404);
+		}
+		boolean deleted = revServ.deleteRestaurantReview(restId, revId);
+		if (deleted == true) {
+			response.setStatus(204);
+		} else {
+			response.setStatus(404);
+		}
 	}
 	
 }

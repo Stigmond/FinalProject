@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.bbqueggle.entities.Restaurant;
 import com.skilldistillery.bbqueggle.entities.Review;
 import com.skilldistillery.bbqueggle.repositories.ReviewRepository;
 
@@ -15,6 +16,8 @@ public class ReviewServiceImpl implements ReviewService{
 
 	@Autowired
 	ReviewRepository reviewRepo;
+	@Autowired
+	RestaurantService restServ;
 	
 	
 	@Override
@@ -61,8 +64,15 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public boolean deleteRestaurantReview(Integer reviewId) {
-		return false;
+	public boolean deleteRestaurantReview(Integer restaurantId, Integer reviewId) {
+		boolean deleted = false;
+		
+		Review reviewToDelete = this.getReviewByReviewId(restaurantId, reviewId);
+		if (reviewToDelete != null) {
+			reviewRepo.delete(reviewToDelete);
+			deleted = true;
+		}
+		return deleted;
 	}
 
 	

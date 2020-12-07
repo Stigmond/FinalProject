@@ -6,7 +6,7 @@ import com.skilldistillery.bbqueggle.entities.Review;
 
 public interface ReviewService {
 
-	List<Review> getAllReviewsByRestaurantId(Integer RestaurantId);
+	List<Review> getAllReviewsByRestaurantId(Integer restaurantId);
 	
 	public Review getReviewByReviewId(Integer restaurantId, Integer reviewId);
 	
@@ -14,5 +14,5 @@ public interface ReviewService {
 	
 	Review updateRestaurantReview(Integer restaurantId, Integer reviewId, Review review);
 	
-	boolean deleteRestaurantReview(Integer ReviewId);
+	boolean deleteRestaurantReview(Integer restaurantId, Integer reviewId);
 }
