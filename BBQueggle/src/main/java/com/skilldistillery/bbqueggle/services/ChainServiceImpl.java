@@ -40,14 +40,35 @@ public class ChainServiceImpl implements ChainService {
 
 	@Override
 	public Chain updateChain(Chain chain, Integer Id) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Chain> chainOpt = chainRepo.findById(Id);
+		Chain managedChain = null;
+		if (chainOpt.isPresent()) {
+			managedChain = chainOpt.get();
+
+			if (chain.getName() != null) {
+				managedChain.setName(chain.getName());
+			}
+			if (chain.getLogo() != null) {
+				managedChain.setLogo(chain.getLogo());
+			}
+			if (chain.getWebsite() != null) {
+				managedChain.setWebsite(chain.getWebsite());
+			}
+
+			chainRepo.flush();
+		}
+		return managedChain;
 	}
 
 	@Override
 	public boolean deleteChain(Integer Id) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean deleted = false;
+		Optional<Chain> chainOpt = chainRepo.findById(Id);
+		if (chainOpt.isPresent()) {
+			chainRepo.deleteById(Id);
+			deleted = true;
+		}
+		return deleted;
 	}
 
 }
