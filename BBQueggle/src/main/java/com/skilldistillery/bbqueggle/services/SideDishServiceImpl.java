@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.bbqueggle.entities.Address;
 import com.skilldistillery.bbqueggle.entities.SideDish;
 import com.skilldistillery.bbqueggle.repositories.SideDishRepository;
 
@@ -15,7 +14,7 @@ public class SideDishServiceImpl implements SideDishService {
 
 	@Autowired
 	private SideDishRepository sRepo;
-	
+
 	@Override
 	public List<SideDish> getAllSideDishes() {
 		return sRepo.findAll();
@@ -25,9 +24,9 @@ public class SideDishServiceImpl implements SideDishService {
 	public SideDish findById(Integer id) {
 		SideDish sideDish = null;
 		Optional<SideDish> sideOpt = sRepo.findById(id);
-		if(sideOpt.isPresent()) {
+		if (sideOpt.isPresent()) {
 			sideDish = sideOpt.get();
-			}
+		}
 		sRepo.findById(id);
 		return sideDish;
 	}
@@ -62,10 +61,10 @@ public class SideDishServiceImpl implements SideDishService {
 	public boolean delete(Integer id) {
 		boolean deleted = false;
 		Optional<SideDish> sOpt = sRepo.findById(id);
-		if(sOpt.isPresent()) {
+		if (sOpt.isPresent()) {
 			sRepo.delete(sOpt.get());
 		}
-		return false;
+		return deleted;
 	}
 
 }
