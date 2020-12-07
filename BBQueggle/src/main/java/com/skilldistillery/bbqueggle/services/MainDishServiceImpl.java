@@ -30,7 +30,7 @@ public class MainDishServiceImpl implements MainDishService {
 	}
 
 	@Override
-	public MainDish createMainDIsh(MainDish newMainDish) {
+	public MainDish createMainDish(MainDish newMainDish) {
 		mainDishRepo.saveAndFlush(newMainDish);
 		return mainDishRepo.save(newMainDish);
 	}
@@ -73,6 +73,5 @@ public class MainDishServiceImpl implements MainDishService {
 		}
 		return deleted;
 	}
-	
 
 }

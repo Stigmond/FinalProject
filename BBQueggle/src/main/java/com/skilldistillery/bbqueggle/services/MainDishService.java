@@ -11,7 +11,7 @@ List<MainDish> index();
 	
 	MainDish getMainDishById(Integer id);
 	
-	MainDish createMainDIsh(MainDish newMainDIsh);
+	MainDish createMainDish(MainDish newMainDIsh);
 	
 	MainDish updateMainDish(Integer id, MainDish mainDish);
 	
