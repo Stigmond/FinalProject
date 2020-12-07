@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.skilldistillery.bbqueggle.entities.Chain;
 
-public interface ChainRepo extends JpaRepository<Chain, Integer> {
+public interface ChainRepository extends JpaRepository<Chain, Integer> {
 
 }
