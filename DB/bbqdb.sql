@@ -352,7 +352,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bbqdb`;
-INSERT INTO `restaurant` (`id`, `name`, `phone_number`, `description`, `website`, `logo`, `dine_in`, `hours`, `enabled`, `address_id`, `chain_id`, `pitmaster_id`) VALUES (1, 'Rudy\'s \"Country Store\" and Bar-B-Q', '7194714120', 'Brisket, Ribs & sides served up cafeteria-style in a no fills settings with indoor picnic tables', 'https://rudysbbq.com/location/detail/colorado-springs-co', 'https://rudysbbq.com/img/logo.png', 1, 'Sun-Thu 7am-9pm\nFri-Sat 7am-10pm', 1, 1, 1, NULL);
+INSERT INTO `restaurant` (`id`, `name`, `phone_number`, `description`, `website`, `logo`, `dine_in`, `hours`, `enabled`, `address_id`, `chain_id`, `pitmaster_id`) VALUES (1, 'Rudy\'s \"Country Store\" and Bar-B-Q', '7194714120', 'Brisket, Ribs & sides served up cafeteria-style in a no fills settings with indoor picnic tables', 'https://rudysbbq.com/location/detail/colorado-springs-co', 'https://rudysbbq.com/img/logo.png', 1, 'Sun-Thu 7am-9pm\nFri-Sat 7am-10pm', 1, 1, 1, 1);
 
 COMMIT;
 
