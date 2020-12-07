@@ -10,7 +10,7 @@ public interface ReviewService {
 	
 	Review getRestaurantReviewByReviewId(Integer RestaurantId, Integer ReviewId);
 	
-	Review createRestaurantReview(Review review);
+	Review createRestaurantReview(Review review, Integer restId);
 	
 	Review updateRestaurantReview(Integer RestaurantId, Integer ReviewId, Review review);
 	
