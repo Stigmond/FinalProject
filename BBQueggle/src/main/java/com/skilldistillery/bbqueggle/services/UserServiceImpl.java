@@ -80,8 +80,13 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean deleteUser(Integer Id) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean deleted = false;
+		Optional<User> userOpt = userRepo.findById(Id);
+		if (userOpt.isPresent()) {
+			userRepo.deleteById(Id);
+			deleted = true;
+		}
+		return deleted;
 	}
 
 }
