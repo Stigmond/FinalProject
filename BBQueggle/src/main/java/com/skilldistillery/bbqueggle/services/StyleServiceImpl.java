@@ -33,8 +33,8 @@ public class StyleServiceImpl implements StyleService {
 
 	@Override
 	public Style createStyle(Style newStyle) {
-		// TODO Auto-generated method stub
-		return null;
+		styleRepo.saveAndFlush(newStyle);
+		return styleRepo.save(newStyle);
 	}
 
 	@Override
