@@ -6,4 +6,5 @@ import com.skilldistillery.bbqueggle.entities.SideDish;
 
 public interface SideDishRepository extends JpaRepository<SideDish, Integer> {
 
+	SideDish findById(int id);
 }
