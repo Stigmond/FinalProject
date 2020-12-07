@@ -2,12 +2,15 @@ package com.skilldistillery.bbqueggle.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,4 +39,22 @@ public class StyleController {
 		return style;
 	}
 
+	@PostMapping("style")
+	public Style createStyle(@RequestBody Style newStyle, HttpServletResponse response, HttpServletRequest request) {
+		Style createdStyle = null;
+		try {
+			createdStyle = svc.createStyle(newStyle);
+			response.setStatus(201);
+			StringBuffer url = request.getRequestURL();
+			url.append("/").append(newStyle.getId());
+			response.setHeader("Location", url.toString());
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.setStatus(400);
+			newStyle = null;
+		}
+		return createdStyle;
+
+	}
 }
