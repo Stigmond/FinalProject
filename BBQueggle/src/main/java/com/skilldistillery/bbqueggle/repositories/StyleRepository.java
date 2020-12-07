@@ -1,5 +1,9 @@
 package com.skilldistillery.bbqueggle.repositories;
 
-public interface StyleRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.skilldistillery.bbqueggle.entities.Style;
+
+public interface StyleRepository extends JpaRepository<Style, Integer>{
 
 }
