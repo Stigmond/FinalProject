@@ -1,11 +1,13 @@
 package com.skilldistillery.bbqueggle.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.bbqueggle.entities.Chain;
+import com.skilldistillery.bbqueggle.entities.Style;
 import com.skilldistillery.bbqueggle.repositories.ChainRepository;
 
 @Service
@@ -22,14 +24,18 @@ public class ChainServiceImpl implements ChainService {
 
 	@Override
 	public Chain getChainById(Integer Id) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Chain> chainOpt = chainRepo.findById(Id);
+		Chain chain = null;
+		if (chainOpt.isPresent()) {
+			chain = chainOpt.get();
+		}
+		return chain;
 	}
 
 	@Override
 	public Chain createChain(Chain newChain) {
-		// TODO Auto-generated method stub
-		return null;
+		chainRepo.saveAndFlush(newChain);
+		return chainRepo.save(newChain);
 	}
 
 	@Override
