@@ -1,9 +1,40 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { Address } from '../models/address';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AddressService {
+  constructor(private http: HttpClient) {}
 
-  constructor() { }
+  private baseUrl = 'http://localhost:8090/';
+  //baseUrl = '/RunTracker/';
+  //baseUrl = environment.baseUrl;
+  private url = this.baseUrl + 'api/address';
+
+  index(): Observable<Address[]> {
+    return this.http.get<Address[]>(this.url + '?sorted=true').pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('error loading address list');
+      })
+    );
+  }
+
+  public create(address: Address): Observable<Address> {
+    const httpOptions = {
+      headers: {
+        'Content-type': 'application/json',
+      },
+    };
+    return this.http.post<Address>(this.url, address, httpOptions).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error creating address');
+      })
+    );
+  }
 }
