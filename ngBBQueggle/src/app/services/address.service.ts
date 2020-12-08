@@ -11,8 +11,7 @@ export class AddressService {
   constructor(private http: HttpClient) {}
 
   private baseUrl = 'http://localhost:8090/';
-  //baseUrl = '/RunTracker/';
-  //baseUrl = environment.baseUrl;
+
   private url = this.baseUrl + 'api/address';
 
   index(): Observable<Address[]> {
