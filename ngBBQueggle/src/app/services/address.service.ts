@@ -37,4 +37,28 @@ export class AddressService {
       })
     );
   }
+  public update(address: Address): Observable<Address> {
+    const httpOptions = {
+      headers: {
+        'Content-type': 'application/json',
+      },
+    };
+    return this.http
+      .put<Address>(this.url + '/' + address.id, address, httpOptions)
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('Error updating address');
+        })
+      );
+  }
+
+  public disable(id: number): Observable<boolean> {
+    return this.http.delete<boolean>(this.url + '/' + id).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Error deleting address');
+      })
+    );
+  }
 }
