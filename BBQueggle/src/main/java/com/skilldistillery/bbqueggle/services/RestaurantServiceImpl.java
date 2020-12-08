@@ -1,12 +1,12 @@
 package com.skilldistillery.bbqueggle.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.bbqueggle.entities.Pitmaster;
 import com.skilldistillery.bbqueggle.entities.Restaurant;
 import com.skilldistillery.bbqueggle.repositories.RestaurantRepository;
 
@@ -80,5 +80,14 @@ public class RestaurantServiceImpl implements RestaurantService {
 		}
 		return deleted;
 	}
+	
+	// SEARCH FUNCTIONS
+	
+	public List<Restaurant> showRestaurantsByState(String state) {
+		List<Restaurant> result = new ArrayList<>();
+		result = repo.findByAddress_State(state);
+		return result;
+	}
 
+	
 }
