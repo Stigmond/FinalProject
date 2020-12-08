@@ -42,6 +42,7 @@ public class Restaurant {
 
 	private Boolean enabled;
 
+	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "pitmaster_id")
 	private Pitmaster pitmaster;
