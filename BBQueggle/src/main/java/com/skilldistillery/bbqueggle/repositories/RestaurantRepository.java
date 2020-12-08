@@ -10,5 +10,5 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Integer>
 
 	List<Restaurant> findByAddress_State(String state);
 	
-	List<Restaurant> findByAddress_StateAndSideDish_Name(String state, String sideDish);
+	List<Restaurant> findByAddress_StateAndSideDishes_Id(String state, Integer sideDishId);
 }

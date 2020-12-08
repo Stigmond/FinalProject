@@ -93,7 +93,7 @@ public class RestaurantController {
 	// CUSTOM SEARCHES
 	
 	@GetMapping("restaurants/search/{state}")
-	public List<Restaurant> findRestaurantByState(@PathVariable String state, HttpServletResponse response) {
+	public List<Restaurant> findRestaurantsByState(@PathVariable String state, HttpServletResponse response) {
 		List<Restaurant> result = new ArrayList<>();
 		state = state.toUpperCase();
 		result = svc.showRestaurantsByState(state);
@@ -101,10 +101,21 @@ public class RestaurantController {
 			response.setStatus(404);
 			return null;
 		}
-		
 		return result;
 	}
 	
-	
+	@GetMapping("restaurants/search/{state}/{sideDishId}")
+	public List<Restaurant> findRestaurantsBySideDish(@PathVariable String state, @PathVariable Integer sideDishId, HttpServletResponse response) {
+		System.out.println("***** STATE: " + state);
+		System.out.println("***** SIDE DISH: " + sideDishId);
+		List<Restaurant> result = new ArrayList<>();
+		state = state.toUpperCase();
+		result = svc.showRestaurantsBySideDish(state, sideDishId);
+		if (result.isEmpty()) {
+			response.setStatus(404);
+			return null;
+		}
+		return result;
+	}
 	
 }

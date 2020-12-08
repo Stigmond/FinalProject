@@ -89,5 +89,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 		return result;
 	}
 
-	
+	public List<Restaurant> showRestaurantsBySideDish(String state, Integer sideDishId) {
+		List<Restaurant> result = new ArrayList<>();
+		result = repo.findByAddress_StateAndSideDishes_Id(state, sideDishId);
+		return result;
+	}
 }
