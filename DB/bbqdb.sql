@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `restaurant` (
   `enabled` TINYINT NOT NULL,
   `address_id` INT NULL,
   `chain_id` INT NULL,
-  `pitmaster_id` INT NOT NULL,
+  `pitmaster_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_restaurants_address1_idx` (`address_id` ASC),
   INDEX `fk_restaurant_chain1_idx` (`chain_id` ASC),
