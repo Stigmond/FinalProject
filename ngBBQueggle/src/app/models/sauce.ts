@@ -1,20 +1,17 @@
-export class Pitmaster {
+export class Sauce {
   id: number;
-  firstName: string;
-  lastName: string;
+  name: string;
   description: string;
   image: string;
 
   constructor(
   id?: number,
-  firstName?: string,
-  lastName?: string,
+  name?: string,
   description?: string,
   image?: string,
   ){
     this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
+    this.name = name;
     this.description = description;
     this.image = image;
   }
