@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.bbqueggle.entities.Restaurant;
+import com.skilldistillery.bbqueggle.rankers.RestaurantRankerImpl;
 import com.skilldistillery.bbqueggle.services.RestaurantServiceImpl;
 
 @CrossOrigin({ "*", "http://localhost:4210" })
@@ -27,10 +28,14 @@ public class RestaurantController {
 
 	@Autowired
 	private RestaurantServiceImpl svc;
+	
+	RestaurantRankerImpl restRank = new RestaurantRankerImpl();
 
 	@GetMapping("restaurants")
 	public List<Restaurant> allRestaurants() {
-		return svc.index();
+	List<Restaurant> restaurants = svc.index();
+	return restRank.rankRestaurants(restaurants);
+//	return svc.index();
 	}
 
 	@GetMapping("restaurants/{restaurantId}")
@@ -101,7 +106,7 @@ public class RestaurantController {
 			response.setStatus(404);
 			return null;
 		}
-		return result;
+		return restRank.rankRestaurants(result);
 	}
 	
 	@GetMapping("restaurants/search/{state}/name/{name}")
@@ -125,7 +130,7 @@ public class RestaurantController {
 			response.setStatus(404);
 			return null;
 		}
-		return result;
+		return restRank.rankRestaurants(result);
 	}
 	
 
@@ -138,7 +143,7 @@ public class RestaurantController {
 			response.setStatus(404);
 			return null;
 		}
-		return result;
+		return restRank.rankRestaurants(result);
 	}
 	
 	@GetMapping("restaurants/search/{state}/style/{style}")
@@ -150,7 +155,7 @@ public class RestaurantController {
 			response.setStatus(404);
 			return null;
 		}
-		return result;
+		return restRank.rankRestaurants(result);
 	}
 	
 	
