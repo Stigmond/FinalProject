@@ -30,9 +30,6 @@ public class MainDish {
 
 	private String description;
 
-	@Column(name = "prep_type")
-	private String prepType;
-
 	private String image;
 
 	@ManyToMany(cascade = CascadeType.ALL)
@@ -43,13 +40,12 @@ public class MainDish {
 		super();
 	}
 
-	public MainDish(int id, String name, String meatType, String description, String prepType, String image) {
+	public MainDish(int id, String name, String meatType, String description, String image) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.meatType = meatType;
 		this.description = description;
-		this.prepType = prepType;
 		this.image = image;
 	}
 
@@ -85,13 +81,6 @@ public class MainDish {
 		this.description = description;
 	}
 
-	public String getPrepType() {
-		return prepType;
-	}
-
-	public void setPrepType(String prepType) {
-		this.prepType = prepType;
-	}
 
 	public String getImage() {
 		return image;
@@ -135,7 +124,7 @@ public class MainDish {
 	@Override
 	public String toString() {
 		return "MainDish [id=" + id + ", name=" + name + ", meatType=" + meatType + ", description=" + description
-				+ ", prepType=" + prepType + ", image=" + image + "]";
+				+ ", image=" + image + "]";
 	}
 
 }

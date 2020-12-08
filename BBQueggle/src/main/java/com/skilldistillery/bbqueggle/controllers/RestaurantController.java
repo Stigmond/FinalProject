@@ -1,5 +1,6 @@
 package com.skilldistillery.bbqueggle.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -88,4 +89,22 @@ public class RestaurantController {
 			response.setStatus(404);
 		}
 	}
+	
+	// CUSTOM SEARCHES
+	
+	@GetMapping("restaurants/search/{state}")
+	public List<Restaurant> findRestaurantByState(@PathVariable String state, HttpServletResponse response) {
+		List<Restaurant> result = new ArrayList<>();
+		state = state.toUpperCase();
+		result = svc.showRestaurantsByState(state);
+		if (result.isEmpty()) {
+			response.setStatus(404);
+			return null;
+		}
+		
+		return result;
+	}
+	
+	
+	
 }

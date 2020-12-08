@@ -53,9 +53,6 @@ public class MainDishServiceImpl implements MainDishService {
 			if (mainDish.getDescription() != null) {
 				managedMainDish.setDescription(mainDish.getDescription());
 			}
-			if (mainDish.getPrepType() != null) {
-				managedMainDish.setPrepType(mainDish.getPrepType());
-			}
 			if (mainDish.getImage() != null) {
 				managedMainDish.setImage(mainDish.getImage());
 			}
