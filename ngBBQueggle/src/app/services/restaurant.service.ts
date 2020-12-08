@@ -18,7 +18,7 @@ export class RestaurantService {
     return this.http.get<Restaurant[]>(this.url + '?sorted=true').pipe(
       catchError((err:any)=>{
       console.log(err);
-      return throwError('ExerciseService.index(): error');
+      return throwError('RestaurantService.index(): error');
 
       })
     );
