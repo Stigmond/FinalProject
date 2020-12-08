@@ -24,6 +24,15 @@ export class AddressService {
     );
   }
 
+  show(id: number) {
+    return this.http.get<Address>(this.url + '/' + id + '?sorted=true').pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('AddressService.show(): error');
+      })
+    );
+  }
+
   public create(address: Address): Observable<Address> {
     const httpOptions = {
       headers: {
