@@ -42,14 +42,13 @@ public class Restaurant {
 
 	private Boolean enabled;
 
-	@JsonIgnore
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "pitmaster_id")
 	private Pitmaster pitmaster;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "address_id")
-	@JsonIgnore
 	private Address address;
 
 	@OneToMany(mappedBy = "restaurant")
@@ -61,22 +60,18 @@ public class Restaurant {
 	@JoinColumn(name = "chain_id")
 	private Chain chain;
 
-	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "side_dish_has_restaurant", inverseJoinColumns = @JoinColumn(name = "side_dish_id"), joinColumns = @JoinColumn(name = "restaurant_id"))
 	private List<SideDish> sideDishes;
 
-	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "sauce_has_restaurant", inverseJoinColumns = @JoinColumn(name = "sauce_id"), joinColumns = @JoinColumn(name = "restaurant_id"))
 	private List<Sauce> sauces;
 
-	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "main_dish_has_restaurant", inverseJoinColumns = @JoinColumn(name = "main_dish_id"), joinColumns = @JoinColumn(name = "restaurant_id"))
 	private List<MainDish> mainDishes;
 
-	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "style_has_restaurant", inverseJoinColumns = @JoinColumn(name = "style_id"), joinColumns = @JoinColumn(name = "restaurant_id"))
 	private List<Style> style;

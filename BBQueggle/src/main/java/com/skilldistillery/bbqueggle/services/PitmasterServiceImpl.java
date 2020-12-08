@@ -7,13 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.bbqueggle.entities.Pitmaster;
+import com.skilldistillery.bbqueggle.entities.Restaurant;
 import com.skilldistillery.bbqueggle.repositories.PitmasterRepository;
+import com.skilldistillery.bbqueggle.repositories.RestaurantRepository;
 
 @Service
 public class PitmasterServiceImpl implements PitmasterService {
 
 	@Autowired
 	PitmasterRepository pitmasterRepo;
+	@Autowired
+	RestaurantRepository restaurantRepo;
 
 	@Override
 	public List<Pitmaster> getAllPitmasters() {
@@ -78,6 +82,11 @@ public class PitmasterServiceImpl implements PitmasterService {
 	@Override
 	public boolean deletePitmaster(Integer id) {
 		boolean deleted = false;
+		Restaurant restaurant = restaurantRepo.findByPitmaster_Id(id);
+		if (restaurant != null) {
+			restaurant.setPitmaster(null);
+//			restaurantRepo.saveAndFlush(restaurant);
+		}
 		Pitmaster pitmasterToDelete = this.getPitmasterById(id);
 		if (pitmasterToDelete != null) {
 			pitmasterRepo.delete(pitmasterToDelete);
