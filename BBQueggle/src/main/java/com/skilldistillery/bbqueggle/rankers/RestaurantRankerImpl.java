@@ -11,7 +11,7 @@ public class RestaurantRankerImpl implements RestaurantRanker {
 	@Override
 	public List<Restaurant> rankRestaurants(List<Restaurant> restaurants) {
 		restaurants.sort(new RestaurantScoreComparator());
-		System.out.println("******* RESTAURANT LIST: " + restaurants);
+//		System.out.println("******* RESTAURANT LIST: " + restaurants);
 		return restaurants;
 		
 	}
