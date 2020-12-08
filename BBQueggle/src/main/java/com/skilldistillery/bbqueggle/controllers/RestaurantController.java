@@ -104,18 +104,54 @@ public class RestaurantController {
 		return result;
 	}
 	
-	@GetMapping("restaurants/search/{state}/{sideDishId}")
-	public List<Restaurant> findRestaurantsBySideDish(@PathVariable String state, @PathVariable Integer sideDishId, HttpServletResponse response) {
-		System.out.println("***** STATE: " + state);
-		System.out.println("***** SIDE DISH: " + sideDishId);
+	@GetMapping("restaurants/search/{state}/name/{name}")
+	public List<Restaurant> findRestaurantsByName(@PathVariable String state, @PathVariable String name, HttpServletResponse response) {
 		List<Restaurant> result = new ArrayList<>();
 		state = state.toUpperCase();
-		result = svc.showRestaurantsBySideDish(state, sideDishId);
+		result = svc.showStateRestaurantsByName(state, name);
 		if (result.isEmpty()) {
 			response.setStatus(404);
 			return null;
 		}
 		return result;
 	}
+	
+	@GetMapping("restaurants/search/{state}/meat/{meatType}")
+	public List<Restaurant> findRestaurantsByMeatType(@PathVariable String state, @PathVariable String meatType, HttpServletResponse response) {
+		List<Restaurant> result = new ArrayList<>();
+		state = state.toUpperCase();
+		result = svc.showStateRestaurantsByMeatType(state, meatType);
+		if (result.isEmpty()) {
+			response.setStatus(404);
+			return null;
+		}
+		return result;
+	}
+	
+
+	@GetMapping("restaurants/search/{state}/sideDish/{sideDish}")
+	public List<Restaurant> findRestaurantsBySideDish(@PathVariable String state, @PathVariable String sideDish, HttpServletResponse response) {
+		List<Restaurant> result = new ArrayList<>();
+		state = state.toUpperCase();
+		result = svc.showStateRestaurantsBySideDish(state, sideDish);
+		if (result.isEmpty()) {
+			response.setStatus(404);
+			return null;
+		}
+		return result;
+	}
+	
+	@GetMapping("restaurants/search/{state}/style/{style}")
+	public List<Restaurant> findRestaurantsByStyle(@PathVariable String state, @PathVariable Integer style, HttpServletResponse response) {
+		List<Restaurant> result = new ArrayList<>();
+		state = state.toUpperCase();
+		result = svc.showStateRestaurantsByStyle(state, style);
+		if (result.isEmpty()) {
+			response.setStatus(404);
+			return null;
+		}
+		return result;
+	}
+	
 	
 }

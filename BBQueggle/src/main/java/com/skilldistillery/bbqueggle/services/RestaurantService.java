@@ -17,4 +17,12 @@ public interface RestaurantService {
 	boolean deleteRestaurant(Integer id);
 
 	List<Restaurant> showRestaurantsByState(String state);
+	
+	List<Restaurant> showStateRestaurantsBySideDish(String state, String sideDish);
+	
+	List<Restaurant> showStateRestaurantsByName(String state, String name);
+	
+	List<Restaurant> showStateRestaurantsByMeatType(String state, String meatType);
+	
+	List<Restaurant> showStateRestaurantsByStyle(String state, Integer styleId);
 }

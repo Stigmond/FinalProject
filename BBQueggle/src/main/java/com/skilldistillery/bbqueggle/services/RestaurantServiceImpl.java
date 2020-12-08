@@ -89,9 +89,31 @@ public class RestaurantServiceImpl implements RestaurantService {
 		return result;
 	}
 
-	public List<Restaurant> showRestaurantsBySideDish(String state, Integer sideDishId) {
+	public List<Restaurant> showStateRestaurantsBySideDish(String state, String sideDish) {
 		List<Restaurant> result = new ArrayList<>();
-		result = repo.findByAddress_StateAndSideDishes_Id(state, sideDishId);
+		sideDish = "%" + sideDish + "%";
+		result = repo.queryByStateAndSideDish(state, sideDish, sideDish);
 		return result;
 	}
+	
+	public List<Restaurant> showStateRestaurantsByName(String state, String name) {
+		List<Restaurant> result = new ArrayList<>();
+		name = "%" + name + "%";
+		result = repo.findByAddress_StateAndNameLike(state, name);
+		return result;
+	}
+	
+	public List<Restaurant> showStateRestaurantsByMeatType(String state, String meatType) {
+		List<Restaurant> result = new ArrayList<>();
+		result = repo.findByAddress_StateAndMainDishes_MeatType(state, meatType);
+		return result;
+		
+	}
+	
+	public List<Restaurant> showStateRestaurantsByStyle(String state, Integer styleId) {
+		List<Restaurant> result = new ArrayList<>();
+		result = repo.findByAddress_StateAndStyle_Id(state, styleId);
+		return result;
+	}
+
 }
