@@ -419,6 +419,13 @@ INSERT INTO `review` (`id`, `review_score`, `review`, `review_date`, `restaurant
 INSERT INTO `review` (`id`, `review_score`, `review`, `review_date`, `restaurant_id`, `user_id`) VALUES (4, 5, 'best bbq in the midwest', '2020/12/9', 3, 2);
 INSERT INTO `review` (`id`, `review_score`, `review`, `review_date`, `restaurant_id`, `user_id`) VALUES (5, 5, 'famous bbq from oklahoma now in colorado', '2020/7/1', 4, 3);
 INSERT INTO `review` (`id`, `review_score`, `review`, `review_date`, `restaurant_id`, `user_id`) VALUES (6, 4, 'staple restaurant in ATL', '2020/6/6', 5, 1);
+INSERT INTO `review` (`id`, `review_score`, `review`, `review_date`, `restaurant_id`, `user_id`) VALUES (7, 3, 'standard bbq', '2020/6/1', 1, 3);
+INSERT INTO `review` (`id`, `review_score`, `review`, `review_date`, `restaurant_id`, `user_id`) VALUES (8, 4, 'great kc bbq', '2020/7/2', 2, 2);
+INSERT INTO `review` (`id`, `review_score`, `review`, `review_date`, `restaurant_id`, `user_id`) VALUES (9, 5, 'amazing', '2020/4/3', 4, 1);
+INSERT INTO `review` (`id`, `review_score`, `review`, `review_date`, `restaurant_id`, `user_id`) VALUES (10, 2, 'was cold', '2020/1/2', 1, 3);
+INSERT INTO `review` (`id`, `review_score`, `review`, `review_date`, `restaurant_id`, `user_id`) VALUES (11, 5, 'best bbq ever', '2020/2/4', 5, 2);
+INSERT INTO `review` (`id`, `review_score`, `review`, `review_date`, `restaurant_id`, `user_id`) VALUES (12, 4, 'amazing bbq', '2020/5/5', 5, 2);
+INSERT INTO `review` (`id`, `review_score`, `review`, `review_date`, `restaurant_id`, `user_id`) VALUES (13, 3, 'much to be desired', '2020/6/6', 4, 1);
 
 COMMIT;
 
