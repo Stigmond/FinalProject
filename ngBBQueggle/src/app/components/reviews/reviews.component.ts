@@ -1,8 +1,10 @@
+import { UserService } from './../../services/user.service';
 import { RestaurantService } from './../../services/restaurant.service';
 import { Restaurant } from './../../models/restaurant';
 import { ReviewService } from './../../services/review.service';
 import { Component, OnInit } from '@angular/core';
 import { Review } from 'src/app/models/review';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-reviews',
@@ -13,16 +15,21 @@ export class ReviewsComponent implements OnInit {
 
   reviews: Review[];
   score: number;
-  restaurant: Restaurant;
   restaurantId: number = 1;
+  restaurant: Restaurant;
+  userId: number = 2;
+  user: User;
+
   newReview: Review = new Review();
 
-  constructor(private reviewService: ReviewService, private restService: RestaurantService) { }
+
+  constructor(private reviewService: ReviewService, private restService: RestaurantService, private userService: UserService) { }
 
   ngOnInit(): void {
     this.getRestaurant(this.restaurantId);
     this.loadReviews(this.restaurantId);
     this.getScore(this.restaurantId);
+    // this.getUser(this.userId);
   }
 
   loadReviews(restaurantId: number): void {
@@ -90,6 +97,27 @@ export class ReviewsComponent implements OnInit {
     }
   );
   }
+
+  // getUser(userId: number) : void {
+  //   this.userService.show(userId).subscribe(
+  //     data=>{
+  //       this.user = data;
+  //       console.log(this.user);
+  //       console.log('reviewsComponent.getUser(): User retrieved');
+
+  //     },
+  //     err=>{
+  //       console.error('reviewsComponent.getUser(): User retrieval failed');
+  //       console.error(err);
+
+  //     }
+  //   );
+  // }
+
+
+
+
+
 
   clearForm(): void {
     this.newReview = new Review();

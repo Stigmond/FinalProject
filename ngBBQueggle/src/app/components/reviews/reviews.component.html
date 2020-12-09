@@ -14,6 +14,10 @@
     <p>{{review.reviewDate}}</p>
     <p>{{review.reviewScore}}/5</p>
     <p>{{review.review}}</p>
+    <!-- <div *ngIf="review.user.id === userId">
+      <button>UPDATE</button>
+      <button>DELETE</button> -->
+    <!-- </div> -->
 </div>
 
 <hr>
@@ -27,7 +31,7 @@
 <div class="row">
   <div class="col">
     <form id="addReview">
-        Score:<input type="number" min="1" max="5" name="reviewScore" step=".5" [(ngModel)]="newReview.reviewScore"><br>
+       Score:<input type="number" min="1" max="5" name="reviewScore" step=".5" [(ngModel)]="newReview.reviewScore"><br>
        <textarea rows="10" cols="45" name="review" placeholder="Write Review Here" [(ngModel)]="newReview.review"></textarea><br>
        <button id="add" (click)="addReview(newReview, restaurant.id)">Submit</button>
        <button id="cancel" (click)="clearForm()">Cancel</button>
