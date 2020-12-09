@@ -43,13 +43,13 @@ score(restaurantId: number): Observable<number> {
   //   );
   // }
 
-  public create(review: Review, restaurantId: number): Observable<Review> {
+  public create(review: Review, restaurantId: number, userId: number): Observable<Review> {
     const httpOptions = {
       headers: {
         'Content-type': 'application/json',
       },
     };
-    return this.http.post<Review>(this.url + '/' + restaurantId, review, httpOptions).pipe(
+    return this.http.post<Review>(this.url + '/' + restaurantId + '/' + userId, review, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Error creating review');

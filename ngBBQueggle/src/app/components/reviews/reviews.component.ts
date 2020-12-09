@@ -15,10 +15,9 @@ export class ReviewsComponent implements OnInit {
 
   reviews: Review[];
   score: number;
-  restaurantId: number = 1;
+  restaurantId: number = 2;
   restaurant: Restaurant;
-  userId: number = 2;
-  user: User;
+  userId: number = 1;
 
   newReview: Review = new Review();
 
@@ -29,7 +28,6 @@ export class ReviewsComponent implements OnInit {
     this.getRestaurant(this.restaurantId);
     this.loadReviews(this.restaurantId);
     this.getScore(this.restaurantId);
-    // this.getUser(this.userId);
   }
 
   loadReviews(restaurantId: number): void {
@@ -48,8 +46,8 @@ export class ReviewsComponent implements OnInit {
     );
   }
 
-  addReview(newReview: Review, restaurantId: number): void {
-    this.reviewService.create(newReview, restaurantId).subscribe(
+  addReview(newReview: Review, restaurantId: number, userId: number): void {
+    this.reviewService.create(newReview, restaurantId, userId).subscribe(
       data=>{
         this.newReview = data;
         console.log(this.newReview);
@@ -97,26 +95,6 @@ export class ReviewsComponent implements OnInit {
     }
   );
   }
-
-  // getUser(userId: number) : void {
-  //   this.userService.show(userId).subscribe(
-  //     data=>{
-  //       this.user = data;
-  //       console.log(this.user);
-  //       console.log('reviewsComponent.getUser(): User retrieved');
-
-  //     },
-  //     err=>{
-  //       console.error('reviewsComponent.getUser(): User retrieval failed');
-  //       console.error(err);
-
-  //     }
-  //   );
-  // }
-
-
-
-
 
 
   clearForm(): void {
