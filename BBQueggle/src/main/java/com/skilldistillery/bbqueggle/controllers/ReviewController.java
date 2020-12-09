@@ -18,10 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.bbqueggle.entities.Restaurant;
 import com.skilldistillery.bbqueggle.entities.Review;
+import com.skilldistillery.bbqueggle.entities.User;
 import com.skilldistillery.bbqueggle.rankers.RestaurantRanker;
 import com.skilldistillery.bbqueggle.rankers.RestaurantRankerImpl;
 import com.skilldistillery.bbqueggle.services.RestaurantService;
 import com.skilldistillery.bbqueggle.services.ReviewService;
+import com.skilldistillery.bbqueggle.services.UserService;
 
 @CrossOrigin({ "*", "http://localhost:4210" })  // NEED ALL THESE ANNOTATIONS FOR ALL CONTROLLERS
 @RestController
@@ -32,6 +34,8 @@ public class ReviewController {
 	ReviewService revServ;
 	@Autowired
 	RestaurantService restServ;
+	@Autowired
+	UserService userServ;
 	
 	RestaurantRanker restRank = new RestaurantRankerImpl();
 
@@ -74,10 +78,11 @@ public class ReviewController {
 		return review;
 	}
 	
-	@PostMapping("reviews/{restId}")
-	public Review addRestaurantReview(@PathVariable Integer restId, @RequestBody Review review, HttpServletResponse response, HttpServletRequest request) {
+	@PostMapping("reviews/{restId}/{userId}")
+	public Review addRestaurantReview(@PathVariable Integer restId, @PathVariable Integer userId, @RequestBody Review review, HttpServletResponse response, HttpServletRequest request) {
 		Restaurant restaurant = restServ.showRestaurant(restId);
-		if (restaurant == null) {
+		User user = userServ.getUserById(userId);
+		if (restaurant == null || user == null) {
 			response.setStatus(404);
 			return null;
 		}
@@ -86,6 +91,7 @@ public class ReviewController {
 			return null;
 		}
 		review.setRestaurant(restaurant);
+		review.setUser(user);
 		review = revServ.createRestaurantReview(review);
 		StringBuffer strUrl = request.getRequestURL().append("/").append(review.getId());
 		String url = strUrl.toString();

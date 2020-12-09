@@ -62,8 +62,8 @@ class UserTest {
 	@Test
 	void test3() {
 		assertNotNull(user);
-		assertNotNull(user.getReview());
-		assertTrue(user.getReview().size() > 0);
-		assertEquals("tasty food", user.getReview().get(0).getReview());
+		assertNotNull(user.getReviews());
+		assertTrue(user.getReviews().size() > 0);
+		assertEquals("tasty food", user.getReviews().get(0).getReview());
 	}
 }
