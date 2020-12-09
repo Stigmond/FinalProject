@@ -1,0 +1,19 @@
+.jumbotron-fluid {
+  text-align: center;
+  vertical-align: text-bottom;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 100px;
+  border-style: solid;
+  background-image: url("https://i8.amplience.net/i/traeger/3-2-1-baby-back-ribs?w=500&sm=aspect&aspect=5:3&scaleFit=poi&$poi2$&fmt=webp");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.titleJumbo {
+  font-size: 115px;
+  font-style: italic;
+  color: rgb(233, 228, 224);
+  font-weight: bold;
+  text-shadow: rgb(7, 5, 0) 3px 3px;
+}
