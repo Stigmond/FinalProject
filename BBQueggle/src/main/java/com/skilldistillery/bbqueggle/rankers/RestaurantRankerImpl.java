@@ -7,15 +7,25 @@ import com.skilldistillery.bbqueggle.entities.Restaurant;
 import com.skilldistillery.bbqueggle.entities.Review;
 
 public class RestaurantRankerImpl implements RestaurantRanker {
-
+	
 	@Override
 	public List<Restaurant> rankRestaurants(List<Restaurant> restaurants) {
 		restaurants.sort(new RestaurantScoreComparator());
 //		System.out.println("******* RESTAURANT LIST: " + restaurants);
-		return restaurants;
-		
+		return restaurants;	
 	}
 
+	public Double getScore(Restaurant restaurant) {
+		Double score = 0.0;
+		if (!restaurant.getReviews().isEmpty()) {
+			for (int i = 0; i < restaurant.getReviews().size(); i++) {
+				score += restaurant.getReviews().get(i).getReviewScore();
+			}
+			score /= restaurant.getReviews().size();
+		}
+		return score;
+	}
+		
 	public class RestaurantScoreComparator implements Comparator<Restaurant> {
 
 		@Override
