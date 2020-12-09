@@ -1,3 +1,4 @@
+import { RestaurantService } from './restaurant.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
@@ -8,14 +9,14 @@ import { Review } from '../models/review';
   providedIn: 'root',
 })
 export class ReviewService {
+
   constructor(private http: HttpClient) {}
 
   private baseUrl = 'http://localhost:8090/';
+  private url = this.baseUrl + 'api/reviews/';
 
-  private url = this.baseUrl + 'api/review';
-
-  index(): Observable<Review[]> {
-    return this.http.get<Review[]>(this.url + '?sorted=true').pipe(
+  list(restaurantId: number): Observable<Review[]> {
+    return this.http.get<Review[]>(this.url + restaurantId + '?sorted=true').pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('error loading review list');
@@ -23,28 +24,39 @@ export class ReviewService {
     );
   }
 
-  show(id: number) {
-    return this.http.get<Review>(this.url + '/' + id + '?sorted=true').pipe(
-      catchError((err: any) => {
-        console.log(err);
-        return throwError('ReviewService.show(): error');
-      })
-    );
-  }
+score(restaurantId: number): Observable<number> {
+  return this.http.get<number>(this.url + restaurantId + '/score').pipe(
+    catchError((err: any) => {
+      console.log(err);
+      return throwError('error retrieving score');
+    })
+  );
+}
 
-  public create(review: Review): Observable<Review> {
+
+  // show(id: number) {
+  //   return this.http.get<Review>(this.url + '/' + id + '?sorted=true').pipe(
+  //     catchError((err: any) => {
+  //       console.log(err);
+  //       return throwError('ReviewService.show(): error');
+  //     })
+  //   );
+  // }
+
+  public create(review: Review, restaurantId: number): Observable<Review> {
     const httpOptions = {
       headers: {
         'Content-type': 'application/json',
       },
     };
-    return this.http.post<Review>(this.url, review, httpOptions).pipe(
+    return this.http.post<Review>(this.url + '/' + restaurantId, review, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Error creating review');
       })
     );
   }
+
   public update(review: Review): Observable<Review> {
     const httpOptions = {
       headers: {
