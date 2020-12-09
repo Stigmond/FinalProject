@@ -106,6 +106,10 @@ public class RestaurantController {
 			response.setStatus(404);
 			return null;
 		}
+		
+		for (int i = 0; i < result.size(); i++) {
+			System.out.println(restRank.getScore(result.get(i)));
+		}
 		return restRank.rankRestaurants(result);
 	}
 	
@@ -157,6 +161,5 @@ public class RestaurantController {
 		}
 		return restRank.rankRestaurants(result);
 	}
-	
 	
 }

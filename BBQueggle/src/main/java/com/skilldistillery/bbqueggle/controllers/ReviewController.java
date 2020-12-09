@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.bbqueggle.entities.Restaurant;
 import com.skilldistillery.bbqueggle.entities.Review;
+import com.skilldistillery.bbqueggle.rankers.RestaurantRanker;
+import com.skilldistillery.bbqueggle.rankers.RestaurantRankerImpl;
 import com.skilldistillery.bbqueggle.services.RestaurantService;
 import com.skilldistillery.bbqueggle.services.ReviewService;
 
@@ -30,6 +32,8 @@ public class ReviewController {
 	ReviewService revServ;
 	@Autowired
 	RestaurantService restServ;
+	
+	RestaurantRanker restRank = new RestaurantRankerImpl();
 
 	
 	@GetMapping("reviews/{restId}")
@@ -41,6 +45,20 @@ public class ReviewController {
 		}
 		return reviews;
 	}
+	
+	@GetMapping("reviews/{restId}/score")
+	public Double getReviewScore(@PathVariable Integer restId, HttpServletResponse response) {
+		Restaurant restaurant = new Restaurant();
+		restaurant = restServ.showRestaurant(restId);
+		if (restaurant == null) {
+			response.setStatus(404);
+			return null;
+		}
+		Double score;
+		score = restRank.getScore(restaurant);
+		return score;
+	}
+	
 	
 	@GetMapping("reviews/{restId}/{revId}")
 	public Review getReviewById(@PathVariable Integer restId, @PathVariable Integer revId, HttpServletResponse response) {

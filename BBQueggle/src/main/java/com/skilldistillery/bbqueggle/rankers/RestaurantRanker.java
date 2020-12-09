@@ -6,6 +6,7 @@ import com.skilldistillery.bbqueggle.entities.Restaurant;
 
 public interface RestaurantRanker {
 
-
 	List<Restaurant> rankRestaurants(List<Restaurant> restaurants);
+	
+	Double getScore(Restaurant restaurant);
 }
