@@ -44,8 +44,8 @@ public class User {
 	@JoinColumn(name="address_id")
 	private Address address;
 	
-	@OneToMany(mappedBy="user")
 	@JsonIgnore
+	@OneToMany(mappedBy="user")
 	private List<Review> reviews;
 
 	public User() {
@@ -148,11 +148,11 @@ public class User {
 	}
 	
 
-	public List<Review> getReview() {
+	public List<Review> getReviews() {
 		return reviews;
 	}
 
-	public void setReview(List<Review> reviews) {
+	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
 	}
 

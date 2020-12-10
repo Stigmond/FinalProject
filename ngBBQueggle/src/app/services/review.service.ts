@@ -33,7 +33,6 @@ score(restaurantId: number): Observable<number> {
   );
 }
 
-
   // show(id: number) {
   //   return this.http.get<Review>(this.url + '/' + id + '?sorted=true').pipe(
   //     catchError((err: any) => {
@@ -49,7 +48,7 @@ score(restaurantId: number): Observable<number> {
         'Content-type': 'application/json',
       },
     };
-    return this.http.post<Review>(this.url + '/' + restaurantId + '/' + userId, review, httpOptions).pipe(
+    return this.http.post<Review>(this.url + restaurantId + '/' + userId, review, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Error creating review');
@@ -57,14 +56,14 @@ score(restaurantId: number): Observable<number> {
     );
   }
 
-  public update(review: Review): Observable<Review> {
+  public update(review: Review, restaurantId: number, reviewId: number): Observable<Review> {
     const httpOptions = {
       headers: {
         'Content-type': 'application/json',
       },
     };
     return this.http
-      .put<Review>(this.url + '/' + review.id, review, httpOptions)
+      .put<Review>(this.url + restaurantId + '/' + reviewId, review, httpOptions)
       .pipe(
         catchError((err: any) => {
           console.log(err);
@@ -73,8 +72,8 @@ score(restaurantId: number): Observable<number> {
       );
   }
 
-  public disable(id: number): Observable<boolean> {
-    return this.http.delete<boolean>(this.url + '/' + id).pipe(
+  public delete(restaurantId: number, reviewId: number): Observable<boolean> {
+    return this.http.delete<boolean>(this.url + restaurantId + '/' + reviewId).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Error deleting review');

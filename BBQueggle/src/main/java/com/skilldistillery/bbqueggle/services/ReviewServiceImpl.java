@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.bbqueggle.entities.Restaurant;
 import com.skilldistillery.bbqueggle.entities.Review;
+import com.skilldistillery.bbqueggle.entities.User;
 import com.skilldistillery.bbqueggle.repositories.ReviewRepository;
 
 @Service
@@ -18,6 +19,8 @@ public class ReviewServiceImpl implements ReviewService{
 	ReviewRepository reviewRepo;
 	@Autowired
 	RestaurantService restServ;
+	@Autowired
+	UserService userServ;
 	
 	
 	@Override
@@ -53,9 +56,9 @@ public class ReviewServiceImpl implements ReviewService{
 		managedReview.setReviewScore(review.getReviewScore());
 		
 		StringBuilder updatedReview = new StringBuilder();
-		updatedReview.append("[UPDATED ON: " + LocalDate.now() + "]\s");
+//		updatedReview.append(managedReview.getReview());
+		updatedReview.append("[UPDATED ON: " + LocalDate.now() + "] ");
 		updatedReview.append(review.getReview());
-		updatedReview.append("\s-----\s" + managedReview.getReview());
 		
 		managedReview.setReview(updatedReview.toString());
 		review = reviewRepo.saveAndFlush(managedReview);
@@ -71,6 +74,8 @@ public class ReviewServiceImpl implements ReviewService{
 		if (reviewToDelete != null) {
 			Restaurant managedRestaurant = restServ.showRestaurant(restaurantId);
 			managedRestaurant.getReviews().remove(reviewToDelete);
+			User managedUser = userServ.getUserById(reviewToDelete.getUser().getId());
+			managedUser.getReviews().remove(reviewToDelete);
 			reviewRepo.delete(reviewToDelete);
 			deleted = true;
 		}
