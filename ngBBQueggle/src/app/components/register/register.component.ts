@@ -5,7 +5,7 @@ import { NgForm } from '@angular/forms';
 import { Address } from 'src/app/models/address';
 
 import { AddressService } from 'src/app/services/address.service';
-import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-register',
@@ -29,43 +29,37 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadUser();
+    this.loadAddress();
   }
 
   loadUser(): void {
     this.userService.index().subscribe(
       (data) => {
         this.users = data;
-
-
-        console.log('RunListComponent.loadRun(): Runs retrieved');
+        console.log('registerComponent.loadUser(): User retrieved');
       },
       (err) => {
-        console.error('RunListComponent.loadRun(): retrieve failed');
+        console.error('registerComponent.loadUse(): retrieve failed');
         console.error(err);
       }
     );
   }
 
-  showRun(user: User) {
+    showUser(user: User) {
     this.selected = user;
     this.editUser = Object.assign({}, this.selected);
-    //"what the hell"
   }
 
-
-
-  addUser(user: User) {
+    addUser(user: User) {
     this.userService.create(user).subscribe(
       (user) => {
         this.newUser = new User();
-
         this.loadUser();
         console.log('creation success!');
-        // call index method on service
-        window.alert('Run Created Successfully!');
+        window.alert('User Created Successfully!');
       },
       (err) => {
-        console.error('problem with addRun()');
+        console.error('problem with addUser()');
       }
     );
   }
@@ -79,6 +73,51 @@ export class RegisterComponent implements OnInit {
       },
       (err) => {
         console.error('problem with updateRun() in run-list component');
+      }
+    );
+  }
+
+  loadAddress(): void {
+    this.addressService.index().subscribe(
+      (data) => {
+        this.addresses = data;
+        console.log('registerComponent.loadAddress(): User retrieved');
+      },
+      (err) => {
+        console.error('registerComponent.loadAddress(): retrieve failed');
+        console.error(err);
+      }
+    );
+  }
+
+  showAddress(user: User) {
+    this.selected = user;
+    this.editUser = Object.assign({}, this.selected);
+  }
+
+  addAddress(address: Address) {
+    this.addressService.create(address).subscribe(
+      (address) => {
+        this.newAddress = new Address();
+        this.loadAddress();
+        console.log('creation success!');
+        window.alert('Address Created Successfully!');
+      },
+      (err) => {
+        console.error('problem with addAddress()');
+      }
+    );
+  }
+
+  updateAddress(editAddress: Address) {
+    this.addressService.update(editAddress).subscribe(
+      (data) => {
+        this.loadAddress();
+        this.selected = null;
+        window.alert('Address Updated Successfully');
+      },
+      (err) => {
+        console.error('problem with updateAddress() in run-list component');
       }
     );
   }
