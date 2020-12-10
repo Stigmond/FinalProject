@@ -1,9 +1,10 @@
+import { Address } from './../models/address';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { Restaurant } from '../models/restaurant';
 import { catchError} from 'rxjs/operators';
-
+import { style } from '@angular/animations';
 
 @Injectable({
   providedIn: 'root'
@@ -60,4 +61,45 @@ export class RestaurantService {
     );
   }
 
+  findRestaurantsByState(state: string): Observable<Restaurant[]>{
+    return this.http.get<Restaurant[]>(this.url + '/' + state).pipe(
+      catchError((err:any)=>{
+      console.log(err);
+      return throwError('RestaurantService.findRestaurantByState(): error');
+    })
+    );
+  }
+  findRestaurantsByName(state: string, name: string): Observable<Restaurant[]>{
+    return this.http.get<Restaurant[]>(this.url + '/' + state + name).pipe(
+      catchError((err:any)=>{
+      console.log(err);
+      return throwError('RestaurantService.findRestaurantByName(): error');
+    })
+    );
+  }
+  findRestaurantsByMeatType(state: string, meatType: string): Observable<Restaurant[]>{
+    return this.http.get<Restaurant[]>(this.url + '/' + state + meatType).pipe(
+      catchError((err:any)=>{
+      console.log(err);
+      return throwError('RestaurantService.findRestaurantByMeatType(): error');
+    })
+    );
+  }
+  findRestaurantsBySideDish(state: string, sideDish: string): Observable<Restaurant[]>{
+    return this.http.get<Restaurant[]>(this.url + '/' + state + sideDish).pipe(
+      catchError((err:any)=>{
+      console.log(err);
+      return throwError('RestaurantService.findRestaurantBySideDish(): error');
+    })
+    );
+  }
+
+  findRestaurantsByStyle(state: string, meatType: string): Observable<Restaurant[]>{
+    return this.http.get<Restaurant[]>(this.url + '/' + state + style).pipe(
+      catchError((err:any)=>{
+      console.log(err);
+      return throwError('RestaurantService.findRestaurantByStyle(): error');
+    })
+    );
+  }
 }
