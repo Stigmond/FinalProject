@@ -1,60 +1,104 @@
-// import { User } from './../../models/user';
-// import { UserService } from './../../services/user.service';
-// import { Component, OnInit } from '@angular/core';
-// import { NgForm } from '@angular/forms';
-// import { Address } from 'src/app/models/address';
-// import { User } from 'src/app/models/user';
-// import { AddressService } from 'src/app/services/address.service';
-// import { Router } from '@angular/router';
+import { User } from './../../models/user';
+import { UserService } from './../../services/user.service';
+import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Address } from 'src/app/models/address';
 
-// @Component({
-//   selector: 'app-register',
-//   templateUrl: './register.component.html',
-//   styleUrls: ['./register.component.css']
-// })
-// export class RegisterComponent implements OnInit {
+import { AddressService } from 'src/app/services/address.service';
+import { Router } from '@angular/router';
 
-//   newUser: User = new User();
-//   createdAddress: Address = new Address();
+@Component({
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
+})
+export class RegisterComponent implements OnInit {
 
-//   constructor(private userService: UserService, private addressService: AddressService, private router: Router) { }
+  selected = null;
 
-//   ngOnInit(): void {
-//   }
+  editUser = null;
+  editAddress = null;
 
-//   addUser() {
-//     this.Service.register(this.newUser).subscribe(
-//       (run) => {
-//         this.newRun = new Run();
+  newUser: User = new User();
+  newAddress: Address = new Address();
 
-//         this.loadRun();
-//         console.log('creation success!');
-//         // call index method on service
-//         window.alert('Run Created Successfully!');
-//       },
-//       (err) => {
-//         console.error('problem with addRun()');
-//       }
-//     );
-//   }
+  users: User[] = [];
+  addresses: Address[] = [];
 
-//   // register(form: NgForm) {
-//   //   const user: User = new User();
-//   //   const address: Address = new Address();
+  constructor(private userService: UserService, private addressService: AddressService) { }
 
-//   //   user.firstName = form.value.firstName;
-//   //   user.lastName = form.value.lastName;
-//   //   user.email = form.value.email;
-//   //   user.password = form.value.password;
-//   //   user.image = form.value.image;
+  ngOnInit(): void {
+    this.loadUser();
+  }
 
-//   //   address.street = form.value.street;
-//   //   address.state = form.value.state;
-//   //   address.state = form.value.city;
-//   //   address.state = form.value.zip;
+  loadUser(): void {
+    this.userService.index().subscribe(
+      (data) => {
+        this.users = data;
+
+
+        console.log('RunListComponent.loadRun(): Runs retrieved');
+      },
+      (err) => {
+        console.error('RunListComponent.loadRun(): retrieve failed');
+        console.error(err);
+      }
+    );
+  }
+
+  showRun(user: User) {
+    this.selected = user;
+    this.editUser = Object.assign({}, this.selected);
+  }
 
 
 
-//   }
+  addUser(user: User) {
+    this.userService.create(user).subscribe(
+      (user) => {
+        this.newUser = new User();
 
-// }
+        this.loadUser();
+        console.log('creation success!');
+        // call index method on service
+        window.alert('Run Created Successfully!');
+      },
+      (err) => {
+        console.error('problem with addRun()');
+      }
+    );
+  }
+
+  updateUser(editUser: User) {
+    this.userService.update(editUser.id,editUser).subscribe(
+      (data) => {
+        this.loadUser();
+        this.selected = null;
+        window.alert('Run Updated Successfully');
+      },
+      (err) => {
+        console.error('problem with updateRun() in run-list component');
+      }
+    );
+  }
+
+  // register(form: NgForm) {
+  //   const user: User = new User();
+  //   const address: Address = new Address();
+
+  //   user.firstName = form.value.firstName;
+  //   user.lastName = form.value.lastName;
+  //   user.email = form.value.email;
+  //   user.password = form.value.password;
+  //   user.image = form.value.image;
+
+  //   address.street = form.value.street;
+  //   address.state = form.value.state;
+  //   address.state = form.value.city;
+  //   address.state = form.value.zip;
+
+
+
+  }
+
+
