@@ -5,6 +5,7 @@ import { ReviewService } from './../../services/review.service';
 import { Component, OnInit } from '@angular/core';
 import { Review } from 'src/app/models/review';
 import { User } from 'src/app/models/user';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-reviews',
@@ -15,7 +16,7 @@ export class ReviewsComponent implements OnInit {
 
   reviews: Review[];
   score: number;
-  restaurantId: number = 1;
+  restaurantId: number;
   restaurant: Restaurant;
   userId: number = 1;
   edit: boolean = false;
@@ -24,9 +25,10 @@ export class ReviewsComponent implements OnInit {
   updatedReview: Review = new Review();
   deleted: boolean;
 
-  constructor(private reviewService: ReviewService, private restService: RestaurantService, private userService: UserService) { }
+  constructor(private reviewService: ReviewService, private restService: RestaurantService, private userService: UserService, private currentRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.restaurantId = parseInt(this.currentRoute.snapshot.paramMap.get('restId'));
     this.getRestaurant(this.restaurantId);
     this.loadReviews(this.restaurantId);
     this.getScore(this.restaurantId);
@@ -99,8 +101,8 @@ export class ReviewsComponent implements OnInit {
     );
   }
 
-  updateReview(updatedReview: Review, restaurantId: number, userId: number): void {
-    this.reviewService.update(updatedReview, restaurantId, userId).subscribe(
+  updateReview(updatedReview: Review, restaurantId: number, reviewId: number): void {
+    this.reviewService.update(updatedReview, restaurantId, reviewId).subscribe(
       data=>{
         this.updatedReview = data;
         console.log(this.updatedReview);
@@ -133,10 +135,6 @@ export class ReviewsComponent implements OnInit {
       }
     );
   }
-
-
-
-
 
   clearForm(): void {
     this.newReview = new Review();

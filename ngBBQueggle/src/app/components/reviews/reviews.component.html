@@ -52,7 +52,7 @@
     <form id="updateReview">
        Score:<input type="number" min="1" max="5" name="reviewScore" step=".5" [(ngModel)]="updatedReview.reviewScore"><br>
        <textarea rows="10" cols="45" name="review" placeholder="Write Review Here" [(ngModel)]="updatedReview.review"></textarea><br>
-       <button id="add" (click)="updateReview(updatedReview, restaurant.id, userId)">Submit</button>
+       <button id="add" (click)="updateReview(updatedReview, restaurant.id, updatedReview.id)">Submit</button>
        <button id="cancel" (click)="clearForm()">Cancel</button>
       </form>
   </div>

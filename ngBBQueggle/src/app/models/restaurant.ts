@@ -1,3 +1,4 @@
+import { Address } from './address';
 export class Restaurant {
   id: number;
   name: string;
@@ -8,6 +9,7 @@ export class Restaurant {
   dineIn: boolean;
   hours: string;
   enabled: boolean;
+  address: Address;
 
   constructor(
   id?: number,
@@ -19,6 +21,7 @@ export class Restaurant {
   dineIn?: boolean,
   hours?: string,
   enabled?: boolean,
+  address?: Address
   ){
     this.id = id;
     this.name = name;
@@ -29,5 +32,6 @@ export class Restaurant {
     this.dineIn = dineIn;
     this.hours = hours;
     this.enabled = enabled;
+    this.address = address;
   }
 }
