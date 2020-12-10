@@ -15,12 +15,14 @@ export class ReviewsComponent implements OnInit {
 
   reviews: Review[];
   score: number;
-  restaurantId: number = 2;
+  restaurantId: number = 1;
   restaurant: Restaurant;
   userId: number = 1;
-
+  edit: boolean = false;
+  selectedReview: Review;
   newReview: Review = new Review();
-
+  updatedReview: Review = new Review();
+  deleted: boolean;
 
   constructor(private reviewService: ReviewService, private restService: RestaurantService, private userService: UserService) { }
 
@@ -28,6 +30,38 @@ export class ReviewsComponent implements OnInit {
     this.getRestaurant(this.restaurantId);
     this.loadReviews(this.restaurantId);
     this.getScore(this.restaurantId);
+  }
+
+  getRestaurant(restaurantId: number): void {
+    this.restService.show(restaurantId).subscribe(
+    data=>{
+      this.restaurant = data;
+      console.log(this.restaurant);
+      console.log('reviewsComponent.getRestaurant(): Restaurant retrieved');
+
+    },
+    err=>{
+      console.error('reviewsComponent.getRestaurant(): retrieve failed');
+      console.error(err);
+
+    }
+  );
+  }
+
+  getScore(restaurantId: number): void {
+    this.reviewService.score(restaurantId).subscribe(
+    data=>{
+      this.score = data;
+      console.log(this.score);
+      console.log('reviewsComponenet.getScore(): score retrieved');
+
+    },
+    err=>{
+      console.error('reviewsComponenet.getScore(): retrieve failed');
+      console.error(err);
+
+    }
+  );
   }
 
   loadReviews(restaurantId: number): void {
@@ -53,52 +87,61 @@ export class ReviewsComponent implements OnInit {
         console.log(this.newReview);
         console.log('reviewsComponent.addReview(): Review Posted');
         this.loadReviews(this.restaurantId);
+        this.getScore(this.restaurantId);
         this.clearForm();
       },
       err=>{
         console.error('reviewsComponent.addReview(): Posting failed');
         console.error(err);
-        this.loadReviews(this.restaurantId);
+        this.clearForm();
 
       }
     );
   }
 
-  getScore(restaurantId: number): void {
-    this.reviewService.score(restaurantId).subscribe(
-    data=>{
-      this.score = data;
-      console.log(this.score);
-      console.log('reviewsComponenet.getScore(): score retrieved');
+  updateReview(updatedReview: Review, restaurantId: number, userId: number): void {
+    this.reviewService.update(updatedReview, restaurantId, userId).subscribe(
+      data=>{
+        this.updatedReview = data;
+        console.log(this.updatedReview);
+        console.log('reviewsComponent.updateReview(): Review Updated');
+        this.loadReviews(this.restaurantId);
+        this.getScore(this.restaurantId);
+        this.clearForm();
+      },
+      err=>{
+        console.error('reviewsComponent.updateReview(): Update failed');
+        console.error(err);
+        this.clearForm();
 
-    },
-    err=>{
-      console.error('reviewsComponenet.getScore(): retrieve failed');
-      console.error(err);
-
-    }
-  );
+      }
+    );
   }
 
-  getRestaurant(restaurantId: number): void {
-    this.restService.show(restaurantId).subscribe(
-    data=>{
-      this.restaurant = data;
-      console.log(this.restaurant);
-      console.log('reviewsComponent.getRestaurant(): Restaurant retrieved');
-
-    },
-    err=>{
-      console.error('reviewsComponent.getRestaurant(): retrieve failed');
-      console.error(err);
-
-    }
-  );
+  deleteReview(restaurantId: number, reviewId: number): void {
+    this.reviewService.delete(restaurantId, reviewId).subscribe(
+      data=>{
+        this.deleted = data;
+        console.log('REVIEW DELETED: ' + this.deleted);
+        console.log('reviewsComponent.deleteReview(): Review Deleted');
+        this.loadReviews(this.restaurantId);
+        this.getScore(this.restaurantId);
+      },
+      err=>{
+        console.error('reviewsComponent.deleteReview(): Deletion failed');
+        console.error(err);
+      }
+    );
   }
+
+
+
 
 
   clearForm(): void {
     this.newReview = new Review();
+    this.updatedReview = new Review();
+    this.edit = false;
   }
 
 }
