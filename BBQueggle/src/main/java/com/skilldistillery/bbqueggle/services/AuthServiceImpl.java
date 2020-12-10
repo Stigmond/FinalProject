@@ -20,7 +20,11 @@ public class AuthServiceImpl implements AuthService{
 	@Override
 	public User register(User user) {
 		// TODO Auto-generated method stub
-		return null;
+		user.setPassword(encoder.encode(user.getPassword()));
+		user.setEnabled(true);
+		user.setRole("ROLE_USER");
+		userRepo.saveAndFlush(user);
+		return user;
 	}
 
 }
