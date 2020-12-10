@@ -11,30 +11,48 @@
 </div>
 
 <div class="row" *ngFor="let review of reviews">
-    <p>{{review.reviewDate}}</p>
-    <p>{{review.reviewScore}}/5</p>
-    <p>{{review.review}}</p>
-    <p>by: {{review.user.firstName}}</p>
-    <div *ngIf="review.user.id === userId">
-      <button>UPDATE</button>
-      <button>DELETE</button>
+    <p *ngIf="edit === false">{{review.reviewDate}}</p>
+    <p *ngIf="edit === false">{{review.reviewScore}}/5</p>
+    <p *ngIf="edit === false">by: {{review.user.firstName}}</p>
+    <p *ngIf="edit === false">{{review.review}}</p>
+
+    <div *ngIf="review.user.id === userId && edit === false">
+      <button (click)="updatedReview = review; edit = true">UPDATE</button>
+      <button (click)="deleteReview(restaurantId, review.id)">DELETE</button>
     </div>
 </div>
 
 <hr>
 
-<div class="row">
+<div class="row" *ngIf="edit === false">
   <div class="col">
     <h1>ADD REVIEW</h1>
   </div>
 </div>
 
-<div class="row">
+<div class="row" *ngIf="edit === false">
   <div class="col">
     <form id="addReview">
        Score:<input type="number" min="1" max="5" name="reviewScore" step=".5" [(ngModel)]="newReview.reviewScore"><br>
        <textarea rows="10" cols="45" name="review" placeholder="Write Review Here" [(ngModel)]="newReview.review"></textarea><br>
        <button id="add" (click)="addReview(newReview, restaurant.id, userId)">Submit</button>
+       <button id="cancel" (click)="clearForm()">Cancel</button>
+      </form>
+  </div>
+</div>
+
+<div class="row" *ngIf="edit === true">
+  <div class="col">
+    <h1>UPDATE REVIEW</h1>
+  </div>
+</div>
+
+<div class="row" *ngIf="edit === true">
+  <div class="col">
+    <form id="updateReview">
+       Score:<input type="number" min="1" max="5" name="reviewScore" step=".5" [(ngModel)]="updatedReview.reviewScore"><br>
+       <textarea rows="10" cols="45" name="review" placeholder="Write Review Here" [(ngModel)]="updatedReview.review"></textarea><br>
+       <button id="add" (click)="updateReview(updatedReview, restaurant.id, userId)">Submit</button>
        <button id="cancel" (click)="clearForm()">Cancel</button>
       </form>
   </div>
