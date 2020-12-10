@@ -1,3 +1,4 @@
+import { RestaurantService } from './services/restaurant.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -12,7 +13,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { RegisterComponent } from './components/register/register.component';
-import { SearchComponent } from './components/search/search.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -27,7 +27,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     LoginComponent,
     LogoutComponent,
     RegisterComponent,
-    SearchComponent,
     ReviewsComponent
   ],
   imports: [
@@ -37,7 +36,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     NgbModule,
   ],
-  providers: [],
+  providers: [RestaurantService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

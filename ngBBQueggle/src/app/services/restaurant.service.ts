@@ -1,9 +1,10 @@
+import { Address } from './../models/address';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { Restaurant } from '../models/restaurant';
 import { catchError} from 'rxjs/operators';
-
+import { style } from '@angular/animations';
 
 @Injectable({
   providedIn: 'root'
@@ -60,4 +61,45 @@ export class RestaurantService {
     );
   }
 
+  findRestaurantsByState(state: string): Observable<Restaurant[]>{
+    return this.http.get<Restaurant[]>(this.url + '/search/' + state).pipe(
+      catchError((err:any)=>{
+      console.log(err);
+      return throwError('RestaurantService.findRestaurantByState(): error');
+    })
+    );
+  }
+  findRestaurantsByName(state: string, name: string): Observable<Restaurant[]>{
+    return this.http.get<Restaurant[]>(this.url + '/search/' + state + '/name/' + name).pipe(
+      catchError((err:any)=>{
+      console.log(err);
+      return throwError('RestaurantService.findRestaurantByName(): error');
+    })
+    );
+  }
+  findRestaurantsByMeatType(state: string, meatType: string): Observable<Restaurant[]>{
+    return this.http.get<Restaurant[]>(this.url + '/search/' + state + '/meat/' + meatType).pipe(
+      catchError((err:any)=>{
+      console.log(err);
+      return throwError('RestaurantService.findRestaurantByMeatType(): error');
+    })
+    );
+  }
+  findRestaurantsBySideDish(state: string, sideDish: string): Observable<Restaurant[]>{
+    return this.http.get<Restaurant[]>(this.url + '/search/' + state + '/sideDish/' + sideDish).pipe(
+      catchError((err:any)=>{
+      console.log(err);
+      return throwError('RestaurantService.findRestaurantBySideDish(): error');
+    })
+    );
+  }
+
+  findRestaurantsByStyle(state: string, style: string): Observable<Restaurant[]>{
+    return this.http.get<Restaurant[]>(this.url + '/search/' + state + '/style/' + style).pipe(
+      catchError((err:any)=>{
+      console.log(err);
+      return throwError('RestaurantService.findRestaurantByStyle(): error');
+    })
+    );
+  }
 }
