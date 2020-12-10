@@ -62,7 +62,7 @@ export class RestaurantService {
   }
 
   findRestaurantsByState(state: string): Observable<Restaurant[]>{
-    return this.http.get<Restaurant[]>(this.url + '/' + state).pipe(
+    return this.http.get<Restaurant[]>(this.url + '/search/' + state).pipe(
       catchError((err:any)=>{
       console.log(err);
       return throwError('RestaurantService.findRestaurantByState(): error');
@@ -70,7 +70,7 @@ export class RestaurantService {
     );
   }
   findRestaurantsByName(state: string, name: string): Observable<Restaurant[]>{
-    return this.http.get<Restaurant[]>(this.url + '/' + state + name).pipe(
+    return this.http.get<Restaurant[]>(this.url + '/search/' + state + '/name/' + name).pipe(
       catchError((err:any)=>{
       console.log(err);
       return throwError('RestaurantService.findRestaurantByName(): error');
@@ -78,7 +78,7 @@ export class RestaurantService {
     );
   }
   findRestaurantsByMeatType(state: string, meatType: string): Observable<Restaurant[]>{
-    return this.http.get<Restaurant[]>(this.url + '/' + state + meatType).pipe(
+    return this.http.get<Restaurant[]>(this.url + '/search/' + state + '/meat/' + meatType).pipe(
       catchError((err:any)=>{
       console.log(err);
       return throwError('RestaurantService.findRestaurantByMeatType(): error');
@@ -86,7 +86,7 @@ export class RestaurantService {
     );
   }
   findRestaurantsBySideDish(state: string, sideDish: string): Observable<Restaurant[]>{
-    return this.http.get<Restaurant[]>(this.url + '/' + state + sideDish).pipe(
+    return this.http.get<Restaurant[]>(this.url + '/search/' + state + '/sideDish/' + sideDish).pipe(
       catchError((err:any)=>{
       console.log(err);
       return throwError('RestaurantService.findRestaurantBySideDish(): error');
@@ -94,8 +94,8 @@ export class RestaurantService {
     );
   }
 
-  findRestaurantsByStyle(state: string, meatType: string): Observable<Restaurant[]>{
-    return this.http.get<Restaurant[]>(this.url + '/' + state + style).pipe(
+  findRestaurantsByStyle(state: string, style: string): Observable<Restaurant[]>{
+    return this.http.get<Restaurant[]>(this.url + '/search/' + state + '/style/' + style).pipe(
       catchError((err:any)=>{
       console.log(err);
       return throwError('RestaurantService.findRestaurantByStyle(): error');
