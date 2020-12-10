@@ -162,7 +162,7 @@ DROP TABLE IF EXISTS `review` ;
 
 CREATE TABLE IF NOT EXISTS `review` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `review_score` INT NOT NULL,
+  `review_score` DOUBLE NOT NULL,
   `review` LONGTEXT NULL,
   `review_date` DATE NULL,
   `restaurant_id` INT NULL,
