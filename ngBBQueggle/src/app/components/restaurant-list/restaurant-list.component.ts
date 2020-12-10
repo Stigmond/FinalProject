@@ -15,6 +15,8 @@ export class RestaurantListComponent implements OnInit {
   selectedAd: string = null;
   searchTerm: string = null;
   newRestaurant: Restaurant = new Restaurant();
+  searchType: string = null;
+
     constructor(private RestaurantService: RestaurantService) { }
 
     ngOnInit(): void {
@@ -153,5 +155,23 @@ export class RestaurantListComponent implements OnInit {
           console.error(error);
         }
       );
+    }
+
+    search(): void {
+      if(this.searchType === 'side dish'){
+        this.findRestaurantsBySideDish();
+      }
+      else if(this.searchType === 'style'){
+        this.findRestaurantsByStyle();
+      }
+      else if(this.searchType === 'name'){
+        this.findRestaurantsByName();
+      }
+      else if(this.searchType === 'meat type'){
+        this.findRestaurantsByMeatType();
+      }
+      else if(this.searchType === 'state'){
+        this.findRestaurantsByState();
+      }
     }
 }

@@ -1,4 +1,9 @@
 <!-- Default form register -->
+<div class= "registration">
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+  <div class="card mt-5" id="form" style="width: 40rem;">
+    <div class="card-body">
 <form class="text-center border border-light p-5" action="#!">
 
   <p class="h4 mb-4">Sign up</p>
@@ -6,42 +11,49 @@
   <div class="form-row mb-4">
       <div class="col">
           <!-- First name -->
-          <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="First name">
+          <label for="inputFirstName">First Name</label>
+          <input type="text" id="registerFirstName" [(ngModel)]="newUser.firstName" class="form-control" placeholder="First name">
       </div>
       <div class="col">
           <!-- Last name -->
-          <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name">
+          <label for="inputLastName">Last Name</label>
+          <input type="text" id="defaultRegisterFormLastName" [(ngModel)]="newUser.lastName" class="form-control" placeholder="Last name">
       </div>
   </div>
 
   <!-- E-mail -->
-  <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
+  <label for="inputEmail">E-Mail</label>
+  <input type="email" id="defaultRegisterFormEmail" [(ngModel)]="newUser.email" class="form-control" placeholder="E-mail">
+
+  <!-- Username-->
+  <label for="inputUserName">UserName</label>
+  <input type="username" id="defaultRegisterFormUsername" [(ngModel)]="newUser.username" class="form-control mb-4" placeholder="Username">
 
   <!-- Password -->
-  <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+  <label for="inputPassword">Password</label>
+  <input type="password" id="defaultRegisterFormPassword" [(ngModel)]="newUser.password" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
   <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-      At least 8 characters and 1 digit
   </small>
 
-  <!-- Phone number -->
-  <input type="text" id="image" class="form-control" placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock">
+  <!-- Image -->
+  <label for="inputImage">Image</label>
+  <input type="text" id="image" [(ngModel)]="newUser.image" class="form-control" placeholder="Image URL" aria-describedby="defaultRegisterFormPhoneHelpBlock">
   <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
-      Optional - for two step authentication
   </small>
 
-  <!--Address-->
+  <!-- Address
   <div class="form-group">
     <label for="inputAddress">Address</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" [(ngModel)]="newAddress.street">
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputCity">City</label>
-      <input type="text" class="form-control" id="inputCity">
+      <input type="text" class="form-control" id="inputCity" [(ngModel)]="newAddress.city">
     </div>
     <div class="form-group col-md-4">
       <label for="inputState">State</label>
-      <select id="inputState" class="form-control">
+      <select id="inputState" class="form-control" [(ngModel)]="newAddress.state">
         <option selected>Choose...</option>
             <option>Alabama</option>
             <option>Alaska</option>
@@ -97,9 +109,9 @@
     </div>
     <div class="form-group col-md-2">
       <label for="inputZip">Zip</label>
-      <input type="text" class="form-control" id="inputZip">
+      <input type="text" class="form-control" id="inputZip" [(ngModel)]="newAddress.zip">
     </div>
-    </div>
+    </div> -->
 
   <!-- Newsletter -->
   <div class="custom-control custom-checkbox">
@@ -108,7 +120,7 @@
   </div>
 
   <!-- Sign up button -->
-  <button class="btn btn-info my-4 btn-block" type="submit">Sign in</button>
+  <button class="btn btn-info my-4 btn-block" (click)="addUser(newUser)">Sign in</button>
 
   <!-- Social register -->
   <p>or sign up with:</p>
@@ -127,3 +139,8 @@
 
 </form>
 <!-- Default form register -->
+  </div>
+</div>
+</div>
+</div>
+</div>
