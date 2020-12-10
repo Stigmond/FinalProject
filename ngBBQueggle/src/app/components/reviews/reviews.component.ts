@@ -99,8 +99,8 @@ export class ReviewsComponent implements OnInit {
     );
   }
 
-  updateReview(updatedReview: Review, restaurantId: number, userId: number): void {
-    this.reviewService.update(updatedReview, restaurantId, userId).subscribe(
+  updateReview(updatedReview: Review, restaurantId: number, reviewId: number): void {
+    this.reviewService.update(updatedReview, restaurantId, reviewId).subscribe(
       data=>{
         this.updatedReview = data;
         console.log(this.updatedReview);
