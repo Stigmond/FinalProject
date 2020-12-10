@@ -16,6 +16,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RestaurantInfoComponent } from './components/restaurant-info/restaurant-info.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     LoginComponent,
     LogoutComponent,
     RegisterComponent,
-    ReviewsComponent
+    ReviewsComponent,
+    RestaurantInfoComponent
   ],
   imports: [
     BrowserModule,
