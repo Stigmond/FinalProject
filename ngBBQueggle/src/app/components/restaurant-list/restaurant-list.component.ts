@@ -12,8 +12,8 @@ export class RestaurantListComponent implements OnInit {
   restaurants = [];
   address = [];
   selected: Restaurant = null;
-  selectedAd: string= null;
-  searchTerm = null;
+  selectedAd: string = null;
+  searchTerm: string = null;
   newRestaurant: Restaurant = new Restaurant();
     constructor(private RestaurantService: RestaurantService) { }
 
@@ -33,6 +33,7 @@ export class RestaurantListComponent implements OnInit {
       );
     }
 
+
     show(): void{
       this.RestaurantService.show(this.selected.id).subscribe(
         good=>{
@@ -41,7 +42,49 @@ export class RestaurantListComponent implements OnInit {
           console.log('restaurant selected');
         },
         error=>{
-          console.error('failed to select exercise');
+          console.error('failed to select restaurant');
+          console.error(error);
+
+        }
+      );
+    }
+
+    create(): void{
+      this.RestaurantService.create(this.newRestaurant).subscribe(
+        good=>{
+         this.newRestaurant = good;
+          console.log('restaurant created');
+        },
+        error=>{
+          console.error('failed to create restaurant');
+          console.error(error);
+        }
+      );
+    }
+
+    update(): void{
+      this.RestaurantService.update(this.selected.id, this.selected).subscribe(
+        good=>{
+          this.newRestaurant = good;
+          console.log('updated restaurant received');
+
+        },
+        error=>{
+          console.error('failed to update restaurant');
+          console.error(error);
+
+        }
+      );
+    }
+
+    delete(): void{
+      this.RestaurantService.delete(this.selected.id).subscribe(
+        good=>{
+          this.selected = good;
+          console.log('Successfully deleted restaurant');
+        },
+        error=>{
+          console.error('failed to delete restaurant');
           console.error(error);
 
         }
@@ -51,12 +94,63 @@ export class RestaurantListComponent implements OnInit {
       this.RestaurantService.findRestaurantsByState(this.selectedAd).subscribe(
         good=>{
           this.restaurants = good;
-          console.log('exercise selected');
+          console.log('restaurant selected');
         },
         error=>{
-          console.error('failed to select exercise');
+          console.error('failed to select restaurant');
           console.error(error);
 
+        }
+      );
+    }
+    findRestaurantsByMeatType(): void{
+      this.RestaurantService.findRestaurantsByMeatType(this.selectedAd, this.searchTerm).subscribe(
+        good=>{
+          this.restaurants = good;
+          console.log('restaurant selected');
+        },
+        error=>{
+          console.error('failed to select restaurant');
+          console.error(error);
+
+        }
+      );
+    }
+    findRestaurantsByName(): void{
+      this.RestaurantService.findRestaurantsByName(this.selectedAd, this.searchTerm).subscribe(
+        good=>{
+          this.restaurants = good;
+          console.log('restaurant selected');
+        },
+        error=>{
+          console.error('failed to select restaurant');
+          console.error(error);
+
+        }
+      );
+    }
+    findRestaurantsBySideDish():  void{
+      this.RestaurantService.findRestaurantsBySideDish(this.selectedAd, this.searchTerm).subscribe(
+        good=>{
+          this.restaurants = good;
+          console.log('restaurant selected');
+        },
+        error=>{
+          console.error('failed to select restaurant');
+          console.error(error);
+
+        }
+      );
+    }
+    findRestaurantsByStyle(): void{
+      this.RestaurantService.findRestaurantsByStyle(this.selectedAd, this.searchTerm).subscribe(
+        good=>{
+          this.restaurants = good;
+          console.log('restaurant selected');
+        },
+        error=>{
+          console.error('failed to select restaurant');
+          console.error(error);
         }
       );
     }
