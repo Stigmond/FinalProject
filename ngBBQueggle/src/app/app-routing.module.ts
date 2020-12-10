@@ -1,3 +1,4 @@
+import { RestaurantInfoComponent } from './components/restaurant-info/restaurant-info.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { NgModule } from '@angular/core';
@@ -7,7 +8,8 @@ import { ReviewsComponent } from './components/reviews/reviews.component';
 const routes: Routes = [
 { path: 'reviews', component: ReviewsComponent },
 { path: 'home', component: HomeComponent},
-{ path: 'register', component: RegisterComponent}
+{ path: 'register', component: RegisterComponent},
+{ path: 'info', component: RestaurantInfoComponent}
 
 
 
