@@ -1,0 +1,51 @@
+<div class="row">
+
+  <div class="col">
+    <div class="row">
+      <div class="col">
+        <img [src]="restaurant.logo" />
+      </div>
+      <div class="col">
+        <h1>{{restaurant.name}}</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col"><p>{{restaurant.address.street}}<br>{{restaurant.address.city}}, {{restaurant.address.state}}<br>{{restaurant.address.zip}}</p></div>
+    </div>
+    <div class="row">
+      <div class="col"><p>Phone: {{restaurant.phoneNumber}}</p></div>
+    </div>
+    <div class="row">
+      <div class="col">
+       <p>Website: <a href="{{restaurant.website}}" target="_blank">{{restaurant.website}}</a></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-justify"><p>{{restaurant.hours}}</p></div>
+    </div>
+    <div class="row">
+      <div class="col">Dine In? <span *ngIf="restaurant.dineIn === true">YES</span><span *ngIf="restaurant.dineIn === false">NO</span>          </div>
+    </div>
+  </div>
+
+
+
+
+  <div class = "col">
+    <div class="row">
+      <div class="col" (click)="selected='about'">ABOUT</div><div class="col" (click)="selected='map'">MAP</div><div class="col"(click)="selected='reviews'">REVIEWS</div>
+    </div>
+    <div class="row">
+      <div *ngIf="selected === 'reviews'">
+        <app-reviews></app-reviews>
+      </div>
+      <div *ngIf="selected === 'about'">
+        <p>{{restaurant.description}}</p>
+      </div>
+      <div *ngIf="selected === 'map'">
+        PUT MAP HERE
+      </div>
+    </div>
+  </div>
+
+</div>
