@@ -50,8 +50,14 @@ export class RegisterComponent implements OnInit {
     this.editUser = Object.assign({}, this.selected);
   }
 
-    addUser(user: User) {
-    this.userService.create(user).subscribe(
+    addUser() {
+      console.log(this.newUser);
+      this.newUser.enabled = true;
+      this.newAddress.enabled = true;
+
+      this.newUser.role = "ROLE_USER";
+      this.newUser.address = this.newAddress;
+    this.userService.create(this.newUser).subscribe(
       (user) => {
         this.newUser = new User();
         this.loadUser();
