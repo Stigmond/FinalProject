@@ -1,1 +1,9 @@
+.registration {
+  background: url("https://cdn.vox-cdn.com/thumbor/S7tMJpvUYOmFZtSOmlfNXEnLThQ=/0x0:2048x1638/1320x743/filters:focal(861x656:1187x982):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/67357126/2020.08.16___Matt_Horn_BBQ_031.0.jpg")
+    no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 
