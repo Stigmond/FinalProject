@@ -36,15 +36,35 @@
       <div class="col" (click)="selected='about'">ABOUT</div><div class="col" (click)="selected='map'">MAP</div><div class="col"(click)="selected='reviews'">REVIEWS</div>
     </div>
     <div class="row">
-      <div *ngIf="selected === 'reviews'">
+
+      <div class="col" *ngIf="selected === 'reviews'">
         <app-reviews></app-reviews>
       </div>
-      <div *ngIf="selected === 'about'">
-        <p>{{restaurant.description}}</p>
+
+      <div class="col" *ngIf="selected === 'about'">
+        <div class="row">
+          <div class="col"><p>{{restaurant.description}}</p></div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <p>Main Dishes:</p>
+            <ul>
+            <li *ngFor="let mainDish of restaurant.mainDishes">{{mainDish.name}}</li>
+            </ul>
+          </div>
+          <div class="col">
+            <p>Side Dishes:</p>
+            <ul>
+            <li *ngFor="let sideDish of restaurant.sideDishes">{{sideDish.name}}</li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <div *ngIf="selected === 'map'">
+
+      <div class="col" *ngIf="selected === 'map'">
         PUT MAP HERE
       </div>
+
     </div>
   </div>
 
