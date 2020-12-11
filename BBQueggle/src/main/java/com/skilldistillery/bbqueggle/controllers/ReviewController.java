@@ -113,18 +113,18 @@ public class ReviewController {
 //		return review;
 //	}
 //	
-//	@DeleteMapping("reviews/{restId}/{revId}")
-//	public void deleteRestaurantReview(@PathVariable Integer restId, @PathVariable Integer revId, HttpServletResponse response) {
-//		if (restId == null || revId == null) {
-//			response.setStatus(404);
-//		}
-//		boolean deleted = revServ.deleteRestaurantReview(restId, revId);
-//		if (deleted == true) {
-//			response.setStatus(204);
-//		} else {
-//			response.setStatus(404);
-//		}
-//	}
+	@DeleteMapping("reviews/{restId}/{revId}")
+	public void deleteRestaurantReview(@PathVariable Integer restId, @PathVariable Integer revId, HttpServletResponse response) {
+		if (restId == null || revId == null) {
+			response.setStatus(404);
+		}
+		boolean deleted = revServ.deleteRestaurantReview(restId, revId);
+		if (deleted == true) {
+			response.setStatus(204);
+		} else {
+			response.setStatus(404);
+		}
+	}
 	
 }
 
