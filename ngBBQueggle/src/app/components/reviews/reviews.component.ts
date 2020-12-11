@@ -18,7 +18,7 @@ export class ReviewsComponent implements OnInit {
   score: number;
   restaurantId: number;
   restaurant: Restaurant;
-  userId: number = 1;
+  userId: number;
   edit: boolean = false;
   selectedReview: Review;
   newReview: Review = new Review();
@@ -33,6 +33,8 @@ export class ReviewsComponent implements OnInit {
     this.getRestaurant(this.restaurantId);
     this.loadReviews(this.restaurantId);
     this.getScore(this.restaurantId);
+    this.userId = parseInt(localStorage.getItem('userId'));
+    console.log('USER ID = ' + this.userId);
   }
 
   getRestaurant(restaurantId: number): void {
