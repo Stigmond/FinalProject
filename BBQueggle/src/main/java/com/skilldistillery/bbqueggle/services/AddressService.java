@@ -6,9 +6,9 @@ import com.skilldistillery.bbqueggle.entities.Address;
 
 public interface AddressService {
 
-	List<Address>getAllAddresses(String username);
+	List<Address>getAllAddresses();
 	
-	Address findById(int addId, String username);
+	Address findById(int addId);
 	
 	Address create(Address address, String username);
 	

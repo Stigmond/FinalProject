@@ -8,7 +8,7 @@ public interface MainDishService {
 
 	List<MainDish> index();
 
-	MainDish getMainDishById(Integer id, String username);
+	MainDish getMainDishById(Integer id);
 
 	MainDish createMainDish(MainDish newMainDish, String username);
 

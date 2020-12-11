@@ -34,8 +34,8 @@ public class ChainController {
 	}
 
 	@GetMapping("chain/{chainId}")
-	public Chain getchainById(@PathVariable Integer chainId, HttpServletResponse response, Principal principal) {
-		Chain chain = svc.getChainById(chainId, principal.getName());
+	public Chain getchainById(@PathVariable Integer chainId, HttpServletResponse response) {
+		Chain chain = svc.getChainById(chainId);
 		if (chain == null) {
 			response.setStatus(404);
 		}

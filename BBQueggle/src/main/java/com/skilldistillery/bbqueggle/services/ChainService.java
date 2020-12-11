@@ -8,7 +8,7 @@ public interface ChainService {
 
 	List<Chain> index();
 
-	Chain getChainById(Integer Id, String username);
+	Chain getChainById(Integer Id);
 
 	Chain createChain(Chain newChain, String username);
 
