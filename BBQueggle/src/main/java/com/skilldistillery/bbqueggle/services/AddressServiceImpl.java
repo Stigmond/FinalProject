@@ -16,23 +16,23 @@ public class AddressServiceImpl implements AddressService {
 	private AddressRepository addRepo;
 	
 	@Override
-	public List<Address> getAllAddresses() {
+	public List<Address> getAllAddresses(String username) {
 		return addRepo.findAll();
 	}
 	
 	@Override
-	public Address findById(int addId) {
+	public Address findById(int addId, String username) {
 		return addRepo.findById(addId);
 	}
 
 	@Override
-	public Address create(Address address) {
+	public Address create(Address address, String username) {
 			address = addRepo.saveAndFlush(address);
 		return address;
 	}
 
 	@Override
-	public Address update(Integer addId, Address address) {
+	public Address update(Integer addId, Address address, String username) {
 		Optional<Address> addOpt = addRepo.findById(addId);
 		Address manageAd = null;
 		if (addOpt.isPresent()) {
@@ -55,7 +55,7 @@ public class AddressServiceImpl implements AddressService {
 	}
 
 	@Override
-	public boolean delete(Integer addId) {
+	public boolean delete(Integer addId, String username) {
 		boolean deleted = false;
 		Optional<Address> addOpt = addRepo.findById(addId);
 		if(addOpt.isPresent()) {

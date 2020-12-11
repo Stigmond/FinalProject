@@ -6,14 +6,14 @@ import com.skilldistillery.bbqueggle.entities.User;
 
 public interface UserService {
 
-	List<User> index();
+	List<User> index(String username);
 
-	User getUserById(Integer Id);
+	User getUserById(String username, Integer Id);
 
-	User createUser(User newUser);
+	User createUser(String username, User newUser);
 
-	User updateUser(User user, Integer Id);
+	User updateUser(String username, User user, Integer Id);
 
-	boolean deleteUser(Integer Id);
+	boolean deleteUser(String username, Integer Id);
 
 }

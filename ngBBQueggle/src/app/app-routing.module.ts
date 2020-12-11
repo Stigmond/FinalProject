@@ -1,3 +1,4 @@
+import { LoginComponent } from './components/login/login.component';
 import { RestaurantListComponent } from './components/restaurant-list/restaurant-list.component';
 import { RestaurantInfoComponent } from './components/restaurant-info/restaurant-info.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -13,7 +14,10 @@ const routes: Routes = [
 { path: 'info/:restId', component: RestaurantInfoComponent},
 { path: 'restaurant', component: RestaurantListComponent},
 { path: 'restaurant/:state', component: RestaurantListComponent},
-{ path: 'restaurant/:state/:searchType/:searchTerm', component: RestaurantListComponent}
+{ path: 'restaurant/:state/:searchType/:searchTerm', component: RestaurantListComponent},
+{ path: 'login', component: LoginComponent}
+
+
 ];
 
 @NgModule({

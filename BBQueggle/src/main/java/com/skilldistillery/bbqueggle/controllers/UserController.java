@@ -1,5 +1,6 @@
 package com.skilldistillery.bbqueggle.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.bbqueggle.entities.User;
-
 import com.skilldistillery.bbqueggle.services.UserServiceImpl;
 
 @CrossOrigin({ "*", "http://localhost:4210" })
@@ -29,13 +29,14 @@ public class UserController {
 	private UserServiceImpl svc;
 
 	@GetMapping("user")
-	public List<User> index() {
-		return svc.index();
+	public List<User> index(Principal principal) {
+		return svc.index(principal.getName());
 	}
 
 	@GetMapping("user/{userId}")
-	public User getUserById(@PathVariable Integer userId, HttpServletResponse response) {
-		User user = svc.getUserById(userId);
+	public User getUserById(@PathVariable Integer userId, HttpServletResponse response, Principal principal) {
+//		User user = svc.getUserById(userId);
+		User user = svc.getUserById(principal.getName(), userId);
 		if (user == null) {
 			response.setStatus(404);
 		}
@@ -43,10 +44,10 @@ public class UserController {
 	}
 
 	@PostMapping("user")
-	public User createUser(@RequestBody User newUser, HttpServletResponse response, HttpServletRequest request) {
+	public User createUser(@RequestBody User newUser, HttpServletResponse response, HttpServletRequest request, Principal principal) {
 		User createdUser = null;
 		try {
-			createdUser = svc.createUser(newUser);
+			createdUser = svc.createUser(principal.getName(), newUser);
 			response.setStatus(201);
 			StringBuffer url = request.getRequestURL();
 			url.append("/").append(newUser.getId());
@@ -62,9 +63,9 @@ public class UserController {
 	}
 
 	@PutMapping("user/{userId}")
-	public User updateUser(@PathVariable Integer userId, @RequestBody User updatedUser, HttpServletResponse response) {
+	public User updateUser(@PathVariable Integer userId, @RequestBody User updatedUser, HttpServletResponse response, Principal principal) {
 		try {
-			updatedUser = svc.updateUser(updatedUser, userId);
+			updatedUser = svc.updateUser(principal.getName(), updatedUser, userId);
 			if (updatedUser == null) {
 				response.setStatus(404);
 				updatedUser = null;
@@ -78,8 +79,8 @@ public class UserController {
 	}
 
 	@DeleteMapping("user/{userId}")
-	public void deleteUser(@PathVariable Integer userId, HttpServletResponse response) {
-		if (svc.deleteUser(userId)) {
+	public void deleteUser(@PathVariable Integer userId, HttpServletResponse response, Principal principal) {
+		if (svc.deleteUser(principal.getName(), userId)) {
 			response.setStatus(204);
 
 		} else {

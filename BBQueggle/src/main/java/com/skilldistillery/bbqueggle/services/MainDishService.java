@@ -8,12 +8,12 @@ public interface MainDishService {
 
 	List<MainDish> index();
 
-	MainDish getMainDishById(Integer id);
+	MainDish getMainDishById(Integer id, String username);
 
-	MainDish createMainDish(MainDish newMainDIsh);
+	MainDish createMainDish(MainDish newMainDish, String username);
 
-	MainDish updateMainDish(Integer id, MainDish mainDish);
+	MainDish updateMainDish(Integer id, MainDish mainDish, String username);
 
-	boolean deleteMainDish(Integer id);
+	boolean deleteMainDish(Integer id, String username);
 
 }

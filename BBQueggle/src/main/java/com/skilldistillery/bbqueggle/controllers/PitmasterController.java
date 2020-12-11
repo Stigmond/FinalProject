@@ -1,5 +1,6 @@
 package com.skilldistillery.bbqueggle.controllers;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,8 +38,8 @@ public class PitmasterController {
 	}
 	
 	@GetMapping("pitmaster/{id}")
-	public Pitmaster getPitmasterById(@PathVariable Integer id, HttpServletResponse response) {
-		Pitmaster pitmaster = PSI.getPitmasterById(id);
+	public Pitmaster getPitmasterById(@PathVariable Integer id, HttpServletResponse response, Principal principal) {
+		Pitmaster pitmaster = PSI.getPitmasterById(id, principal.getName());
 		if (pitmaster == null) {
 			response.setStatus(404);
 		}
@@ -46,8 +47,8 @@ public class PitmasterController {
 	}
 	
 	@PostMapping("pitmaster")
-	public Pitmaster addPitmaster(@RequestBody Pitmaster newPitmaster, HttpServletResponse response, HttpServletRequest request) {
-		newPitmaster = PSI.createPitmaster(newPitmaster);
+	public Pitmaster addPitmaster(@RequestBody Pitmaster newPitmaster, HttpServletResponse response, HttpServletRequest request, Principal principal) {
+		newPitmaster = PSI.createPitmaster(newPitmaster, principal.getName());
 		StringBuffer strUrl = request.getRequestURL().append("/").append(newPitmaster.getId());
 		String url = strUrl.toString();
 		System.out.println(url);
@@ -56,8 +57,8 @@ public class PitmasterController {
 	}
 	
 	@PutMapping("pitmaster/{id}")
-	public Pitmaster updatePitmaster(@PathVariable Integer id, @RequestBody Pitmaster updatedPitmaster, HttpServletResponse response) {
-		updatedPitmaster = PSI.updatePitmaster(id, updatedPitmaster);
+	public Pitmaster updatePitmaster(@PathVariable Integer id, @RequestBody Pitmaster updatedPitmaster, HttpServletResponse response, Principal principal) {
+		updatedPitmaster = PSI.updatePitmaster(id, updatedPitmaster, principal.getName());
 		if (updatedPitmaster == null) {
 			response.setStatus(404);
 		}
@@ -65,8 +66,8 @@ public class PitmasterController {
 	}
 	
 	@DeleteMapping("pitmaster/{id}")
-	public void deletePitmaster(@PathVariable Integer id, HttpServletResponse response) {
-		boolean deleted = PSI.deletePitmaster(id);
+	public void deletePitmaster(@PathVariable Integer id, HttpServletResponse response, Principal principal) {
+		boolean deleted = PSI.deletePitmaster(id, principal.getName());
 		if (deleted == true) {
 			response.setStatus(204);
 		} else {

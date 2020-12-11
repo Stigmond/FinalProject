@@ -33,13 +33,13 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 
 	@Override
-	public Restaurant createRestaurant(Restaurant restaurant) {
+	public Restaurant createRestaurant(String username, Restaurant restaurant) {
 		repo.saveAndFlush(restaurant);
 		return repo.save(restaurant);
 	}
 
 	@Override
-	public Restaurant updateRestaurant(Restaurant restaurant, Integer id) {
+	public Restaurant updateRestaurant(String username, Restaurant restaurant, Integer id) {
 		Optional<Restaurant> restaurantOpt = repo.findById(id);
 		Restaurant managedRestaurant = null;
 		if (restaurantOpt.isPresent()) {
@@ -71,7 +71,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 		return managedRestaurant;
 	}
 
-	public boolean deleteRestaurant(Integer id) {
+	public boolean deleteRestaurant(String username, Integer id) {
 		boolean deleted = false;
 		Optional<Restaurant> restaurantOpt = repo.findById(id);
 		if (restaurantOpt.isPresent()) {

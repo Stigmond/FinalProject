@@ -10,11 +10,11 @@ public interface RestaurantService {
 
 	Restaurant showRestaurant(Integer id);
 
-	Restaurant createRestaurant(Restaurant restaurant);
+	Restaurant createRestaurant(String username, Restaurant restaurant);
 
-	Restaurant updateRestaurant(Restaurant restaurant, Integer id);
+	Restaurant updateRestaurant(String username, Restaurant restaurant, Integer id);
 
-	boolean deleteRestaurant(Integer id);
+	boolean deleteRestaurant(String username, Integer id);
 
 	List<Restaurant> showRestaurantsByState(String state);
 	
