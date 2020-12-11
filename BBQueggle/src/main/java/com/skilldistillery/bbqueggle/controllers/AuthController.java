@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.skilldistillery.bbqueggle.entities.User;
 import com.skilldistillery.bbqueggle.services.AuthService;
 
-@RestController
 @CrossOrigin({ "*", "http://localhost:4210" })
+@RestController
 public class AuthController {
 	
 	@Autowired
@@ -23,11 +23,9 @@ public class AuthController {
 	
 	@PostMapping(path = "/register")
 	public User register(@RequestBody User user, HttpServletResponse res, Principal principal) {
-
 	    if (user == null) {
 	        res.setStatus(400);
 	    }
-	    System.out.println(user.getPassword());
 	    user = authService.register(user);
 
 	    return user;

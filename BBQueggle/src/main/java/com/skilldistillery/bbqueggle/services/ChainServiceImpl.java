@@ -22,7 +22,7 @@ public class ChainServiceImpl implements ChainService {
 	}
 
 	@Override
-	public Chain getChainById(Integer Id) {
+	public Chain getChainById(Integer Id, String username) {
 		Optional<Chain> chainOpt = chainRepo.findById(Id);
 		Chain chain = null;
 		if (chainOpt.isPresent()) {
@@ -32,13 +32,13 @@ public class ChainServiceImpl implements ChainService {
 	}
 
 	@Override
-	public Chain createChain(Chain newChain) {
+	public Chain createChain(Chain newChain, String username) {
 		chainRepo.saveAndFlush(newChain);
 		return chainRepo.save(newChain);
 	}
 
 	@Override
-	public Chain updateChain(Chain chain, Integer Id) {
+	public Chain updateChain(Chain chain, Integer Id, String username) {
 		Optional<Chain> chainOpt = chainRepo.findById(Id);
 		Chain managedChain = null;
 		if (chainOpt.isPresent()) {
@@ -60,7 +60,7 @@ public class ChainServiceImpl implements ChainService {
 	}
 
 	@Override
-	public boolean deleteChain(Integer Id) {
+	public boolean deleteChain(Integer Id, String username) {
 		boolean deleted = false;
 		Optional<Chain> chainOpt = chainRepo.findById(Id);
 		if (chainOpt.isPresent()) {
