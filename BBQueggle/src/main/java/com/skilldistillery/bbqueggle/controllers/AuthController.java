@@ -22,7 +22,7 @@ public class AuthController {
 	private AuthService authService;
 	
 	@PostMapping(path = "/register")
-	public User register(@RequestBody User user, HttpServletResponse res) {
+	public User register(@RequestBody User user, HttpServletResponse res, Principal principal) {
 
 	    if (user == null) {
 	        res.setStatus(400);

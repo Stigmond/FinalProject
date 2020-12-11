@@ -8,18 +8,17 @@ import com.skilldistillery.bbqueggle.entities.User;
 import com.skilldistillery.bbqueggle.repositories.UserRepository;
 
 @Service
-public class AuthServiceImpl implements AuthService{
-	
+public class AuthServiceImpl implements AuthService {
+
 	@Autowired
 	private PasswordEncoder encoder;
-	
+
 	@Autowired
 	private UserRepository userRepo;
-	
 
 	@Override
 	public User register(User user) {
-		
+
 		user.setPassword(encoder.encode(user.getPassword()));
 		user.setEnabled(true);
 		user.setRole("ROLE_USER");
@@ -27,10 +26,8 @@ public class AuthServiceImpl implements AuthService{
 		return user;
 	}
 
-
 	@Override
 	public User getUser(String username) {
-		
 		return userRepo.findByUsername(username);
 	}
 
