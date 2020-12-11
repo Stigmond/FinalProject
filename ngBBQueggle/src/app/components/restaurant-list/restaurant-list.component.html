@@ -77,6 +77,7 @@
         <input type="text" [(ngModel)]="searchTerm" placeholder="Search Term">
          <button (click)='search()'>Search</button>
 
+         <h2>Search Result</h2>
          <div *ngFor = "let Restaurant of restaurants">
            <a href="http://localhost:4210/#/info/{{Restaurant.id}}">{{Restaurant.name}}</a>
           </div>
@@ -85,7 +86,7 @@
            <a href="http://localhost:4210/#/info/selected.id"></a>
          </div>
 
-         <div *ngIf="! selected">
+         <!-- <div *ngIf="! selected">
            <br>
            <br>
          <h2>Search Result</h2>
@@ -103,4 +104,4 @@
              </tr>
            </tbody>
          </table>
-        </div>
+        </div> -->

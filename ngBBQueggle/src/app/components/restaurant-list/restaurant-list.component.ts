@@ -167,15 +167,23 @@ export class RestaurantListComponent implements OnInit {
         this.findRestaurantsBySideDish();
       }
       else if(this.searchType === 'style'){
+        console.log("here");
+
         this.findRestaurantsByStyle();
       }
       else if(this.searchType === 'name'){
+        console.log("here");
+
         this.findRestaurantsByName();
       }
       else if(this.searchType === 'meat type'){
+        console.log("here");
+
         this.findRestaurantsByMeatType();
       }
       else if(this.searchType === 'state'){
+        console.log("here");
+
         this.findRestaurantsByState();
       }
       console.log('work plz');
