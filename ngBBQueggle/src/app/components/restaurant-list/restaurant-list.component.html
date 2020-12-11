@@ -76,3 +76,25 @@
         </div>
         <input type="text" name="searchTerm" placeholder="Search Term">
          <button (click)='search()'>submit</button>
+
+         <div *ngIf="selected">
+           <a href="http://localhost:4210/#/selected.id"></a>
+         </div>
+
+         <div *ngIf="! selected">
+         <h2>Restaurant List</h2>
+         <table>
+           <thead>
+             <tr>
+               <td>Id</td>
+               <td>Name</td>
+             </tr>
+           </thead>
+           <tbody>
+             <tr *ngFor="let Restaurant of restaurants" (click)="selected = Restaurant">
+               <td>{{Restaurant.id}}</td>
+               <td>{{Restaurant.name}}</td>
+             </tr>
+           </tbody>
+         </table>
+        </div>
