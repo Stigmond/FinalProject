@@ -6,7 +6,7 @@ import { Restaurant } from '../models/restaurant';
 import { catchError} from 'rxjs/operators';
 import { style } from '@angular/animations';
 import { AuthService } from './auth.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class RestaurantService {
   private baseUrl = 'http://localhost:8090/';
   url = this.baseUrl + 'api/restaurants';
 
-  constructor(private http: HttpClient, private authService: AuthService, route: ActivatedRoute) { }
+  constructor(private http: HttpClient, private authService: AuthService, private router: Router) { }
 
   index(): Observable<Restaurant[]>{
     return this.http.get<Restaurant[]>(this.url + '/?sorted=true').pipe(
