@@ -40,18 +40,6 @@ export class RestaurantInfoComponent implements OnInit {
   );
   }
 
-  checkIfSelected = function() {
-    if (this.selectedTab === 'about') {
-      return 'about';
-    }
-    if (this.selectedTab === 'map') {
-      return 'map';
-    }
-      if (this.selectedTab === 'reviews') {
-        return 'reviews';
-    }
-  }
-
   formatPhoneNumber(phoneNumberString) {
     var cleaned = ('' + phoneNumberString).replace(/\D/g, '')
     var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/)

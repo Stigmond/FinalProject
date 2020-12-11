@@ -1,0 +1,9 @@
+/* #list-group{
+  max-height: 300px;
+  overflow:scroll;
+  -webkit-overflow-scrolling: touch;
+} */
+
+#rightCol {
+  position: relative;
+}
