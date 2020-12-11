@@ -98,21 +98,21 @@ public class ReviewController {
 //		response.setHeader("Location", url);
 //		return review;
 //	}
-	
-	@PutMapping("reviews/{restId}/{revId}")
-	public Review updateRestaurantReview(@PathVariable Integer restId, @PathVariable Integer revId, @RequestBody Review review, HttpServletResponse response) {
-		if (restId == null || revId == null) {
-			response.setStatus(404);
-			return null;
-		}
-		review = revServ.updateRestaurantReview(restId, revId, review);
-		if (review == null) {
-			response.setStatus(404);
-			return null;
-		}
-		return review;
-	}
-	
+//	
+//	@PutMapping("reviews/{restId}/{revId}")
+//	public Review updateRestaurantReview(@PathVariable Integer restId, @PathVariable Integer revId, @RequestBody Review review, HttpServletResponse response) {
+//		if (restId == null || revId == null) {
+//			response.setStatus(404);
+//			return null;
+//		}
+//		review = revServ.updateRestaurantReview(restId, revId, review);
+//		if (review == null) {
+//			response.setStatus(404);
+//			return null;
+//		}
+//		return review;
+//	}
+//	
 //	@DeleteMapping("reviews/{restId}/{revId}")
 //	public void deleteRestaurantReview(@PathVariable Integer restId, @PathVariable Integer revId, HttpServletResponse response) {
 //		if (restId == null || revId == null) {

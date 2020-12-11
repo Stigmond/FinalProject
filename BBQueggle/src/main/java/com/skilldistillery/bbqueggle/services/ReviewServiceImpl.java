@@ -37,7 +37,7 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 	
 	@Override
-	public Review createRestaurantReview(Review review) {
+	public Review createRestaurantReview(Review review, String username) {
 		review.setReviewDate(LocalDate.now());
 		if (review.getReview() == null || review.getReview().equals("")) {
 			review.setReview("No comment available");
@@ -47,7 +47,7 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public Review updateRestaurantReview(Integer restaurantId, Integer reviewId, Review review) {
+	public Review updateRestaurantReview(Integer restaurantId, Integer reviewId, Review review, String username) {
 		Review managedReview = this.getReviewByReviewId(restaurantId, reviewId);
 		
 		if (managedReview == null) {
@@ -68,14 +68,14 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 //	@Override
-//	public boolean deleteRestaurantReview(Integer restaurantId, Integer reviewId) {
+//	public boolean deleteRestaurantReview(Integer restaurantId, Integer reviewId, String username) {
 //		boolean deleted = false;
 //		Review reviewToDelete = this.getReviewByReviewId(restaurantId, reviewId);
 //		
 //		if (reviewToDelete != null) {
 //			Restaurant managedRestaurant = restServ.showRestaurant(restaurantId);
 //			managedRestaurant.getReviews().remove(reviewToDelete);
-//			User managedUser = userServ.getUserById(principal.getName(),reviewToDelete.getUser().getId());
+//			User managedUser = userServ.getUserById(reviewToDelete.getUser().getId());
 //			managedUser.getReviews().remove(reviewToDelete);
 //			reviewRepo.delete(reviewToDelete);
 //			deleted = true;

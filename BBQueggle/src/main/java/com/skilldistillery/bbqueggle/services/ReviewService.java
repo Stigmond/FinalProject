@@ -10,9 +10,9 @@ public interface ReviewService {
 	
 	public Review getReviewByReviewId(Integer restaurantId, Integer reviewId);
 	
-	Review createRestaurantReview(Review review);
+	Review createRestaurantReview(Review review, String username);
 	
-	Review updateRestaurantReview(Integer restaurantId, Integer reviewId, Review review);
+	Review updateRestaurantReview(Integer restaurantId, Integer reviewId, Review review, String username);
 	
-//	boolean deleteRestaurantReview(Integer restaurantId, Integer reviewId);
+//	boolean deleteRestaurantReview(Integer restaurantId, Integer reviewId, String username);
 }
