@@ -33,6 +33,7 @@ login(username, password): Observable<User> {
     .pipe(
       tap((res) => {
         localStorage.setItem('credentials' , credentials);
+        localStorage.setItem('userId', res.id.toString()); //retrieve with localStorage.getItem('userId');
         return res;
       }),
       catchError((err: any) => {
