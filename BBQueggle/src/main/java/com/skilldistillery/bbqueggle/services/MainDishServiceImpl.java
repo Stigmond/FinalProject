@@ -22,7 +22,7 @@ public class MainDishServiceImpl implements MainDishService {
 	}
 
 	@Override
-	public MainDish getMainDishById(Integer id, String username) {
+	public MainDish getMainDishById(Integer id) {
 		Optional<MainDish> mainDishOpt = mainDishRepo.findById(id);
 		MainDish mainDish = null;
 		if (mainDishOpt.isPresent()) {

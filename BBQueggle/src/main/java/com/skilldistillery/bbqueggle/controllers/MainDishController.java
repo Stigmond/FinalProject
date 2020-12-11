@@ -34,8 +34,8 @@ public class MainDishController {
 	}
 
 	@GetMapping("mainDish/{mainDishId}")
-	public MainDish getMainDishById(@PathVariable Integer mainDishId, HttpServletResponse response, Principal principal) {
-		MainDish mainDish = svc.getMainDishById(mainDishId, principal.getName());
+	public MainDish getMainDishById(@PathVariable Integer mainDishId, HttpServletResponse response) {
+		MainDish mainDish = svc.getMainDishById(mainDishId);
 		if (mainDish == null) {
 			response.setStatus(404);
 		}

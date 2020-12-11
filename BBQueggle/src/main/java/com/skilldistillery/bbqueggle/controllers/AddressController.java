@@ -26,13 +26,13 @@ public class AddressController {
 	AddressServiceImpl addSvc;
 	
 	@GetMapping("address")
-	public List<Address> getAllAddresses(Principal principal){
-		return addSvc.getAllAddresses(principal.getName());
+	public List<Address> getAllAddresses(){
+		return addSvc.getAllAddresses();
 	}
 	
 	@GetMapping("address/{addId}")
-	public Address findById(@PathVariable int addId, Principal principal) {
-		return addSvc.findById(addId, principal.getName());
+	public Address findById(@PathVariable int addId) {
+		return addSvc.findById(addId);
 	}
 	
 	@PostMapping("address")
