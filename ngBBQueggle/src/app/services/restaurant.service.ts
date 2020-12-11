@@ -1,10 +1,11 @@
 import { Address } from './../models/address';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { Restaurant } from '../models/restaurant';
 import { catchError} from 'rxjs/operators';
 import { style } from '@angular/animations';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class RestaurantService {
   private baseUrl = 'http://localhost:8090/';
   url = this.baseUrl + 'api/restaurants';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   index(): Observable<Restaurant[]>{
     return this.http.get<Restaurant[]>(this.url + '/?sorted=true').pipe(
@@ -25,9 +26,15 @@ export class RestaurantService {
     );
   }
 
-  show(id: number){
-    return this.http.get<Restaurant>(this.url + '/' + id
-    + '?sorted=true').pipe(
+  show(id: number): Observable<Restaurant> {
+    const credentials = this.authService.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Basic ${credentials}`,
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    }
+    return this.http.get<Restaurant>(this.url + '/' + id, httpOptions).pipe(
       catchError((err:any)=>{
       console.log(err);
       return throwError('RestaurantService.show(): error');
