@@ -1,5 +1,6 @@
 package com.skilldistillery.bbqueggle.controllers;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,10 +52,10 @@ public class RestaurantController {
 
 	@PostMapping("restaurants")
 	public Restaurant createRestaurant(@RequestBody Restaurant restaurant, HttpServletResponse response,
-			HttpServletRequest request) {
+			HttpServletRequest request, Principal principal) {
 		Restaurant createdRestaurant = null;
 		try {
-			createdRestaurant = svc.createRestaurant(restaurant);
+			createdRestaurant = svc.createRestaurant(principal.getName(),restaurant);
 			response.setStatus(201);
 			StringBuffer url = request.getRequestURL();
 			url.append("/").append(restaurant.getId());
@@ -70,9 +71,9 @@ public class RestaurantController {
 
 	@PutMapping("restaurants/{restaurantId}")
 	public Restaurant updateRestaurant(@PathVariable Integer restaurantId, @RequestBody Restaurant restaurant,
-			HttpServletResponse response) {
+			HttpServletResponse response, Principal principal) {
 		try {
-			restaurant = svc.updateRestaurant(restaurant, restaurantId);
+			restaurant = svc.updateRestaurant(principal.getName(), restaurant, restaurantId);
 			if (restaurant == null) {
 				response.setStatus(404);
 				restaurant = null;
@@ -86,8 +87,8 @@ public class RestaurantController {
 	}
 
 	@DeleteMapping("restaurants/{restaurantId}")
-	public void deleteRestaurant(@PathVariable Integer restaurantId, HttpServletResponse response) {
-		if (svc.deleteRestaurant(restaurantId)) {
+	public void deleteRestaurant(@PathVariable Integer restaurantId, HttpServletResponse response, Principal principal) {
+		if (svc.deleteRestaurant(principal.getName(),restaurantId)) {
 			response.setStatus(204);
 
 		} else {
