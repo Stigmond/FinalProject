@@ -27,4 +27,11 @@ public class AuthServiceImpl implements AuthService{
 		return user;
 	}
 
+
+	@Override
+	public User getUser(String username) {
+		
+		return userRepo.findByUsername(username);
+	}
+
 }
