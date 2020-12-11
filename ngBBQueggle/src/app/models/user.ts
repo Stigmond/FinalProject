@@ -1,3 +1,6 @@
+import { Address } from './address';
+import { Review } from './review';
+
 export class User {
   id: number;
   firstName: string;
@@ -8,6 +11,8 @@ export class User {
   image: string;
   role: string;
   enabled: boolean;
+  address: Address;
+  reviews: Review [];
 
   constructor(
   id?: number,
@@ -18,7 +23,9 @@ export class User {
   email?: string,
   image?: string,
   role?: string,
-  enabled?: boolean
+  enabled?: boolean,
+  address?: Address,
+  reviews?: Review []
 
   ){
     this.id = id;
@@ -30,5 +37,7 @@ export class User {
     this.image = image;
     this.role = role;
     this.enabled = enabled;
+    this.address = address;
+    this.reviews = reviews;
   }
 }

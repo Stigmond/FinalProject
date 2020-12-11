@@ -2,7 +2,7 @@
 <div class= "registration">
   <div class="row">
     <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-  <div class="card mt-5" id="form" style="width: 40rem;">
+  <div class="card mt-5" id="form" style="width: 33rem;">
     <div class="card-body">
 <form class="text-center border border-light p-5" action="#!">
 
@@ -12,115 +12,122 @@
       <div class="col">
           <!-- First name -->
           <label for="inputFirstName">First Name</label>
-          <input type="text" id="registerFirstName" [(ngModel)]="newUser.firstName" class="form-control" placeholder="First name">
+          <input type="text" id="registerFirstName" [(ngModel)]="newUser.firstName" name = "firstName" class="form-control" placeholder="First name">
       </div>
       <div class="col">
           <!-- Last name -->
           <label for="inputLastName">Last Name</label>
-          <input type="text" id="defaultRegisterFormLastName" [(ngModel)]="newUser.lastName" class="form-control" placeholder="Last name">
+          <input type="text" id="defaultRegisterFormLastName" [(ngModel)]="newUser.lastName" name ="lastName" class="form-control" placeholder="Last name">
       </div>
   </div>
 
   <!-- E-mail -->
   <label for="inputEmail">E-Mail</label>
-  <input type="email" id="defaultRegisterFormEmail" [(ngModel)]="newUser.email" class="form-control" placeholder="E-mail">
+  <input type="email" id="defaultRegisterFormEmail" [(ngModel)]="newUser.email" class="form-control" placeholder="E-mail" name = "email">
 
   <!-- Username-->
-  <label for="inputUserName">UserName</label>
-  <input type="username" id="defaultRegisterFormUsername" [(ngModel)]="newUser.username" class="form-control mb-4" placeholder="Username">
+  <label for="inputUserName">User Name</label>
+  <input type="username" id="defaultRegisterFormUsername" [(ngModel)]="newUser.username" class="form-control mb-4" placeholder="Username" name = "username">
 
   <!-- Password -->
   <label for="inputPassword">Password</label>
-  <input type="password" id="defaultRegisterFormPassword" [(ngModel)]="newUser.password" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+  <input type="password" id="defaultRegisterFormPassword" [(ngModel)]="newUser.password" name = "password"  class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
   <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
   </small>
 
   <!-- Image -->
   <label for="inputImage">Image</label>
-  <input type="text" id="image" [(ngModel)]="newUser.image" class="form-control" placeholder="Image URL" aria-describedby="defaultRegisterFormPhoneHelpBlock">
+  <input type="text" id="image" [(ngModel)]="newUser.image" class="form-control" name = "image" placeholder="Image URL" aria-describedby="defaultRegisterFormPhoneHelpBlock">
   <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
   </small>
 
-  <!-- Address
+  <!--Address -->
   <div class="form-group">
     <label for="inputAddress">Address</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" [(ngModel)]="newAddress.street">
+    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name = "street" [(ngModel)]="newAddress.street">
   </div>
   <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-12">
       <label for="inputCity">City</label>
-      <input type="text" class="form-control" id="inputCity" [(ngModel)]="newAddress.city">
+      <input type="text" class="form-control" id="inputCity" name = "city"[(ngModel)]="newAddress.city">
     </div>
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-6">
       <label for="inputState">State</label>
-      <select id="inputState" class="form-control" [(ngModel)]="newAddress.state">
+      <select id="inputState" class="form-control" name = "state"[(ngModel)]="newAddress.state">
         <option selected>Choose...</option>
-            <option>Alabama</option>
-            <option>Alaska</option>
-            <option>Arizona</option>
-            <option>Arkansas</option>
-            <option>California</option>
-            <option>Colorado</option>
-            <option>Connecticut</option>
-            <option>Delaware</option>
-            <option>Florida</option>
-            <option>Georgia</option>
-            <option>Hawaii</option>
-            <option>Idaho</option>
-            <option>Illinois</option>
-            <option>Indiana</option>
-            <option>Iowa</option>
-            <option>Kansas</option>
-            <option>Kentucky</option>
-            <option>Louisiana</option>
-            <option>Maine</option>
-            <option>Maryland</option>
-            <option>Massachusetts</option>
-            <option>Michigan</option>
-            <option>Minnesota</option>
-            <option>Mississippi</option>
-            <option>Missouri</option>
-            <option>Montana</option>
-            <option>Nebraska</option>
-            <option>Nevada</option>
-            <option>New Hampshire</option>
-            <option>New Jersey</option>
-            <option>New Mexico</option>
-            <option>New York</option>
-            <option>North Carolina</option>
-            <option>North Dakota</option>
-            <option>Ohio</option>
-            <option>Oklahoma</option>
-            <option>Oregon</option>
-            <option>Pennsylvania</option>
-            <option>Rhode Island</option>
-            <option>South Carolina</option>
-            <option>South Dakota</option>
-            <option>Tennessee</option>
-            <option>Texas</option>
-            <option>Utah</option>
-            <option>Vermont</option>
-            <option>Virginia</option>
-            <option>Washington</option>
-            <option>West Virginia</option>
-            <option>Wisonsin</option>
-            <option>Wyoming</option>
+        <option value="AL">Alabama</option>
+        <option value="AK">Alaska</option>
+        <option value="AS">American Samoa</option>
+        <option value="AZ">Arizona</option>
+        <option value="AR">Arkansas</option>
+        <option value="CA">California</option>
+        <option value="CO">Colorado</option>
+        <option value="CT">Connecticut</option>
+        <option value="DE">Delaware</option>
+        <option value="DC">Dist of Columbia</option>
+        <option value="FL">Florida</option>
+        <option value="GA">Georgia</option>
+        <option value="GU">Guam</option>
+        <option value="HI">Hawaii</option>
+        <option value="ID">Idaho</option>
+        <option value="IL">Illinois</option>
+        <option value="IN">Indiana</option>
+        <option value="IA">Iowa</option>
+        <option value="KS">Kansas</option>
+        <option value="KY">Kentucky</option>
+        <option value="LA">Louisiana</option>
+        <option value="ME">Maine</option>
+        <option value="MD">Maryland</option>
+        <option value="MA">Massachusetts</option>
+        <option value="MI">Michigan</option>
+        <option value="MN">Minnesota</option>
+        <option value="UM">Minor Outlying Islands</option>
+        <option value="MS">Mississippi</option>
+        <option value="MO">Missouri</option>
+        <option value="MT">Montana</option>
+        <option value="NE">Nebraska</option>
+        <option value="NV">Nevada</option>
+        <option value="NH">New Hampshire</option>
+        <option value="NJ">New Jersey</option>
+        <option value="NM">New Mexico</option>
+        <option value="NY">New York</option>
+        <option value="NC">North Carolina</option>
+        <option value="ND">North Dakota</option>
+        <option value="MP">Northern Mariana Islands</option>
+        <option value="OH">Ohio</option>
+        <option value="OK">Oklahoma</option>
+        <option value="OR">Oregon</option>
+        <option value="PA">Pennsylvania</option>
+        <option value="PR">Puerto Rico</option>
+        <option value="RI">Rhode Island</option>
+        <option value="SC">South Carolina</option>
+        <option value="SD">South Dakota</option>
+        <option value="TN">Tennessee</option>
+        <option value="TX">Texas</option>
+        <option value="UT">Utah</option>
+        <option value="VT">Vermont</option>
+        <option value="VA">Virginia</option>
+        <option value="VI">U.S. Virgin Islands</option>
+        <option value="WA">Washington</option>
+        <option value="WV">West Virginia</option>
+        <option value="WI">Wisconsin</option>
+        <option value="WY">Wyoming</option>
           </select>
     </div>
-    <div class="form-group col-md-2">
+    <div class="form-group col-md-6">
       <label for="inputZip">Zip</label>
-      <input type="text" class="form-control" id="inputZip" [(ngModel)]="newAddress.zip">
+      <input type="text" class="form-control" id="inputZip" name = "zip" [(ngModel)]="newAddress.zip">
     </div>
-    </div> -->
+    </div>
 
-  <!-- Newsletter -->
+  <!-- Newsletter
   <div class="custom-control custom-checkbox">
       <input type="checkbox" class="custom-control-input" id="defaultRegisterFormNewsletter">
       <label class="custom-control-label" for="defaultRegisterFormNewsletter">Subscribe to our newsletter</label>
   </div>
 
-  <!-- Sign up button -->
-  <button class="btn btn-info my-4 btn-block" (click)="addUser(newUser)">Sign in</button>
+  <-- Sign up button -->
+  <button class="btn btn-info my-4 btn-block" (click)="addUser()">Sign in</button>
 
   <!-- Social register -->
   <p>or sign up with:</p>

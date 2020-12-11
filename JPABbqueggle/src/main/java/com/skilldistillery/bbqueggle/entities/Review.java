@@ -21,7 +21,7 @@ public class Review {
 	private int id;
 	
 	@Column(name="review_score")
-	private int reviewScore;
+	private double reviewScore;
 	
 	private String review;
 	
@@ -49,11 +49,11 @@ public class Review {
 		this.id = id;
 	}
 
-	public int getReviewScore() {
+	public double getReviewScore() {
 		return reviewScore;
 	}
 
-	public void setReviewScore(int reviewScore) {
+	public void setReviewScore(double reviewScore) {
 		this.reviewScore = reviewScore;
 	}
 
@@ -73,7 +73,6 @@ public class Review {
 		this.reviewDate = reviewDate;
 	}
 
-	
 	public User getUser() {
 		return user;
 	}
@@ -82,7 +81,6 @@ public class Review {
 		this.user = user;
 	}
 
-	
 	public Restaurant getRestaurant() {
 		return restaurant;
 	}
@@ -101,7 +99,7 @@ public class Review {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + id;
-		result = prime * result + reviewScore;
+		result = prime * result + ((reviewDate == null) ? 0 : reviewDate.hashCode());
 		return result;
 	}
 
@@ -116,11 +114,14 @@ public class Review {
 		Review other = (Review) obj;
 		if (id != other.id)
 			return false;
-		if (reviewScore != other.reviewScore)
+		if (reviewDate == null) {
+			if (other.reviewDate != null)
+				return false;
+		} else if (!reviewDate.equals(other.reviewDate))
 			return false;
 		return true;
 	}
 
-
+	
 	
 }

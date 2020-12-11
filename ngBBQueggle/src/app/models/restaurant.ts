@@ -1,4 +1,6 @@
+import { SideDish } from './side-dish';
 import { Address } from './address';
+import { MainDish } from './main-dish';
 export class Restaurant {
   id: number;
   name: string;
@@ -10,6 +12,8 @@ export class Restaurant {
   hours: string;
   enabled: boolean;
   address: Address;
+  sideDishes: SideDish[];
+  mainDishes: MainDish[];
 
   constructor(
   id?: number,
@@ -21,7 +25,9 @@ export class Restaurant {
   dineIn?: boolean,
   hours?: string,
   enabled?: boolean,
-  address?: Address
+  address?: Address,
+  sideDishes?: SideDish[],
+  mainDishes?: MainDish[]
   ){
     this.id = id;
     this.name = name;
@@ -33,5 +39,7 @@ export class Restaurant {
     this.hours = hours;
     this.enabled = enabled;
     this.address = address;
+    this.sideDishes = sideDishes;
+    this.mainDishes = mainDishes;
   }
 }
