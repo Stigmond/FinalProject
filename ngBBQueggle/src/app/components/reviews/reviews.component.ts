@@ -24,6 +24,7 @@ export class ReviewsComponent implements OnInit {
   newReview: Review = new Review();
   updatedReview: Review = new Review();
   deleted: boolean;
+  add: boolean = false;
 
   constructor(private reviewService: ReviewService, private restService: RestaurantService, private userService: UserService, private currentRoute: ActivatedRoute) { }
 
@@ -140,6 +141,7 @@ export class ReviewsComponent implements OnInit {
     this.newReview = new Review();
     this.updatedReview = new Review();
     this.edit = false;
+    this.add = false;
   }
 
 }

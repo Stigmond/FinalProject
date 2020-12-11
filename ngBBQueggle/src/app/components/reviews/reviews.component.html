@@ -1,36 +1,51 @@
-<div class="row">
+<!-- <div class="row">
   <div class="col">
   <h1>REVIEWS FOR <span>{{restaurant.name}}</span></h1>
   </div>
-</div>
+</div> -->
 
 <div class="row">
   <div class="col">
-    <h3>Review Average: <span>{{score | number: '1.1-2'}}</span> / 5</h3>
+    <h4 class="text-center">Average Rating: <span>{{score | number: '1.1-2'}}</span> / 5</h4>
   </div>
 </div>
 
-<div class="row" *ngFor="let review of reviews">
-    <p *ngIf="edit === false">{{review.reviewDate}}</p>
-    <p *ngIf="edit === false">{{review.reviewScore}}/5</p>
-    <p *ngIf="edit === false">by: {{review.user.firstName}}</p>
-    <p *ngIf="edit === false">{{review.review}}</p>
-
-    <div *ngIf="review.user.id === userId && edit === false">
-      <button (click)="updatedReview = review; edit = true">UPDATE</button>
-      <button (click)="deleteReview(restaurantId, review.id)">DELETE</button>
-    </div>
+<div class="row">
+  <div class="table-wrapper-scroll-y my-custom-scrollbar">
+  <table class="table" *ngIf="edit === false">
+    <thead>
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Rating</th>
+        <th scope="col">User</th>
+        <th scope="col">Review</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let review of reviews">
+      <tr>
+       <td>{{review.reviewDate}}</td>
+       <td>{{review.reviewScore}}/5.0</td>
+       <td>{{review.user.firstName}}</td>
+       <td class="text-justify">{{review.review}}
+        <button *ngIf="review.user.id === userId && edit === false" (click)="updatedReview = review; edit = true">UPDATE</button>
+        <button *ngIf="review.user.id === userId && edit === false" (click)="deleteReview(restaurantId, review.id)">DELETE</button>
+      </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
 </div>
 
-<hr>
 
-<div class="row" *ngIf="edit === false">
+<button *ngIf="add === false && edit === false" (click)="add = true">Add Review</button>
+
+<div class="row" *ngIf="edit === false && add === true">
   <div class="col">
     <h1>ADD REVIEW</h1>
   </div>
 </div>
 
-<div class="row" *ngIf="edit === false">
+<div class="row" *ngIf="edit === false && add === true">
   <div class="col">
     <form id="addReview">
        Score:<input type="number" min="1" max="5" name="reviewScore" step=".5" [(ngModel)]="newReview.reviewScore"><br>
