@@ -16,13 +16,13 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userRepo;
 
 	@Override
-	public List<User> index() {
+	public List<User> index(String username) {
 		List<User> allUsers = userRepo.findAll();
 		return allUsers;
 	}
 
 	@Override
-	public User getUserById(Integer Id) {
+	public User getUserById(String username, Integer Id) {
 		Optional<User> userOpt = userRepo.findById(Id);
 		User user = null;
 		if (userOpt.isPresent()) {
@@ -32,13 +32,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User createUser(User newUser) {
+	public User createUser(String username, User newUser) {
 		userRepo.saveAndFlush(newUser);
 		return userRepo.save(newUser);
 	}
 
 	@Override
-	public User updateUser(User user, Integer Id) {
+	public User updateUser(String username, User user, Integer Id) {
 		Optional<User> userOpt = userRepo.findById(Id);
 		User managedUser = null;
 		if (userOpt.isPresent()) {
@@ -78,7 +78,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean deleteUser(Integer Id) {
+	public boolean deleteUser(String username, Integer Id) {
 		boolean deleted = false;
 		Optional<User> userOpt = userRepo.findById(Id);
 		if (userOpt.isPresent()) {
