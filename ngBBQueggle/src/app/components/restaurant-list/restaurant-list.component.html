@@ -77,13 +77,13 @@
         <input type="text" [(ngModel)]="searchTerm" placeholder="Search Term">
          <button (click)='search()'>Search</button>
 
-         <h2>Search Result</h2>
          <div *ngFor = "let Restaurant of restaurants">
-          <table class="table">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Logo</th>
+         <h2>Search Result</h2>
+         <table class="table">
+           <thead class="thead-dark">
+             <tr>
+               <th scope="col">Name</th>
+               <th scope="col">Logo</th>
               </tr>
             </thead>
             <tbody>
