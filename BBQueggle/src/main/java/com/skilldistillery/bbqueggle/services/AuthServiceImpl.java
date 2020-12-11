@@ -18,8 +18,8 @@ public class AuthServiceImpl implements AuthService {
 
 	@Override
 	public User register(User user) {
-		System.out.println(user.getPassword());
-		System.out.println(encoder.encode(user.getPassword()));
+//		System.out.println(user.getPassword());
+//		System.out.println(encoder.encode(user.getPassword()));
 		user.setPassword(encoder.encode(user.getPassword()));
 		user.setEnabled(true);
 		user.setRole("ROLE_USER");
