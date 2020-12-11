@@ -11,12 +11,12 @@ import { style } from '@angular/animations';
 })
 export class RestaurantService {
   private baseUrl = 'http://localhost:8090/';
-  url = this.baseUrl + 'api/restaurants/';
+  url = this.baseUrl + 'api/restaurants';
 
   constructor(private http: HttpClient) { }
 
   index(): Observable<Restaurant[]>{
-    return this.http.get<Restaurant[]>(this.url + '?sorted=true').pipe(
+    return this.http.get<Restaurant[]>(this.url + '/?sorted=true').pipe(
       catchError((err:any)=>{
       console.log(err);
       return throwError('RestaurantService.index(): error');
