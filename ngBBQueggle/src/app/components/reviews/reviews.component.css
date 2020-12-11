@@ -6,3 +6,11 @@
   .table-wrapper-scroll-y {
   display: block;
   }
+
+  #updateButton {
+    margin-right: 5px;
+  }
+
+  h4 {
+    margin-top: 15px;
+  }

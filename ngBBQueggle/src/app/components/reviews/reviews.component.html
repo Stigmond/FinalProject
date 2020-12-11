@@ -4,15 +4,15 @@
   </div>
 </div> -->
 
-<div class="row">
+<div class="row" *ngIf="add===false && edit===false">
   <div class="col">
-    <h4 class="text-center">Average Rating: <span>{{score | number: '1.1-2'}}</span> / 5</h4>
+    <h4 class="text-center">Average Rating: <span>{{score | number: '1.1-2'}}</span> / 5.0</h4>
   </div>
 </div>
 
-<div class="row">
+<div class="row" *ngIf="edit === false && add===false">
   <div class="table-wrapper-scroll-y my-custom-scrollbar">
-  <table class="table" *ngIf="edit === false">
+  <table class="table">
     <thead>
       <tr>
         <th scope="col">Date</th>
@@ -27,8 +27,8 @@
        <td>{{review.reviewScore}}/5.0</td>
        <td>{{review.user.firstName}}</td>
        <td class="text-justify">{{review.review}}
-        <button *ngIf="review.user.id === userId && edit === false" (click)="updatedReview = review; edit = true">UPDATE</button>
-        <button *ngIf="review.user.id === userId && edit === false" (click)="deleteReview(restaurantId, review.id)">DELETE</button>
+        <div><button id="updateButton" *ngIf="review.user.id === userId && edit === false" (click)="updatedReview = review; edit = true">UPDATE</button>
+        <button id="deleteButton" *ngIf="review.user.id === userId && edit === false" (click)="deleteReview(restaurantId, review.id)">DELETE</button></div>
       </td>
       </tr>
     </tbody>
@@ -41,7 +41,7 @@
 
 <div class="row" *ngIf="edit === false && add === true">
   <div class="col">
-    <h1>ADD REVIEW</h1>
+    <h4 class="text-center">ADD REVIEW</h4>
   </div>
 </div>
 
@@ -49,7 +49,7 @@
   <div class="col">
     <form id="addReview">
        Score:<input type="number" min="1" max="5" name="reviewScore" step=".5" [(ngModel)]="newReview.reviewScore"><br>
-       <textarea rows="10" cols="45" name="review" placeholder="Write Review Here" [(ngModel)]="newReview.review"></textarea><br>
+       <textarea rows="10" cols="40" name="review" placeholder="Write Review Here" [(ngModel)]="newReview.review"></textarea><br>
        <button id="add" (click)="addReview(newReview, restaurant.id, userId)">Submit</button>
        <button id="cancel" (click)="clearForm()">Cancel</button>
       </form>
@@ -58,7 +58,7 @@
 
 <div class="row" *ngIf="edit === true">
   <div class="col">
-    <h1>UPDATE REVIEW</h1>
+    <h4 class="text-center">UPDATE REVIEW</h4>
   </div>
 </div>
 
@@ -66,7 +66,7 @@
   <div class="col">
     <form id="updateReview">
        Score:<input type="number" min="1" max="5" name="reviewScore" step=".5" [(ngModel)]="updatedReview.reviewScore"><br>
-       <textarea rows="10" cols="45" name="review" placeholder="Write Review Here" [(ngModel)]="updatedReview.review"></textarea><br>
+       <textarea rows="10" cols="40" name="review" placeholder="Write Review Here" [(ngModel)]="updatedReview.review"></textarea><br>
        <button id="add" (click)="updateReview(updatedReview, restaurant.id, updatedReview.id)">Submit</button>
        <button id="cancel" (click)="clearForm()">Cancel</button>
       </form>
