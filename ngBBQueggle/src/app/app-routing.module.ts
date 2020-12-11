@@ -8,6 +8,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ReviewsComponent } from './components/reviews/reviews.component';
 
 const routes: Routes = [
+{ path: '', pathMatch: 'full', redirectTo: 'home' },
 { path: 'reviews/:restId', component: ReviewsComponent },
 { path: 'home', component: HomeComponent},
 { path: 'register', component: RegisterComponent},
