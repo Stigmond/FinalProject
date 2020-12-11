@@ -1,5 +1,6 @@
 package com.skilldistillery.bbqueggle.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -78,41 +79,41 @@ public class ReviewController {
 		return review;
 	}
 	
-//	@PostMapping("reviews/{restId}/{userId}")
-//	public Review addRestaurantReview(@PathVariable Integer restId, @PathVariable Integer userId, @RequestBody Review review, HttpServletResponse response, HttpServletRequest request) {
-//		Restaurant restaurant = restServ.showRestaurant(restId);
-//		User user = userServ.getUserById(userId);
-//		if (restaurant == null || user == null) {
-//			response.setStatus(404);
-//			return null;
-//		}
-//		if (review == null) {
-//			response.setStatus(400);
-//			return null;
-//		}
-//		review.setRestaurant(restaurant);
-//		review.setUser(user);
-//		review = revServ.createRestaurantReview(review);
-//		StringBuffer strUrl = request.getRequestURL().append("/").append(review.getId());
-//		String url = strUrl.toString();
-//		response.setHeader("Location", url);
-//		return review;
-//	}
-//	
-//	@PutMapping("reviews/{restId}/{revId}")
-//	public Review updateRestaurantReview(@PathVariable Integer restId, @PathVariable Integer revId, @RequestBody Review review, HttpServletResponse response) {
-//		if (restId == null || revId == null) {
-//			response.setStatus(404);
-//			return null;
-//		}
-//		review = revServ.updateRestaurantReview(restId, revId, review);
-//		if (review == null) {
-//			response.setStatus(404);
-//			return null;
-//		}
-//		return review;
-//	}
-//	
+	@PostMapping("reviews/{restId}/{userId}")
+	public Review addRestaurantReview(@PathVariable Integer restId, @PathVariable Integer userId, @RequestBody Review review, Principal principal, HttpServletResponse response, HttpServletRequest request) {
+		Restaurant restaurant = restServ.showRestaurant(restId);
+		User user = userServ.getUserById(principal.getName(), userId);
+		if (restaurant == null || user == null) {
+			response.setStatus(404);
+			return null;
+		}
+		if (review == null) {
+			response.setStatus(400);
+			return null;
+		}
+		review.setRestaurant(restaurant);
+		review.setUser(user);
+		review = revServ.createRestaurantReview(review, principal.getName());
+		StringBuffer strUrl = request.getRequestURL().append("/").append(review.getId());
+		String url = strUrl.toString();
+		response.setHeader("Location", url);
+		return review;
+	}
+	
+	@PutMapping("reviews/{restId}/{revId}")
+	public Review updateRestaurantReview(@PathVariable Integer restId, @PathVariable Integer revId, @RequestBody Review review, Principal principal, HttpServletResponse response) {
+		if (restId == null || revId == null) {
+			response.setStatus(404);
+			return null;
+		}
+		review = revServ.updateRestaurantReview(restId, revId, review, principal.getName());
+		if (review == null) {
+			response.setStatus(404);
+			return null;
+		}
+		return review;
+	}
+	
 	@DeleteMapping("reviews/{restId}/{revId}")
 	public void deleteRestaurantReview(@PathVariable Integer restId, @PathVariable Integer revId, HttpServletResponse response) {
 		if (restId == null || revId == null) {
