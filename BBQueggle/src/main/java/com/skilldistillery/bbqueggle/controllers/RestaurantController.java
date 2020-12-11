@@ -31,6 +31,7 @@ public class RestaurantController {
 	private RestaurantServiceImpl svc;
 	
 	RestaurantRankerImpl restRank = new RestaurantRankerImpl();
+	
 
 	@GetMapping("restaurants")
 	public List<Restaurant> allRestaurants() {
