@@ -60,7 +60,7 @@ export class RegisterComponent implements OnInit {
 
       this.newUser.role = "ROLE_USER";
       this.newUser.address = this.newAddress;
-    this.userService.create(this.newUser).subscribe(
+      this.userService.create(this.newUser).subscribe(
       (user) => {
         this.newUser = new User();
         this.loadUser();
@@ -154,22 +154,6 @@ export class RegisterComponent implements OnInit {
     );
 
   }
-
-  // register(form: NgForm) {
-  //   const user: User = new User();
-  //   const address: Address = new Address();
-
-  //   user.firstName = form.value.firstName;
-  //   user.lastName = form.value.lastName;
-  //   user.email = form.value.email;
-  //   user.password = form.value.password;
-  //   user.image = form.value.image;
-
-  //   address.street = form.value.street;
-  //   address.state = form.value.state;
-  //   address.state = form.value.city;
-  //   address.state = form.value.zip;
-
 
 
   }
