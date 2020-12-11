@@ -1,5 +1,6 @@
 package com.skilldistillery.bbqueggle.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,8 +34,8 @@ public class MainDishController {
 	}
 
 	@GetMapping("mainDish/{mainDishId}")
-	public MainDish getMainDishById(@PathVariable Integer mainDishId, HttpServletResponse response) {
-		MainDish mainDish = svc.getMainDishById(mainDishId);
+	public MainDish getMainDishById(@PathVariable Integer mainDishId, HttpServletResponse response, Principal principal) {
+		MainDish mainDish = svc.getMainDishById(mainDishId, principal.getName());
 		if (mainDish == null) {
 			response.setStatus(404);
 		}
@@ -43,10 +44,10 @@ public class MainDishController {
 
 	@PostMapping("mainDish")
 	public MainDish createMainDish(@RequestBody MainDish newMainDish, HttpServletResponse response,
-			HttpServletRequest request) {
+			HttpServletRequest request, Principal principal) {
 		MainDish createdMainDish = null;
 		try {
-			createdMainDish = svc.createMainDish(newMainDish);
+			createdMainDish = svc.createMainDish(newMainDish, principal.getName());
 			response.setStatus(201);
 			StringBuffer url = request.getRequestURL();
 			url.append("/").append(newMainDish.getId());
@@ -63,9 +64,9 @@ public class MainDishController {
 
 	@PutMapping("mainDish/{mainDishId}")
 	public MainDish updateMainDish(@PathVariable Integer mainDishId, @RequestBody MainDish updatedMainDish,
-			HttpServletResponse response) {
+			HttpServletResponse response, Principal principal) {
 		try {
-			updatedMainDish = svc.updateMainDish(mainDishId, updatedMainDish);
+			updatedMainDish = svc.updateMainDish(mainDishId, updatedMainDish, principal.getName());
 			if (updatedMainDish == null) {
 				response.setStatus(404);
 				updatedMainDish = null;
@@ -79,8 +80,8 @@ public class MainDishController {
 	}
 
 	@DeleteMapping("mainDish/{mainDishId}")
-	public void deleteMainDish(@PathVariable Integer mainDishId, HttpServletResponse response) {
-		if (svc.deleteMainDish(mainDishId)) {
+	public void deleteMainDish(@PathVariable Integer mainDishId, HttpServletResponse response, Principal principal) {
+		if (svc.deleteMainDish(mainDishId, principal.getName())) {
 			response.setStatus(204);
 
 		} else {

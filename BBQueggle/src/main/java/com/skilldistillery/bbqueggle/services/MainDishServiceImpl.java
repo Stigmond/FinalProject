@@ -22,7 +22,7 @@ public class MainDishServiceImpl implements MainDishService {
 	}
 
 	@Override
-	public MainDish getMainDishById(Integer id) {
+	public MainDish getMainDishById(Integer id, String username) {
 		Optional<MainDish> mainDishOpt = mainDishRepo.findById(id);
 		MainDish mainDish = null;
 		if (mainDishOpt.isPresent()) {
@@ -32,13 +32,13 @@ public class MainDishServiceImpl implements MainDishService {
 	}
 
 	@Override
-	public MainDish createMainDish(MainDish newMainDish) {
+	public MainDish createMainDish(MainDish newMainDish, String username) {
 		mainDishRepo.saveAndFlush(newMainDish);
 		return mainDishRepo.save(newMainDish);
 	}
 
 	@Override
-	public MainDish updateMainDish(Integer id, MainDish mainDish) {
+	public MainDish updateMainDish(Integer id, MainDish mainDish, String username) {
 		Optional<MainDish> mainDishOpt = mainDishRepo.findById(id);
 		MainDish managedMainDish = null;
 		if (mainDishOpt.isPresent()) {
@@ -63,7 +63,7 @@ public class MainDishServiceImpl implements MainDishService {
 	}
 
 	@Override
-	public boolean deleteMainDish(Integer id) {
+	public boolean deleteMainDish(Integer id, String username) {
 		boolean deleted = false;
 		Optional<MainDish> restaurantOpt = mainDishRepo.findById(id);
 		if (restaurantOpt.isPresent()) {
