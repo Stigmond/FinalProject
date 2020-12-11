@@ -41,7 +41,7 @@ public class RestaurantController {
 	}
 
 	@GetMapping("restaurants/{restaurantId}")
-	public Restaurant showRestaurant(@PathVariable Integer restaurantId, HttpServletResponse response) {
+	public Restaurant showRestaurant(@PathVariable Integer restaurantId, Principal principal, HttpServletResponse response) {
 		Restaurant restaurant = svc.showRestaurant(restaurantId);
 		if (restaurant == null) {
 			response.setStatus(404);
