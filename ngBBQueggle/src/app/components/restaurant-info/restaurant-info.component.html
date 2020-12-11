@@ -24,24 +24,41 @@
       <div class="col text-justify"><p>{{restaurant.hours}}</p></div>
     </div>
     <div class="row">
-      <div class="col">Dine In? <span *ngIf="restaurant.dineIn === true">YES</span><span *ngIf="restaurant.dineIn === false">NO</span>          </div>
+      <div class="col">Dine In Available? <span *ngIf="restaurant.dineIn === true">YES</span><span *ngIf="restaurant.dineIn === false">NO</span>          </div>
     </div>
   </div>
 
 
 
 
-  <div class = "col">
+  <div class="col">
+
     <div class="row">
-      <div class="col" (click)="selected='about'">ABOUT</div><div class="col" (click)="selected='map'">MAP</div><div class="col"(click)="selected='reviews'">REVIEWS</div>
-    </div>
+    <ul ngbNav #nav="ngbNav" class="nav-tabs">
+      <li ngbNavItem>
+        <a ngbNavLink (click)="selectedTab='about'">ABOUT</a>
+        <ng-template ngbNavContent></ng-template>
+      </li>
+      <li ngbNavItem>
+        <a ngbNavLink (click)="selectedTab='map'">MAP</a>
+        <ng-template ngbNavContent></ng-template>
+      </li>
+      <li ngbNavItem>
+        <a ngbNavLink (click)="selectedTab='reviews'">REVIEWS</a>
+        <ng-template ngbNavContent></ng-template>
+      </li>
+    </ul>
+    <div [ngbNavOutlet]="nav"></div>
+  </div>
+
+
     <div class="row">
 
-      <div class="col" *ngIf="selected === 'reviews'">
+      <div class="col" *ngIf="selectedTab === 'reviews'">
         <app-reviews></app-reviews>
       </div>
 
-      <div class="col" *ngIf="selected === 'about'">
+      <div class="col" *ngIf="selectedTab === 'about'">
         <div class="row">
           <div class="col"><p>{{restaurant.description}}</p></div>
         </div>
@@ -61,7 +78,7 @@
         </div>
       </div>
 
-      <div class="col" *ngIf="selected === 'map'">
+      <div class="col" *ngIf="selectedTab === 'map'">
         PUT MAP HERE
       </div>
 
