@@ -88,7 +88,14 @@ score(restaurantId: number): Observable<number> {
   }
 
   public delete(restaurantId: number, reviewId: number): Observable<boolean> {
-    return this.http.delete<boolean>(this.url + restaurantId + '/' + reviewId).pipe(
+    const credentials = this.authService.getCredentials();
+    const httpOptions = {
+    headers: new HttpHeaders({
+      Authorization: `Basic ${credentials}`,
+      'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+    return this.http.delete<boolean>(this.url + restaurantId + '/' + reviewId, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Error deleting review');
