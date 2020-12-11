@@ -1,5 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +14,9 @@ export class AuthService {
   constructor(
     private http: HttpClient
   ) { }
-}
 
-login(username, password) {
+
+login(username, password): Observable<User> {
   // Make credentials
   const credentials = this.generateBasicAuthCredentials(username, password);
   // Send credentials as Authorization header (this is spring security convention for basic auth)
@@ -26,7 +29,7 @@ login(username, password) {
 
   // create request to authenticate credentials
   return this.http
-    .get(this.baseUrl + 'authenticate', httpOptions)
+    .get<User>(this.baseUrl + 'authenticate', httpOptions)
     .pipe(
       tap((res) => {
         localStorage.setItem('credentials' , credentials);
@@ -39,9 +42,9 @@ login(username, password) {
     );
 }
 
-register(user) {
+register(user): Observable<User> {
   // create request to register a new account
-  return this.http.post(this.baseUrl + 'register', user)
+  return this.http.post<User>(this.baseUrl + 'register', user)
   .pipe(
     catchError((err: any) => {
       console.log(err);
@@ -52,7 +55,7 @@ register(user) {
 
 logout() {
   localStorage.removeItem('credentials');
-}
+  }
 
 checkLogin() {
   if (localStorage.getItem('credentials')) {
@@ -69,4 +72,4 @@ getCredentials() {
   return localStorage.getItem('credentials');
 }
 
-
+}
