@@ -27,7 +27,7 @@ public class PitmasterServiceImpl implements PitmasterService {
 	}
 
 	@Override
-	public Pitmaster getPitmasterById(Integer id) {
+	public Pitmaster getPitmasterById(Integer id, String username) {
 		Optional<Pitmaster> optPm = pitmasterRepo.findById(id);
 		Pitmaster pitmaster = null;
 		if (optPm.isPresent()) {
@@ -37,7 +37,7 @@ public class PitmasterServiceImpl implements PitmasterService {
 	}
 
 	@Override
-	public Pitmaster createPitmaster(Pitmaster newPitmaster) {
+	public Pitmaster createPitmaster(Pitmaster newPitmaster, String username) {
 		if (newPitmaster.getFirstName() == null) {
 			newPitmaster.setFirstName("N/A");
 		}
@@ -57,8 +57,8 @@ public class PitmasterServiceImpl implements PitmasterService {
 	}
 
 	@Override
-	public Pitmaster updatePitmaster(Integer id, Pitmaster pitmaster) {
-		Pitmaster managedPitmaster = this.getPitmasterById(id);
+	public Pitmaster updatePitmaster(Integer id, Pitmaster pitmaster, String username) {
+		Pitmaster managedPitmaster = this.getPitmasterById(id, username);
 		if (managedPitmaster == null) {
 			return null;
 		}
@@ -80,14 +80,14 @@ public class PitmasterServiceImpl implements PitmasterService {
 	}
 
 	@Override
-	public boolean deletePitmaster(Integer id) {
+	public boolean deletePitmaster(Integer id, String username) {
 		boolean deleted = false;
 		Restaurant restaurant = restaurantRepo.findByPitmaster_Id(id);
 		if (restaurant != null) {
 			restaurant.setPitmaster(null);
 //			restaurantRepo.saveAndFlush(restaurant);
 		}
-		Pitmaster pitmasterToDelete = this.getPitmasterById(id);
+		Pitmaster pitmasterToDelete = this.getPitmasterById(id, username);
 		if (pitmasterToDelete != null) {
 			pitmasterRepo.delete(pitmasterToDelete);
 			deleted = true;

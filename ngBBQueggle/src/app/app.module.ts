@@ -1,3 +1,4 @@
+import { AuthService } from './services/auth.service';
 
 import { RestaurantService } from './services/restaurant.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -39,7 +40,8 @@ import { RestaurantInfoComponent } from './components/restaurant-info/restaurant
     HttpClientModule,
     NgbModule,
   ],
-  providers: [RestaurantService],
+  providers: [RestaurantService,AuthService],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

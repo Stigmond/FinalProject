@@ -1,5 +1,6 @@
 package com.skilldistillery.bbqueggle.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,8 +34,8 @@ public class ChainController {
 	}
 
 	@GetMapping("chain/{chainId}")
-	public Chain getchainById(@PathVariable Integer chainId, HttpServletResponse response) {
-		Chain chain = svc.getChainById(chainId);
+	public Chain getchainById(@PathVariable Integer chainId, HttpServletResponse response, Principal principal) {
+		Chain chain = svc.getChainById(chainId, principal.getName());
 		if (chain == null) {
 			response.setStatus(404);
 		}
@@ -42,10 +43,10 @@ public class ChainController {
 	}
 
 	@PostMapping("chain")
-	public Chain createChain(@RequestBody Chain newChain, HttpServletResponse response, HttpServletRequest request) {
+	public Chain createChain(@RequestBody Chain newChain, HttpServletResponse response, HttpServletRequest request, Principal principal) {
 		Chain createdChain = null;
 		try {
-			createdChain = svc.createChain(newChain);
+			createdChain = svc.createChain(newChain, principal.getName());
 			response.setStatus(201);
 			StringBuffer url = request.getRequestURL();
 			url.append("/").append(newChain.getId());
@@ -62,9 +63,9 @@ public class ChainController {
 
 	@PutMapping("chain/{chainId}")
 	public Chain updateChain(@PathVariable Integer chainId, @RequestBody Chain updatedChain,
-			HttpServletResponse response) {
+			HttpServletResponse response, Principal principal) {
 		try {
-			updatedChain = svc.updateChain(updatedChain, chainId);
+			updatedChain = svc.updateChain(updatedChain, chainId, principal.getName());
 			if (updatedChain == null) {
 				response.setStatus(404);
 				updatedChain = null;
@@ -78,8 +79,8 @@ public class ChainController {
 	}
 
 	@DeleteMapping("chain/{chainId}")
-	public void deleteChain(@PathVariable Integer chainId, HttpServletResponse response) {
-		if (svc.deleteChain(chainId)) {
+	public void deleteChain(@PathVariable Integer chainId, HttpServletResponse response, Principal principal) {
+		if (svc.deleteChain(chainId, principal.getName())) {
 			response.setStatus(204);
 
 		} else {

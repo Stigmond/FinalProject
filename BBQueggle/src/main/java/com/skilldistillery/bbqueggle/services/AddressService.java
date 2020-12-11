@@ -6,13 +6,13 @@ import com.skilldistillery.bbqueggle.entities.Address;
 
 public interface AddressService {
 
-	List<Address>getAllAddresses();
+	List<Address>getAllAddresses(String username);
 	
-	Address findById(int addId);
+	Address findById(int addId, String username);
 	
-	Address create(Address address);
+	Address create(Address address, String username);
 	
-	Address update(Integer addId, Address address);
+	Address update(Integer addId, Address address, String username);
 	
-	boolean delete(Integer addId);
+	boolean delete(Integer addId, String username);
 }

@@ -1,5 +1,6 @@
 package com.skilldistillery.bbqueggle.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,19 +36,19 @@ public class SideDishController {
 	}
 	
 	@PostMapping("sidedish")
-	public SideDish create(@RequestBody SideDish sideDish) {
-		sideDish = sdSvc.create(sideDish);
+	public SideDish create(@RequestBody SideDish sideDish, Principal principal) {
+		sideDish = sdSvc.create(sideDish, principal.getName());
 		return sideDish;
 	}
 	
 	@PutMapping("sidedish/{id}")
-	public SideDish update(@RequestBody SideDish sideDish, @PathVariable Integer id) {
-		sideDish = sdSvc.update(id, sideDish);
+	public SideDish update(@RequestBody SideDish sideDish, @PathVariable Integer id, Principal principal) {
+		sideDish = sdSvc.update(id, sideDish, principal.getName());
 		return sideDish;
 	}
 	@DeleteMapping("sidedish/{id}")
-	public void delete(@PathVariable Integer id) {
-		boolean deleted = sdSvc.delete(id);
+	public void delete(@PathVariable Integer id, Principal principal) {
+		boolean deleted = sdSvc.delete(id, principal.getName());
 		
 	}
 

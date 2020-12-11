@@ -8,11 +8,11 @@ public interface PitmasterService {
 
 	List<Pitmaster> getAllPitmasters();
 	
-	Pitmaster getPitmasterById(Integer id);
+	Pitmaster getPitmasterById(Integer id, String username);
 	
-	Pitmaster createPitmaster(Pitmaster newPitmaster);
+	Pitmaster createPitmaster(Pitmaster newPitmaster, String username);
 	
-	Pitmaster updatePitmaster(Integer id, Pitmaster pitmaster);
+	Pitmaster updatePitmaster(Integer id, Pitmaster pitmaster, String username);
 	
-	boolean deletePitmaster(Integer id);
+	boolean deletePitmaster(Integer id, String username);
 }
