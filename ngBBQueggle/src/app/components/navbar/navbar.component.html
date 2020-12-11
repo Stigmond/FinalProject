@@ -7,8 +7,8 @@
 </button>
 
 <div class="collapse navbar-collapse container-fluid" id="navbarColor01">
-  <ul class="navbar-nav mr-auto">
-    <li class="nav-item active">
+  <ul style="float: right;">
+    <!-- <li class="nav-item active">
       <a class="nav-link" href="beerIndex.do"><i class="fa fa-fw fa-beer"></i>Beers</a>
     </li>
     <li class="nav-item active">
@@ -17,34 +17,33 @@
     <li class="nav-item active">
       <a class="nav-link" href="breweryIndex.do"><i class="fa fa-fw fa-beer"></i>Breweries</a>
     </li>
-  </ul>
+  </ul> -->
     <!-- <c:choose>
     <c:when test="${not empty loginUser }"> -->
     <!-- <li class="nav-item active">
       <a class="nav-link" href="getUser.do?id=${loginUser.id }"><i class="fa fa-fw fa-address-card"></i>Profile<span class="sr-only">(current)</span></a>
     </li> -->
 
-      <ul style="float: right;">
-    <li *ngIf="loggedIn()" class="nav-item active">
+    <li *ngIf="! loggedIn()">
+      <!-- <a class="nav-link" [routerLink]="['/login']">Log In</a> -->
+      <app-login></app-login>
+    </li>
+            <li *ngIf="! loggedIn()">
+              <a class="nav-link" [routerLink]="['/register']">Register</a>
+              <!-- <button (click) = [routerLink]="['/register']">Register</button> -->
+            </li>
+    <!-- <li *ngIf="loggedIn()">
+      <a class="nav-link" [routerLink]="['/person/username']">User Profile</a>
+    </li> -->
+  </ul>
+  <ul style="float: right;">
+    <li *ngIf="loggedIn()">
       <app-logout></app-logout>
-      <!-- <a class="nav-link" href="logout.do"><i class="fa fa-fw fa-power-off"></i>Logout<span class="sr-only">(current)</span></a> -->
     </li>
-    <!-- <c:if test="${loginUser.role == 'ADMIN' }">
-    <li class="nav-item active">
-      <a class="nav-link" href="userIndex.do"><i class="fa fa-fw fa-users"></i>Users<span class="sr-only">(current)</span></a>
-    </li>
-    </c:if> -->
-
-    <li *ngIf="! loggedIn()" class="nav-item active" >
-      <a class="nav-link" [routerLink]="['/login']"><i class="fa fa-fw fa-user"></i>Login<span class="sr-only">(current)</span></a>
-    </li>
-    <li *ngIf="! loggedIn()" class="nav-item active" >
-      <a class="nav-link" [routerLink]="['/register']"><i class="fa fa-fw fa-user-plus"></i>Register<span class="sr-only">(current)</span></a>
-    </li>
-
   </ul>
   <!-- <form class="form-inline" action="searchAll.do" method = "GET">
-    <input class="form-control mr-sm-2"  type="text" name = "keyword" placeholder="Search" aria-label="Search" />
+    <input class="form-control mr-sm-2"  type="text" name = "username" placeholder="Username" aria-label="Username" />
+    <input class="form-control mr-sm-2"  type="text" name = "username" placeholder="Username" aria-label="Username" />
     <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
   </form> -->
 </div>
