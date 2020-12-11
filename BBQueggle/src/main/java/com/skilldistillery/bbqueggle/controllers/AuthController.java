@@ -34,8 +34,8 @@ public class AuthController {
 	}
 
 	@GetMapping(path = "/authenticate")
-	public Principal authenticate(Principal principal) {
-	    return principal;
+	public User authenticate(Principal principal) {
+	    return authService.getUser(principal.getName());
 	}
 
 }
