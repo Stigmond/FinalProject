@@ -1,10 +1,13 @@
-import { User } from './../../models/user';
+import { User } from 'src/app/models/user';
+
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Address } from 'src/app/models/address';
 
 import { AddressService } from 'src/app/services/address.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -25,7 +28,7 @@ export class RegisterComponent implements OnInit {
   users: User[] = [];
   addresses: Address[] = [];
 
-  constructor(private userService: UserService, private addressService: AddressService) { }
+  constructor(private authService: AuthService, private router: Router, private userService: UserService, private addressService: AddressService) { }
 
   ngOnInit(): void {
     this.loadUser();
@@ -126,6 +129,30 @@ export class RegisterComponent implements OnInit {
         console.error('problem with updateAddress() in run-list component');
       }
     );
+  }
+
+  register(user: User): void {
+    console.log("Registering user:");
+    console.log("user");
+    this.authService.register(user).subscribe(
+      data => {
+        console.log('RegisterComponent.register(): user registered.');
+        this.authService.login(user.username, user.password).subscribe(
+          next => {
+            console.log('RegisterComponent.register(): user logged in, routing to /todo.');
+            this.router.navigateByUrl('/home');
+          },
+          error => {
+            console.error('RegisterComponent.register(): error logging in.');
+          }
+        );
+      },
+      err => {
+        console.error('RegisterComponent.register(): error registering.');
+        console.error(err);
+      }
+    );
+
   }
 
   // register(form: NgForm) {

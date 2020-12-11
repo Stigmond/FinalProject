@@ -1,5 +1,6 @@
 package com.skilldistillery.bbqueggle.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,29 +26,29 @@ public class AddressController {
 	AddressServiceImpl addSvc;
 	
 	@GetMapping("address")
-	public List<Address> getAllAddresses(){
-		return addSvc.getAllAddresses();
+	public List<Address> getAllAddresses(Principal principal){
+		return addSvc.getAllAddresses(principal.getName());
 	}
 	
 	@GetMapping("address/{addId}")
-	public Address findById(@PathVariable int addId) {
-		return addSvc.findById(addId);
+	public Address findById(@PathVariable int addId, Principal principal) {
+		return addSvc.findById(addId, principal.getName());
 	}
 	
 	@PostMapping("address")
-	public Address create(@RequestBody Address address) {
-		address = addSvc.create(address);
+	public Address create(@RequestBody Address address, Principal principal) {
+		address = addSvc.create(address, principal.getName());
 		return address;
 	}
 	@PutMapping("address/{addId}")
-	public Address update(@RequestBody Address address, @PathVariable Integer addId) {
-		address = addSvc.update(addId, address);
+	public Address update(@RequestBody Address address, @PathVariable Integer addId, Principal principal) {
+		address = addSvc.update(addId, address, principal.getName());
 		return address;
 	}
 	
 	@DeleteMapping("address/{addId}")
-	public void delete(@PathVariable Integer addId) {
-		boolean deleted = addSvc.delete(addId);
+	public void delete(@PathVariable Integer addId, Principal principal) {
+		boolean deleted = addSvc.delete(addId, principal.getName());
 		
 	}
 

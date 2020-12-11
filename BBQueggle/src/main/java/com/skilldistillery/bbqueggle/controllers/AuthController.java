@@ -27,7 +27,7 @@ public class AuthController {
 	    if (user == null) {
 	        res.setStatus(400);
 	    }
-
+	    System.out.println(user.getPassword());
 	    user = authService.register(user);
 
 	    return user;
