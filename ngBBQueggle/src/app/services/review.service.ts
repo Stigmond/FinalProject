@@ -1,22 +1,30 @@
 import { RestaurantService } from './restaurant.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Review } from '../models/review';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ReviewService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   private baseUrl = 'http://localhost:8090/';
   private url = this.baseUrl + 'api/reviews/';
 
   list(restaurantId: number): Observable<Review[]> {
-    return this.http.get<Review[]>(this.url + restaurantId + '?sorted=true').pipe(
+    const credentials = this.authService.getCredentials();
+    const httpOptions = {
+    headers: new HttpHeaders({
+      Authorization: `Basic ${credentials}`,
+      'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+    return this.http.get<Review[]>(this.url + restaurantId + '?sorted=true', httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('error loading review list');
@@ -25,7 +33,14 @@ export class ReviewService {
   }
 
 score(restaurantId: number): Observable<number> {
-  return this.http.get<number>(this.url + restaurantId + '/score').pipe(
+  const credentials = this.authService.getCredentials();
+    const httpOptions = {
+    headers: new HttpHeaders({
+      Authorization: `Basic ${credentials}`,
+      'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+  return this.http.get<number>(this.url + restaurantId + '/score', httpOptions).pipe(
     catchError((err: any) => {
       console.log(err);
       return throwError('error retrieving score');
