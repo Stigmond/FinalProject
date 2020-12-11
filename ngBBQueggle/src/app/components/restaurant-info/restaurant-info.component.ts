@@ -12,22 +12,23 @@ export class RestaurantInfoComponent implements OnInit {
 
   restaurantId: number;
   restaurant: Restaurant;
-  selected: string;
+  selectedTab: string;
+
 
   constructor(private restService: RestaurantService, private currentRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.restaurantId = parseInt(this.currentRoute.snapshot.paramMap.get('restId'));
     this.getRestaurant(this.restaurantId);
-    this.selected = 'about';
+    this.selectedTab = 'about';
   }
-
 
   getRestaurant(restaurantId: number): void {
     this.restService.show(restaurantId).subscribe(
     data=>{
       this.restaurant = data;
       console.log(this.restaurant);
+      this.restaurant.phoneNumber = this.formatPhoneNumber(this.restaurant.phoneNumber);
       console.log('reviewsComponent.getRestaurant(): Restaurant retrieved');
 
     },
@@ -38,5 +39,15 @@ export class RestaurantInfoComponent implements OnInit {
     }
   );
   }
+
+  formatPhoneNumber(phoneNumberString) {
+    var cleaned = ('' + phoneNumberString).replace(/\D/g, '')
+    var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/)
+    if (match) {
+      return '(' + match[1] + ') ' + match[2] + '-' + match[3]
+    }
+    return null
+  }
+
 
 }
