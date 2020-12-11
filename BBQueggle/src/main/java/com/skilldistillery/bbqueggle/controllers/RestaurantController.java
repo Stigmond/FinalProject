@@ -103,8 +103,7 @@ public class RestaurantController {
 		state = state.toUpperCase();
 		result = svc.showRestaurantsByState(state);
 		if (result.isEmpty()) {
-			response.setStatus(404);
-			return null;
+			return result;
 		}
 		
 		for (int i = 0; i < result.size(); i++) {
@@ -144,8 +143,7 @@ public class RestaurantController {
 		state = state.toUpperCase();
 		result = svc.showStateRestaurantsBySideDish(state, sideDish);
 		if (result.isEmpty()) {
-			response.setStatus(404);
-			return null;
+			return result;
 		}
 		return restRank.rankRestaurants(result);
 	}

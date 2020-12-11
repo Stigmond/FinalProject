@@ -5,7 +5,7 @@
       <div ngbDropdown class="d-inline-block">
           <label for="state" class="col-sm-2 control-label">State</label>
           <div class="col-sm-10">
-            <select class="form-control" id="state" name="state">
+            <select [(ngModel)]="selectedAd" class="form-control" id="state" name="state">
               <option value="">N/A</option>
               <option value="AK">Alaska</option>
               <option value="AL">Alabama</option>
@@ -65,7 +65,7 @@
           <div ngbDropdown class="d-inline-block">
             <label for="searchType" class="col-sm-2 control-label">Type</label>
             <div class="col-sm-10">
-              <select class="form-control" name="searchType">
+              <select [(ngModel)]="searchType" class="form-control" name="searchType">
                 <option value="">State</option>
                 <option value="style">Style</option>
                 <option value="meat type">Meat Type</option>
@@ -77,16 +77,18 @@
         <input type="text" [(ngModel)]="searchTerm" placeholder="Search Term">
          <button (click)='search()'>Search</button>
 
-         <div *ngFor = "let Restaurant of restaurants">{{Restaurant.name}}</div>
+         <div *ngFor = "let Restaurant of restaurants">
+           <a href="http://localhost:4210/#/info/{{Restaurant.id}}">{{Restaurant.name}}</a>
+          </div>
 
           <div *ngIf="selected">
-           <a href="http://localhost:4210/#/selected.id"></a>
+           <a href="http://localhost:4210/#/info/selected.id"></a>
          </div>
 
          <div *ngIf="! selected">
            <br>
            <br>
-         <h2>Restaurant List</h2>
+         <h2>Search Result</h2>
          <table class ="table table-responsive table-hover">
            <thead>
              <tr>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Address } from './../../models/address';
 import { Restaurant } from './../../models/restaurant';
 import { RestaurantService } from './../../services/restaurant.service';
@@ -17,7 +18,7 @@ export class RestaurantListComponent implements OnInit {
   newRestaurant: Restaurant = new Restaurant();
   searchType: string = null;
 
-    constructor(private RestaurantService: RestaurantService) { }
+    constructor(private RestaurantService: RestaurantService, private currentRoute: ActivatedRoute) { }
 
     ngOnInit(): void {
       this.RestaurantService.index();
@@ -158,7 +159,11 @@ export class RestaurantListComponent implements OnInit {
     }
 
     search(): void {
+      console.log(this.searchType);
+
       if(this.searchType === 'side dish'){
+        console.log("here");
+
         this.findRestaurantsBySideDish();
       }
       else if(this.searchType === 'style'){
@@ -173,5 +178,7 @@ export class RestaurantListComponent implements OnInit {
       else if(this.searchType === 'state'){
         this.findRestaurantsByState();
       }
+      console.log('work plz');
+
     }
 }
