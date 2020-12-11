@@ -22,7 +22,7 @@ public class ChainServiceImpl implements ChainService {
 	}
 
 	@Override
-	public Chain getChainById(Integer Id, String username) {
+	public Chain getChainById(Integer Id) {
 		Optional<Chain> chainOpt = chainRepo.findById(Id);
 		Chain chain = null;
 		if (chainOpt.isPresent()) {

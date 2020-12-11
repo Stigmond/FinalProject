@@ -16,12 +16,12 @@ public class AddressServiceImpl implements AddressService {
 	private AddressRepository addRepo;
 	
 	@Override
-	public List<Address> getAllAddresses(String username) {
+	public List<Address> getAllAddresses() {
 		return addRepo.findAll();
 	}
 	
 	@Override
-	public Address findById(int addId, String username) {
+	public Address findById(int addId) {
 		return addRepo.findById(addId);
 	}
 
