@@ -373,9 +373,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bbqdb`;
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `enabled`, `role`, `image`, `address_id`) VALUES (1, 'Bob', 'Jones', 'admin', 'admin', 'fake@gmail.com', 1, 'ROLE_ADMIN', NULL, 1);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `enabled`, `role`, `image`, `address_id`) VALUES (1, 'Jason', 'ad', 'jason', '$2a$10$CIcKUjwsptPmuJ8rEFpikuby4glXmR45MYb0AwU7sarTtrAMYMXNu', 'fake@gmail.com', 1, 'ROLE_ADMIN', NULL, 1);
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `enabled`, `role`, `image`, `address_id`) VALUES (2, 'Carl', 'Roberts', 'croberts', 'robertcarl', 'carlrobert@mail.com', 1, 'ROLE_USER', NULL, NULL);
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `enabled`, `role`, `image`, `address_id`) VALUES (3, 'Lou', 'Charles', 'charleslou', 'clou', 'lcharles@mail.com', 1, 'ROLE_USER', NULL, NULL);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `enabled`, `role`, `image`, `address_id`) VALUES (4, 'David', 'admin', 'david', '$2a$10$CIcKUjwsptPmuJ8rEFpikuby4glXmR45MYb0AwU7sarTtrAMYMXNu', 'admin@gmail.com', 1, 'RULE_ADMIN', NULL, NULL);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `enabled`, `role`, `image`, `address_id`) VALUES (5, 'chris', 'h', 'chris', '$2a$10$CIcKUjwsptPmuJ8rEFpikuby4glXmR45MYb0AwU7sarTtrAMYMXNu', 'chris@gmail.com', 1, 'RULE_ADMIN', NULL, NULL);
 
 COMMIT;
 
