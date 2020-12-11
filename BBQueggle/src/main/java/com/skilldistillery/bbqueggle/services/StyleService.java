@@ -10,9 +10,9 @@ public interface StyleService {
 	
 	Style getStyleById(Integer Id);
 	
-	Style createStyle(Style newStyle);
+	Style createStyle(Style newStyle, String username);
 	
-	Style updateStyle(Style style, Integer Id);
+	Style updateStyle(Style style, Integer Id, String username);
 	
-	boolean deleteStyle(Integer Id);
+	boolean deleteStyle(Integer Id, String username);
 }

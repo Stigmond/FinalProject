@@ -8,12 +8,12 @@ public interface ChainService {
 
 	List<Chain> index();
 
-	Chain getChainById(Integer Id);
+	Chain getChainById(Integer Id, String username);
 
-	Chain createChain(Chain newChain);
+	Chain createChain(Chain newChain, String username);
 
-	Chain updateChain(Chain chain, Integer Id);
+	Chain updateChain(Chain chain, Integer Id, String username);
 
-	boolean deleteChain(Integer Id);
+	boolean deleteChain(Integer Id, String username);
 
 }

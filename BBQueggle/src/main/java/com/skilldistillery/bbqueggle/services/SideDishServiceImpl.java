@@ -32,13 +32,13 @@ public class SideDishServiceImpl implements SideDishService {
 	}
 
 	@Override
-	public SideDish create(SideDish sideDish) {
+	public SideDish create(SideDish sideDish, String username) {
 		sideDish = sRepo.saveAndFlush(sideDish);
 		return sideDish;
 	}
 
 	@Override
-	public SideDish update(Integer id, SideDish sideDish) {
+	public SideDish update(Integer id, SideDish sideDish, String username) {
 		Optional<SideDish> sdOpt = sRepo.findById(id);
 		SideDish manageSd = null;
 		if (sdOpt.isPresent()) {
@@ -58,7 +58,7 @@ public class SideDishServiceImpl implements SideDishService {
 	}
 
 	@Override
-	public boolean delete(Integer id) {
+	public boolean delete(Integer id, String username) {
 		boolean deleted = false;
 		Optional<SideDish> sOpt = sRepo.findById(id);
 		if (sOpt.isPresent()) {

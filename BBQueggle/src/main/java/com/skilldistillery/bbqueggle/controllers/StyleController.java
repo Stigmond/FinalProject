@@ -1,5 +1,6 @@
 package com.skilldistillery.bbqueggle.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,10 +43,10 @@ public class StyleController {
 	}
 
 	@PostMapping("style")
-	public Style createStyle(@RequestBody Style newStyle, HttpServletResponse response, HttpServletRequest request) {
+	public Style createStyle(@RequestBody Style newStyle, HttpServletResponse response, HttpServletRequest request, Principal principal) {
 		Style createdStyle = null;
 		try {
-			createdStyle = svc.createStyle(newStyle);
+			createdStyle = svc.createStyle(newStyle, principal.getName());
 			response.setStatus(201);
 			StringBuffer url = request.getRequestURL();
 			url.append("/").append(newStyle.getId());
@@ -62,9 +63,9 @@ public class StyleController {
 
 	@PutMapping("style/{styleId}")
 	public Style updateStyle(@PathVariable Integer styleId, @RequestBody Style updatedStyle,
-			HttpServletResponse response) {
+			HttpServletResponse response, Principal principal) {
 		try {
-			updatedStyle = svc.updateStyle(updatedStyle, styleId);
+			updatedStyle = svc.updateStyle(updatedStyle, styleId, principal.getName());
 			if (updatedStyle == null) {
 				response.setStatus(404);
 				updatedStyle = null;
@@ -78,8 +79,8 @@ public class StyleController {
 	}
 
 	@DeleteMapping("style/{styleId}")
-	public void deleteStyle(@PathVariable Integer styleId, HttpServletResponse response) {
-		if (svc.deleteStyle(styleId)) {
+	public void deleteStyle(@PathVariable Integer styleId, HttpServletResponse response, Principal principal) {
+		if (svc.deleteStyle(styleId, principal.getName())) {
 			response.setStatus(204);
 
 		} else {

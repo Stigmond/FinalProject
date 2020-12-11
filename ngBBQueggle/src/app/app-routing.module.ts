@@ -1,3 +1,4 @@
+import { LoginComponent } from './components/login/login.component';
 import { RestaurantListComponent } from './components/restaurant-list/restaurant-list.component';
 import { RestaurantInfoComponent } from './components/restaurant-info/restaurant-info.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -11,7 +12,8 @@ const routes: Routes = [
 { path: 'home', component: HomeComponent},
 { path: 'register', component: RegisterComponent},
 { path: 'info/:restId', component: RestaurantInfoComponent},
-{ path: 'restaurant', component: RestaurantListComponent}
+{ path: 'restaurant', component: RestaurantListComponent},
+{ path: 'login', component: LoginComponent}
 
 
 ];

@@ -32,13 +32,13 @@ public class StyleServiceImpl implements StyleService {
 	}
 
 	@Override
-	public Style createStyle(Style newStyle) {
+	public Style createStyle(Style newStyle, String username) {
 		styleRepo.saveAndFlush(newStyle);
 		return styleRepo.save(newStyle);
 	}
 
 	@Override
-	public Style updateStyle(Style style, Integer Id) {
+	public Style updateStyle(Style style, Integer Id, String username) {
 		Optional<Style> styleOpt = styleRepo.findById(Id);
 		Style managedStyle = null;
 		if (styleOpt.isPresent()) {
@@ -56,7 +56,7 @@ public class StyleServiceImpl implements StyleService {
 	}
 
 	@Override
-	public boolean deleteStyle(Integer Id) {
+	public boolean deleteStyle(Integer Id, String username) {
 		boolean deleted = false;
 		Optional<Style> styleOpt = styleRepo.findById(Id);
 		if (styleOpt.isPresent()) {
