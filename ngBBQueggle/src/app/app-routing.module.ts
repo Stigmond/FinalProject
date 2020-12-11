@@ -13,8 +13,8 @@ const routes: Routes = [
 { path: 'register', component: RegisterComponent},
 { path: 'info/:restId', component: RestaurantInfoComponent},
 { path: 'restaurant', component: RestaurantListComponent},
-{ path: 'restaurant/:state', component: RestaurantListComponent},
-{ path: 'restaurant/:state/:searchType/:searchTerm', component: RestaurantListComponent},
+// { path: 'restaurant/:state', component: RestaurantListComponent},
+// { path: 'restaurant/:state/:searchType/:searchTerm', component: RestaurantListComponent},
 { path: 'login', component: LoginComponent}
 
 
