@@ -6,7 +6,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RestaurantListComponent } from './components/restaurant-list/restaurant-list.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -19,6 +19,7 @@ import { ReviewsComponent } from './components/reviews/reviews.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RestaurantInfoComponent } from './components/restaurant-info/restaurant-info.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { AddRestaurantComponent } from './components/add-restaurant/add-restaurant.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     RegisterComponent,
     ReviewsComponent,
     RestaurantInfoComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    AddRestaurantComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +43,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     FormsModule,
     HttpClientModule,
     NgbModule,
+    ReactiveFormsModule
   ],
   providers: [RestaurantService,AuthService],
 
