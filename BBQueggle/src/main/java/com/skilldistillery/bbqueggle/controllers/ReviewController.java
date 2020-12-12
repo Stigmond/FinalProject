@@ -115,11 +115,11 @@ public class ReviewController {
 	}
 	
 	@DeleteMapping("reviews/{restId}/{revId}")
-	public void deleteRestaurantReview(@PathVariable Integer restId, @PathVariable Integer revId, HttpServletResponse response) {
+	public void deleteRestaurantReview(@PathVariable Integer restId, @PathVariable Integer revId, Principal principal, HttpServletResponse response) {
 		if (restId == null || revId == null) {
 			response.setStatus(404);
 		}
-		boolean deleted = revServ.deleteRestaurantReview(restId, revId);
+		boolean deleted = revServ.deleteRestaurantReview(restId, revId, principal.getName());
 		if (deleted == true) {
 			response.setStatus(204);
 		} else {
