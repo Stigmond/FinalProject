@@ -1,6 +1,7 @@
 import { SideDish } from './side-dish';
 import { Address } from './address';
 import { MainDish } from './main-dish';
+import { Style } from './style';
 export class Restaurant {
   id: number;
   name: string;
@@ -14,6 +15,7 @@ export class Restaurant {
   address: Address;
   sideDishes: SideDish[];
   mainDishes: MainDish[];
+  styles: Style[];
 
   constructor(
   id?: number,
@@ -27,7 +29,8 @@ export class Restaurant {
   enabled?: boolean,
   address?: Address,
   sideDishes?: SideDish[],
-  mainDishes?: MainDish[]
+  mainDishes?: MainDish[],
+  styles?: Style[]
   ){
     this.id = id;
     this.name = name;
@@ -41,5 +44,6 @@ export class Restaurant {
     this.address = address;
     this.sideDishes = sideDishes;
     this.mainDishes = mainDishes;
+    this.styles = styles;
   }
 }
