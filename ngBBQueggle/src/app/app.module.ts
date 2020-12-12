@@ -18,6 +18,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RestaurantInfoComponent } from './components/restaurant-info/restaurant-info.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { RestaurantInfoComponent } from './components/restaurant-info/restaurant
     LogoutComponent,
     RegisterComponent,
     ReviewsComponent,
-    RestaurantInfoComponent
+    RestaurantInfoComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

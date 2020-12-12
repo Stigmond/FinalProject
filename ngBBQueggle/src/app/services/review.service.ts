@@ -58,10 +58,13 @@ score(restaurantId: number): Observable<number> {
   // }
 
   public create(review: Review, restaurantId: number, userId: number): Observable<Review> {
+    const credentials = this.authService.getCredentials();
     const httpOptions = {
-      headers: {
-        'Content-type': 'application/json',
-      },
+    headers: new HttpHeaders({
+      Authorization: `Basic ${credentials}`,
+      'Content-type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest'
+      })
     };
     return this.http.post<Review>(this.url + restaurantId + '/' + userId, review, httpOptions).pipe(
       catchError((err: any) => {
@@ -72,10 +75,13 @@ score(restaurantId: number): Observable<number> {
   }
 
   public update(review: Review, restaurantId: number, reviewId: number): Observable<Review> {
+    const credentials = this.authService.getCredentials();
     const httpOptions = {
-      headers: {
-        'Content-type': 'application/json',
-      },
+    headers: new HttpHeaders({
+      Authorization: `Basic ${credentials}`,
+      'Content-type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest'
+      })
     };
     return this.http
       .put<Review>(this.url + restaurantId + '/' + reviewId, review, httpOptions)
@@ -88,7 +94,14 @@ score(restaurantId: number): Observable<number> {
   }
 
   public delete(restaurantId: number, reviewId: number): Observable<boolean> {
-    return this.http.delete<boolean>(this.url + restaurantId + '/' + reviewId).pipe(
+    const credentials = this.authService.getCredentials();
+    const httpOptions = {
+    headers: new HttpHeaders({
+      Authorization: `Basic ${credentials}`,
+      'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+    return this.http.delete<boolean>(this.url + restaurantId + '/' + reviewId, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Error deleting review');
