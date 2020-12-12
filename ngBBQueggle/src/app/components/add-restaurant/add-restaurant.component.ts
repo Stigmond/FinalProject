@@ -195,16 +195,16 @@ export class AddRestaurantComponent implements OnInit {
 
    //Push Restaurant
 
-  // this.restService.create(this.newRestaurant).subscribe(
-  //   (success) => {
-  //     console.log(success);
-  //     console.log('creation success!');
-  //     window.alert('Restaurant Created Successfully!');
-  //   },
-  //   (fail) => {
-  //     console.error('problem with adding Restaurant');
-  //   }
-  // );
+  this.restService.create(this.newRestaurant).subscribe(
+    (success) => {
+      console.log(success);
+      console.log('creation success!');
+      window.alert('Restaurant Created Successfully!');
+    },
+    (fail) => {
+      console.error('problem with adding Restaurant');
+    }
+  );
 
 
     }
