@@ -36,6 +36,11 @@
       <a class="nav-link" [routerLink]="['/person/username']">User Profile</a>
     </li> -->
   </ul>
+  <ul style="float: left;">
+    <li *ngIf="loggedIn()">
+      <a class="btn btn-light" [routerLink]="['/userProfile']">User Profile</a>
+    </li>
+  </ul>
   <ul style="float: right;">
     <li *ngIf="loggedIn()">
       <app-logout></app-logout>
