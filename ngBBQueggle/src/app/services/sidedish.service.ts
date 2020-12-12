@@ -1,21 +1,29 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { SideDish } from '../models/side-dish';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SideDishService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   private baseUrl = 'http://localhost:8090/';
 
-  private url = this.baseUrl + 'api/sideDish';
+  private url = this.baseUrl + 'api/sidedish';
 
   index(): Observable<SideDish[]> {
-    return this.http.get<SideDish[]>(this.url + '?sorted=true').pipe(
+    const credentials = this.authService.getCredentials();
+    const httpOptions = {
+    headers: new HttpHeaders({
+      Authorization: `Basic ${credentials}`,
+      'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+    return this.http.get<SideDish[]>(this.url + '?sorted=true', httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('error loading side dish list');
