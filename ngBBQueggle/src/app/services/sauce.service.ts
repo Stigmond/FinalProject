@@ -1,5 +1,6 @@
+import { AuthService } from './auth.service';
 import { Sauce } from './../models/sauce';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -8,14 +9,21 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class SauceService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   private baseUrl = 'http://localhost:8090/';
 
   private url = this.baseUrl + 'api/sauce';
 
   index(): Observable<Sauce[]> {
-    return this.http.get<Sauce[]>(this.url + '?sorted=true').pipe(
+    const credentials = this.authService.getCredentials();
+    const httpOptions = {
+    headers: new HttpHeaders({
+      Authorization: `Basic ${credentials}`,
+      'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+    return this.http.get<Sauce[]>(this.url + '?sorted=true', httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('error loading sauce list');
