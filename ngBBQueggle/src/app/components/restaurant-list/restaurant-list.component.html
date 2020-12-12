@@ -2,7 +2,7 @@
 <div>
   <div class="row">
       <div ngbDropdown class="d-inline-block">
-          <h4><label for="state" class="col-sm-2 control-label">State</label></h4>
+          <h5><label for="state" class="col-sm-2 control-label">State</label></h5>
           <div class="col-sm-10">
             <select [(ngModel)]="selectedAd" class="form-control" id="state" name="state">
               <option value="">N/A</option>
@@ -62,7 +62,7 @@
           </div>
           </div>
           <div ngbDropdown class="d-inline-block">
-            <h4><label for="searchType" class="col-sm-2 control-label">Type</label></h4>
+            <h5><label for="searchType" class="col-sm-2 control-label">Type</label></h5>
             <div class="col-sm-15">
               <select [(ngModel)]="searchType"class="form-control" name="searchType">
                 <option value="state">State</option>
@@ -95,7 +95,6 @@
         </tbody>
            </table>
           </div>
-
           <!-- <div *ngIf="selected">
            <a href="http://localhost:4210/#/info/selected.id"></a>
          </div> -->
