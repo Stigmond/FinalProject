@@ -1,3 +1,4 @@
+import { AddRestaurantComponent } from './components/add-restaurant/add-restaurant.component';
 import { LoginComponent } from './components/login/login.component';
 import { RestaurantListComponent } from './components/restaurant-list/restaurant-list.component';
 import { RestaurantInfoComponent } from './components/restaurant-info/restaurant-info.component';
@@ -12,6 +13,7 @@ const routes: Routes = [
 { path: 'reviews/:restId', component: ReviewsComponent },
 { path: 'home', component: HomeComponent},
 { path: 'register', component: RegisterComponent},
+{ path: 'addRestaurant', component: AddRestaurantComponent},
 { path: 'info/:restId', component: RestaurantInfoComponent},
 { path: 'restaurant', component: RestaurantListComponent},
 { path: 'restaurant/:state', component: RestaurantListComponent},

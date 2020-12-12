@@ -1,4 +1,5 @@
-import { HttpClient } from '@angular/common/http';
+import { AuthService } from './auth.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -8,14 +9,21 @@ import { MainDish } from '../models/main-dish';
   providedIn: 'root',
 })
 export class MainDishService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   private baseUrl = 'http://localhost:8090/';
 
   private url = this.baseUrl + 'api/mainDish';
 
   index(): Observable<MainDish[]> {
-    return this.http.get<MainDish[]>(this.url + '?sorted=true').pipe(
+    const credentials = this.authService.getCredentials();
+    const httpOptions = {
+    headers: new HttpHeaders({
+      Authorization: `Basic ${credentials}`,
+      'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+    return this.http.get<MainDish[]>(this.url + '?sorted=true', httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('error loading main dish list');
