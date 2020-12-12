@@ -25,7 +25,7 @@ export class UserService {
   }
 
   findById(id) {
-    return this.http.get<User>(this.url  + '/' + id)
+    return this.http.get<User>(this.url  + id, this.httpOptions)
     .pipe(
       catchError((err: any) => {
         console.error(err);
@@ -35,13 +35,14 @@ export class UserService {
 
   }
 
-  findByUsername() {
-    return this.http.get<User>(this.url + '/username', this.httpOptions)
+  findByUsername(username: String) {
+    return this.http.get<User>(this.url +  "/" + username , this.httpOptions)
     .pipe(
       catchError((err: any) => {
         console.error(err);
-        return throwError('Error finding username');
+        console.log(this.url);
 
+        return throwError('Error finding username');
       })
     );
 
@@ -86,7 +87,7 @@ export class UserService {
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
-      'Authorization': `Basic ${this.authService.getCredentials}`,
+      'Authorization': `Basic ${this.authService.getCredentials()}`,
       'X-Requested-With': 'XMLHttpRequest'
     })
   };

@@ -22,10 +22,10 @@ export class LoginComponent implements OnInit {
 
   login(user: User): void{
   console.log("Logging in user: ");
-  console.log(user);
   this.authService.login(user.username, user.password).subscribe(
     next => {
       console.log('RegisterComponent.register(): user logged in, routing to /home.');
+      console.log(user);
       this.router.navigateByUrl('/home');
     },
     error => {

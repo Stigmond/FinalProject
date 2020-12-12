@@ -34,67 +34,82 @@ export class UserProfileComponent implements OnInit {
     private auth: AuthService,
     private addressService: AddressService) { }
 
-  ngOnInit(): void {
-  this.getByUsername();
-  this.selected = this.user;
-  }
+    ngOnInit(): void {
+      var idString = localStorage.getItem('userId');
+      this.getById(parseInt(idString));
+      console.log(this.user);
+    }
 
-  getById() {
+    getById(id: number) {
 
-    this.userService.findById(this.user.id).subscribe(
-      data => {
-        this.user = data;
-        console.log(data);
-      },
-      err => {
-        console.error(err);
-        return throwError('Unable to load User');
-      }
-    );
-  }
-
-  getByUsername() {
-    this.userService.findByUsername().subscribe(
-      data => {
-        this.user = data;
-        console.log(data);
-
-      },
-      err => {
-        console.error(err);
-        return throwError('Error locating user by username');
-
-      }
-    );
-  }
-
-    update() {
-      console.log('Inside component update');
-  console.log(this.editedUser);
-
-
-      this.userService.update(this.editedUser.id,this.editedUser).subscribe(
-
-        updated => {
-          console.log('Updated User: ' + updated.firstName);
-          this.router.navigateByUrl('home');
-
+      this.userService.findById(id).subscribe(
+        data => {
+          this.user = data;
+          this.selected = this.user;
+          this.editedAddress = this.user.address;
+          console.log(data);
         },
         err => {
           console.error(err);
-           console.error('Error updating user');
+          return throwError('Unable to load User');
         }
-      );
-    }
+        );
+      }
 
-    cancel () {
-      this.editedUser = null;
+      // getByUsername() {
+        //   this.userService.findByUsername().subscribe(
+          //     data => {
+            //       this.user = data;
+            //       console.log(data);
 
-    }
+            //     },
+            //     err => {
+              //       console.error(err);
+              //       return throwError('Error locating user by username');
 
-    selectedUser(user) {
-      this.selected = user;
-    }
+              //     }
+              //   );
+              // }
+
+              update() {
+                console.log('Inside component update');
+                console.log(this.editedUser);
+
+
+                this.userService.update(this.editedUser.id,this.editedUser).subscribe(
+
+                  updated => {
+                    console.log('Updated User: ' + updated.firstName);
+                    this.router.navigateByUrl('home');
+
+                  },
+                  err => {
+                    console.error(err);
+                    console.error('Error updating user');
+                  }
+                  );
+                }
+
+                updateAddress() {
+                  this.addressService.update(this.editedAddress).subscribe(
+                    (data) => {
+                      this.loadAddress();
+                      this.selected = null;
+                      window.alert('Address Updated Successfully');
+                    },
+                    (err) => {
+                      console.error('problem with updateAddress() in user-profile component');
+                    }
+                  );
+                }
+                cancel () {
+                  this.editedUser = null;
+
+                }
+
+                selectedUser(user) {
+                  this.selected = user;
+                }
 
     editUser() {
       this.editedUser = new User();
@@ -139,9 +154,9 @@ export class UserProfileComponent implements OnInit {
   //       window.alert('User Created Successfully!');
   //     },
   //     (err) => {
-  //       console.error('problem with addUser()');
-  //     }
-  //   );
+    //       console.error('problem with addUser()');
+    //     }
+    //   );
   // }
 
   updateUser(editUser: User) {
@@ -189,18 +204,6 @@ export class UserProfileComponent implements OnInit {
   //   );
   // }
 
-  updateAddress(editAddress: Address) {
-    this.addressService.update(editAddress).subscribe(
-      (data) => {
-        this.loadAddress();
-        this.selected = null;
-        window.alert('Address Updated Successfully');
-      },
-      (err) => {
-        console.error('problem with updateAddress() in run-list component');
-      }
-    );
-  }
 
   // register(user: User): void {
   //   console.log("Registering user:");
