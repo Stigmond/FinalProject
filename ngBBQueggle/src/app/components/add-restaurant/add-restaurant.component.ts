@@ -20,20 +20,28 @@ import { MainDishService } from 'src/app/services/maindish.service';
 })
 export class AddRestaurantComponent implements OnInit {
 
+stylesForm: FormGroup;
+sideDishesForm: FormGroup;
+
+
   sideDishesArray: SideDish[];
   mainDishesArray: MainDish[];
   // saucesArray: Sauce[];
   stylesArray: Style[];
 
-
   newRestaurant: Restaurant = new Restaurant();
   newAddress: Address = new Address();
 
 
-
   constructor(private styleServ: StyleService, private sideDishServ: SideDishService, private mainDishServ: MainDishService, private sauceServ: SauceService, private formBuilder: FormBuilder) {
+    this.stylesForm = this.formBuilder.group({
+      selectedStyles: this.formBuilder.array([], [Validators.required])
 
+    })
+    this.sideDishesForm = this.formBuilder.group({
+      selectedSides: this.formBuilder.array([], [Validators.required])
 
+    })
    }
 
   ngOnInit(): void {
@@ -89,15 +97,36 @@ export class AddRestaurantComponent implements OnInit {
         console.error(error);
       }
     );
+  }
 
+  onStyleCheckboxChange(e) {
+    const styleList: FormArray = this.stylesForm.get('selectedStyles') as FormArray;
 
+    if (e.target.checked) {
+      styleList.push(new FormControl(e.target.value));
+    } else {
+       const index = styleList.controls.findIndex(x => x.value === e.target.value);
+       styleList.removeAt(index);
+    }
+  }
+
+  onSideCheckboxChange(e) {
+    const sideList: FormArray = this.sideDishesForm.get('selectedSides') as FormArray;
+
+    if (e.target.checked) {
+      sideList.push(new FormControl(e.target.value));
+    } else {
+       const index = sideList.controls.findIndex(x => x.value === e.target.value);
+       sideList.removeAt(index);
+    }
   }
 
 
 
-
-
-
+  submit(){
+    console.log(this.stylesForm.value);
+    console.log(this.sideDishesForm.value);
+  }
 
 
 }

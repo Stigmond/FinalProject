@@ -1,5 +1,7 @@
 
 
+
+
 <!-- Default form register -->
 <div class= "registration">
   <div class="row">
@@ -121,6 +123,34 @@
     </label>
   </div> -->
 
+  <div class="container">
+
+    <form [formGroup]="stylesForm" (ngSubmit)="submit()">
+<hr>
+        <div class="form-group">
+            <label for="style">Style(s):</label>
+            <div *ngFor="let style of stylesArray">
+              <label>
+                <input type="checkbox" [value]="style.id" (change)="onStyleCheckboxChange($event)" />
+                {{style.name}}
+              </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+          <label for="style">Side(s):</label>
+          <div *ngFor="let side of sideDishesArray">
+            <label>
+              <input type="checkbox" [value]="side.id" (change)="onSideCheckboxChange($event)" />
+              {{side.name}}
+            </label>
+          </div>
+      </div>
+
+
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+  </div>
 
   <button class="btn btn-info my-4 btn-block">Add</button>
 
