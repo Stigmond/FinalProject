@@ -1,3 +1,4 @@
+
 import { AddressService } from './../../services/address.service';
 import { ReviewService } from './../../services/review.service';
 import { UserService } from './../../services/user.service';
@@ -19,7 +20,7 @@ export class UserProfileComponent implements OnInit {
 
   // updateUser: User = null;
   user = new User();
-  selected = null;
+  selected: User = null;
 
   editedUser: User = null;
   editedAddress: Address = null;
@@ -29,10 +30,13 @@ export class UserProfileComponent implements OnInit {
 
   constructor(private userService: UserService,
     private router: Router,
+    private route: ActivatedRoute,
+    private auth: AuthService,
     private addressService: AddressService) { }
 
   ngOnInit(): void {
   this.getByUsername();
+  this.selected = this.user;
   }
 
   getById() {
@@ -117,7 +121,7 @@ export class UserProfileComponent implements OnInit {
 
     showUser(user: User) {
     this.selected = user;
-    this.editUser = Object.assign({}, this.selected);
+    this.editedUser = Object.assign({}, this.selected);
   }
 
   //   addUser() {
@@ -168,7 +172,7 @@ export class UserProfileComponent implements OnInit {
 
   showAddress(user: User) {
     this.selected = user;
-    this.editUser = Object.assign({}, this.selected);
+    this.editedUser = Object.assign({}, this.selected);
   }
 
   // addAddress(address: Address) {
