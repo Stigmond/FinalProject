@@ -20,9 +20,9 @@ import { MainDishService } from 'src/app/services/maindish.service';
 })
 export class AddRestaurantComponent implements OnInit {
 
-stylesForm: FormGroup;
-sideDishesForm: FormGroup;
-
+  stylesForm: FormGroup;
+  sideDishesForm: FormGroup;
+  mainDishesForm: FormGroup;
 
   sideDishesArray: SideDish[];
   mainDishesArray: MainDish[];
@@ -40,6 +40,11 @@ sideDishesForm: FormGroup;
     })
     this.sideDishesForm = this.formBuilder.group({
       selectedSides: this.formBuilder.array([], [Validators.required])
+
+    })
+
+    this.mainDishesForm = this.formBuilder.group({
+      selectedMains: this.formBuilder.array([], [Validators.required])
 
     })
    }
@@ -121,11 +126,21 @@ sideDishesForm: FormGroup;
     }
   }
 
+  onMainCheckboxChange(e) {
+    const mainList: FormArray = this.mainDishesForm.get('selectedMains') as FormArray;
 
+    if (e.target.checked) {
+      mainList.push(new FormControl(e.target.value));
+    } else {
+       const index = mainList.controls.findIndex(x => x.value === e.target.value);
+       mainList.removeAt(index);
+    }
+  }
 
   submit(){
     console.log(this.stylesForm.value);
     console.log(this.sideDishesForm.value);
+    console.log(this.mainDishesForm.value);
   }
 
 
