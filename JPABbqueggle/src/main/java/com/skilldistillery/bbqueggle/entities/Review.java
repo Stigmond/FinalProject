@@ -28,12 +28,12 @@ public class Review {
 	@Column(name="review_date")
 	private LocalDate reviewDate;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
 
 	@JsonIgnore
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="restaurant_id")
 	private Restaurant restaurant;
 	

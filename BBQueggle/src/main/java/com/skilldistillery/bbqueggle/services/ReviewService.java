@@ -14,5 +14,5 @@ public interface ReviewService {
 	
 	Review updateRestaurantReview(Integer restaurantId, Integer reviewId, Review review, String username);
 	
-//	boolean deleteRestaurantReview(Integer restaurantId, Integer reviewId, String username);
+	boolean deleteRestaurantReview(Integer restaurantId, Integer reviewId, String username);
 }
