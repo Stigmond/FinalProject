@@ -23,8 +23,8 @@ const routes: Routes = [
 { path: 'restaurant/:state', component: RestaurantListComponent},
 { path: 'restaurant/:state/:searchType/:searchTerm', component: RestaurantListComponent},
 { path: 'login', component: LoginComponent},
-{ path: 'userProfile', component: UserProfileComponent}
-
+{ path: 'userProfile', component: UserProfileComponent},
+{ path: 'userProfile/:userId', component: UserProfileComponent}
 
 ];
 
