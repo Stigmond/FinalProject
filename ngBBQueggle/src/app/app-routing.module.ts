@@ -1,3 +1,4 @@
+import { AdminComponent } from './components/admin/admin.component';
 
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
@@ -24,7 +25,8 @@ const routes: Routes = [
 { path: 'restaurant/:state/:searchType/:searchTerm', component: RestaurantListComponent},
 { path: 'login', component: LoginComponent},
 { path: 'userProfile', component: UserProfileComponent},
-{ path: 'userProfile/:userId', component: UserProfileComponent}
+{ path: 'userProfile/:userId', component: UserProfileComponent},
+{ path: 'admin', component: AdminComponent}
 
 ];
 

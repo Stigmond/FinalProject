@@ -20,6 +20,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RestaurantInfoComponent } from './components/restaurant-info/restaurant-info.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { AddRestaurantComponent } from './components/add-restaurant/add-restaurant.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { AddRestaurantComponent } from './components/add-restaurant/add-restaura
     ReviewsComponent,
     RestaurantInfoComponent,
     UserProfileComponent,
-    AddRestaurantComponent
+    AddRestaurantComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
