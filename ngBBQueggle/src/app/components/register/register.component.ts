@@ -42,7 +42,7 @@ export class RegisterComponent implements OnInit {
         console.log('registerComponent.loadUser(): User retrieved');
       },
       (err) => {
-        console.error('registerComponent.loadUse(): retrieve failed');
+        console.error('registerComponent.loadUser(): retrieve failed');
         console.error(err);
       }
     );
@@ -57,6 +57,7 @@ export class RegisterComponent implements OnInit {
       console.log(this.newUser);
       this.newUser.enabled = true;
       this.newAddress.enabled = true;
+      console.log(this.newAddress);
 
       this.newUser.role = "ROLE_USER";
       this.newUser.address = this.newAddress;
@@ -81,7 +82,7 @@ export class RegisterComponent implements OnInit {
         window.alert('Run Updated Successfully');
       },
       (err) => {
-        console.error('problem with updateRun() in run-list component');
+        console.error('problem with updateRun() in register component');
       }
     );
   }
@@ -126,7 +127,7 @@ export class RegisterComponent implements OnInit {
         window.alert('Address Updated Successfully');
       },
       (err) => {
-        console.error('problem with updateAddress() in run-list component');
+        console.error('problem with updateAddress() in register component');
       }
     );
   }
@@ -139,7 +140,7 @@ export class RegisterComponent implements OnInit {
         console.log('RegisterComponent.register(): user registered.');
         this.authService.login(user.username, user.password).subscribe(
           next => {
-            console.log('RegisterComponent.register(): user logged in, routing to /todo.');
+            console.log('RegisterComponent.register(): user logged in, routing to /home.');
             this.router.navigateByUrl('/home');
           },
           error => {
