@@ -1,0 +1,11 @@
+<p>admin works!</p>
+
+<button (click)="showRestaurants()">Show Disabled Restaurants</button>
+<div *ngFor="let restaurant of restaurants">
+  <p *ngIf="restaurant.enabled === false">{{restaurant.name}}</p>
+</div>
+
+<button (click)="showUsers()">Show Enabled Users</button>
+<div *ngFor="let user of users">
+  <p *ngIf="user.enabled === true">{{user.firstName}} {{user.lastName}}</p>
+</div>

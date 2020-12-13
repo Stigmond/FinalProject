@@ -15,7 +15,14 @@ export class UserService {
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   index(): Observable<User[]>{
-    return this.http.get<User[]>(this.url + '?sorted=true').pipe(
+    const credentials = this.authService.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Basic ${credentials}`,
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+    return this.http.get<User[]>(this.url + '?sorted=true', httpOptions).pipe(
       catchError((err:any)=>{
       console.log(err);
       return throwError('UserService.index(): error');

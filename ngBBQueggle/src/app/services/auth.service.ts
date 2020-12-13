@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { User } from '../models/user';
@@ -12,7 +13,8 @@ export class AuthService {
   private baseUrl = 'http://localhost:8090/';
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
 
 
@@ -35,6 +37,7 @@ login(username, password): Observable<User> {
         localStorage.setItem('credentials' , credentials);
         localStorage.setItem('userId', res.id.toString()); //retrieve with localStorage.getItem('userId');
         // localStorage.setItem('username',res.id.toString());
+        localStorage.setItem('role', res.role);
         return res;
       }),
       catchError((err: any) => {
@@ -57,6 +60,9 @@ register(user): Observable<User> {
 
 logout() {
   localStorage.removeItem('credentials');
+  localStorage.removeItem('userId');
+  localStorage.removeItem('role');
+  this.router.navigateByUrl('login');
   }
 
 checkLogin() {
