@@ -48,7 +48,15 @@ export class RestaurantService {
   }
 
   create(newRestaurant: Restaurant){
-    return this.http.post<Restaurant>(this.url, newRestaurant).pipe(
+    const credentials = this.authService.getCredentials();
+    const httpOptions = {
+    headers: new HttpHeaders({
+      Authorization: `Basic ${credentials}`,
+      'Content-type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+    return this.http.post<Restaurant>(this.url, newRestaurant, httpOptions).pipe(
       catchError((err:any)=>{
       console.log(err);
       return throwError('RestaurantService.create(): error');

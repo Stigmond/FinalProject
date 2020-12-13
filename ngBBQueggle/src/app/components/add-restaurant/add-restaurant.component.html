@@ -113,7 +113,7 @@
   <textarea id="restaurantAbout" [(ngModel)]="newRestaurant.description" class="form-control" name="about"></textarea>
 
   <label>
-    <input type="checkbox" name="dineIn" [(ngModel)]="newRestaurant.dineIn"> Dine-in Available
+    <input type="checkbox" name="dineIn" value="true" [(ngModel)]="newRestaurant.dineIn"> Dine-in Available
   </label>
 
   <!-- <div class="form-check" *ngFor="let sideDish of sideDishes">
@@ -156,11 +156,11 @@
           </label>
         </div>
     </div>
-        <button class="btn btn-primary" type="submit">Submit</button>
+    <button class="btn btn-info my-4 btn-block" type="submit">Add</button>
+
     </form>
   </div>
 
-  <button class="btn btn-info my-4 btn-block">Add</button>
 
 </form>
 <!-- Default form register -->

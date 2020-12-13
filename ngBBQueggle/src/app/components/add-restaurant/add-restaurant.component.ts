@@ -1,3 +1,5 @@
+import { style } from '@angular/animations';
+import { RestaurantService } from 'src/app/services/restaurant.service';
 import { StyleService } from './../../services/style.service';
 import { SauceService } from './../../services/sauce.service';
 import { Sauce } from './../../models/sauce';
@@ -21,38 +23,49 @@ import { MainDishService } from 'src/app/services/maindish.service';
 export class AddRestaurantComponent implements OnInit {
 
   stylesForm: FormGroup;
-  sideDishesForm: FormGroup;
-  mainDishesForm: FormGroup;
-
-  sideDishesArray: SideDish[];
-  mainDishesArray: MainDish[];
-  // saucesArray: Sauce[];
   stylesArray: Style[];
+  styleResult = [];
+  styleToPush = [];
+
+  sideDishesForm: FormGroup;
+  sideDishesArray: SideDish[];
+  sideDishResult = [];
+  sideDishToPush = [];
+
+  mainDishesForm: FormGroup;
+  mainDishesArray: MainDish[];
+  mainDishResult = [];
+  mainDishToPush = [];
+
+  // saucesArray: Sauce[];
+
+
+
+
 
   newRestaurant: Restaurant = new Restaurant();
   newAddress: Address = new Address();
 
 
-  constructor(private styleServ: StyleService, private sideDishServ: SideDishService, private mainDishServ: MainDishService, private sauceServ: SauceService, private formBuilder: FormBuilder) {
+  constructor(private restService: RestaurantService, private styleServ: StyleService, private sideDishServ: SideDishService, private mainDishServ: MainDishService, private sauceServ: SauceService, private formBuilder: FormBuilder) {
     this.stylesForm = this.formBuilder.group({
       selectedStyles: this.formBuilder.array([], [Validators.required])
-
     })
+
     this.sideDishesForm = this.formBuilder.group({
       selectedSides: this.formBuilder.array([], [Validators.required])
-
     })
 
     this.mainDishesForm = this.formBuilder.group({
       selectedMains: this.formBuilder.array([], [Validators.required])
-
     })
    }
 
   ngOnInit(): void {
     this.index();
-
   }
+
+
 
   index(): void{
     this.sideDishServ.index().subscribe(
@@ -78,18 +91,6 @@ export class AddRestaurantComponent implements OnInit {
         console.error(error);
       }
     );
-
-    // this.sauceServ.index().subscribe(
-    //   good=>{
-    //     this.saucesArray = good;
-    //     console.log(this.saucesArray);
-
-    //   },
-    //   error=>{
-    //     console.error('failed to load index of sauces()');
-    //     console.error(error);
-    //   }
-    // );
 
     this.styleServ.index().subscribe(
       good=>{
@@ -138,10 +139,81 @@ export class AddRestaurantComponent implements OnInit {
   }
 
   submit(){
+
+    this.newAddress.enabled = true;
+    this.newRestaurant.address = this.newAddress;
+    this.newRestaurant.enabled = false;
+
+    console.log(this.newRestaurant);
     console.log(this.stylesForm.value);
     console.log(this.sideDishesForm.value);
     console.log(this.mainDishesForm.value);
-  }
+
+  // //Add Styles to Restaurant
+  // this.styleResult = (this.stylesForm.get('selectedStyles').value);
+
+  //  for (var i = 0; i < this.styleResult.length; i++) {
+
+  //     for (var j = 0; j < this.stylesArray.length; j++) {
+  //       if (parseInt(this.styleResult[i]) === this.stylesArray[j].id) {
+  //         this.styleToPush.push(this.stylesArray[j]);
+  //       }
+  //     }
+  //   }
+
+  //   this.newRestaurant.styles = this.styleToPush;
+
+  // //Add Main Dishes to Restaurant
+  // this.mainDishResult = (this.mainDishesForm.get('selectedMains').value);
+
+  // for (var i = 0; i < this.mainDishResult.length; i++) {
+
+  //    for (var j = 0; j < this.mainDishesArray.length; j++) {
+  //      if (parseInt(this.mainDishResult[i]) === this.mainDishesArray[j].id) {
+  //        this.mainDishToPush.push(this.mainDishesArray[j]);
+  //      }
+  //    }
+  //  }
+
+  //  this.newRestaurant.mainDishes = this.mainDishToPush;
+
+  //   //Add Side Dishes to Restaurant
+
+  // this.sideDishResult = (this.sideDishesForm.get('selectedSides').value);
+
+  // for (var i = 0; i < this.sideDishResult.length; i++) {
+
+  //    for (var j = 0; j < this.sideDishesArray.length; j++) {
+  //      if (parseInt(this.sideDishResult[i]) === this.sideDishesArray[j].id) {
+  //        this.sideDishToPush.push(this.sideDishesArray[j]);
+  //      }
+  //    }
+  //  }
+
+  //  this.newRestaurant.sideDishes = this.sideDishToPush;
+  //  console.log(this.newRestaurant);
+
+  //  //Push Restaurant
+
+  this.restService.create(this.newRestaurant).subscribe(
+    (success) => {
+      console.log(success);
+      console.log('creation success!');
+      window.alert('Restaurant Created Successfully!');
+    },
+    (fail) => {
+      console.error('problem with adding Restaurant');
+    }
+  );
+
+
+    }
+
+
+
+
+
+
 
 
 }
