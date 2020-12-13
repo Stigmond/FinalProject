@@ -34,6 +34,7 @@ login(username, password): Observable<User> {
       tap((res) => {
         localStorage.setItem('credentials' , credentials);
         localStorage.setItem('userId', res.id.toString()); //retrieve with localStorage.getItem('userId');
+        // localStorage.setItem('username',res.id.toString());
         return res;
       }),
       catchError((err: any) => {

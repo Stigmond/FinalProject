@@ -1,5 +1,6 @@
+import { AuthService } from './auth.service';
 import { User } from './../models/user';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError} from 'rxjs/operators';
@@ -11,7 +12,7 @@ export class UserService {
   private baseUrl = 'http://localhost:8090/';
   url = this.baseUrl + 'api/user/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   index(): Observable<User[]>{
     return this.http.get<User[]>(this.url + '?sorted=true').pipe(
@@ -21,6 +22,30 @@ export class UserService {
 
       })
     );
+  }
+
+  findById(id) {
+    return this.http.get<User>(this.url  + id, this.httpOptions)
+    .pipe(
+      catchError((err: any) => {
+        console.error(err);
+        return throwError('Error listing user');
+      })
+    );
+
+  }
+
+  findByUsername(username: String) {
+    return this.http.get<User>(this.url +  "/" + username , this.httpOptions)
+    .pipe(
+      catchError((err: any) => {
+        console.error(err);
+        console.log(this.url);
+
+        return throwError('Error finding username');
+      })
+    );
+
   }
 
   show(id: number){
@@ -58,4 +83,12 @@ export class UserService {
     })
     );
   }
+
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json',
+      'Authorization': `Basic ${this.authService.getCredentials()}`,
+      'X-Requested-With': 'XMLHttpRequest'
+    })
+  };
 }

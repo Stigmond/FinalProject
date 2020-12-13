@@ -1,4 +1,8 @@
+
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+
 import { AddRestaurantComponent } from './components/add-restaurant/add-restaurant.component';
+
 import { LoginComponent } from './components/login/login.component';
 import { RestaurantListComponent } from './components/restaurant-list/restaurant-list.component';
 import { RestaurantInfoComponent } from './components/restaurant-info/restaurant-info.component';
@@ -18,7 +22,8 @@ const routes: Routes = [
 { path: 'restaurant', component: RestaurantListComponent},
 { path: 'restaurant/:state', component: RestaurantListComponent},
 { path: 'restaurant/:state/:searchType/:searchTerm', component: RestaurantListComponent},
-{ path: 'login', component: LoginComponent}
+{ path: 'login', component: LoginComponent},
+{ path: 'userProfile', component: UserProfileComponent}
 
 
 ];
