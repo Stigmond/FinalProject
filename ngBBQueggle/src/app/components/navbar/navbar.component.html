@@ -39,6 +39,7 @@
       <a class="nav-link" [routerLink]="['/person/username']">User Profile</a>
     </li> -->
   </ul>
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
   <ul class="no-bullets" style="float: left;">
     <li *ngIf="loggedIn()">
       <a class="btn btn-light" [routerLink]="['/userProfile']">User Profile</a>
@@ -50,6 +51,8 @@
     </li>
   </ul>
 </div>
+</div>
+
   <!-- <form class="form-inline" action="searchAll.do" method = "GET">
     <input class="form-control mr-sm-2"  type="text" name = "username" placeholder="Username" aria-label="Username" />
     <input class="form-control mr-sm-2"  type="text" name = "username" placeholder="Username" aria-label="Username" />
