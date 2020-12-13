@@ -1,5 +1,5 @@
 import { AuthService } from './services/auth.service';
-
+import { AgmCoreModule} from '@agm/core';
 import { RestaurantService } from './services/restaurant.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -45,7 +45,10 @@ import { AdminComponent } from './components/admin/admin.component';
     FormsModule,
     HttpClientModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey:'AIzaSyAyBvGZA0Ragd3WN1PTJnXQUaq3zcw8ZjM'
+    })
   ],
   providers: [RestaurantService,AuthService],
 
