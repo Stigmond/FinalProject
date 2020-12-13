@@ -44,16 +44,16 @@
   <!--Address -->
   <div class="form-group">
     <label for="inputAddress">Address</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name = "street" [(ngModel)]="newAddress.street">
+    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name = "street" [(ngModel)]="newUser.address.street">
   </div>
   <div class="form-row">
     <div class="form-group col-md-12">
       <label for="inputCity">City</label>
-      <input type="text" class="form-control" id="inputCity" name = "city"[(ngModel)]="newAddress.city">
+      <input type="text" class="form-control" id="inputCity" name = "city"[(ngModel)]="newUser.address.city">
     </div>
     <div class="form-group col-md-6">
       <label for="inputState">State</label>
-      <select id="inputState" class="form-control" name = "state"[(ngModel)]="newAddress.state">
+      <select id="inputState" class="form-control" name = "state"[(ngModel)]="newUser.address.state">
         <option selected>Choose...</option>
         <option value="AL">Alabama</option>
         <option value="AK">Alaska</option>
@@ -116,7 +116,7 @@
     </div>
     <div class="form-group col-md-6">
       <label for="inputZip">Zip</label>
-      <input type="text" class="form-control" id="inputZip" name = "zip" [(ngModel)]="newAddress.zip">
+      <input type="text" class="form-control" id="inputZip" name = "zip" [(ngModel)]="newUser.address.zip">
     </div>
     </div>
 
