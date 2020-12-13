@@ -328,6 +328,8 @@ INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `enabled`) VALUES
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `enabled`) VALUES (5, '1238 DeKalb Ave NE', 'Atlanta', 'GA', '30307', 1);
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `enabled`) VALUES (6, '3002 WEST 47TH AVE', 'Kansas City', 'KS', '66103', 1);
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `enabled`) VALUES (7, '1427 14th Avenue South', 'Birmingham', 'AL', '35205', 1);
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `enabled`) VALUES (8, '8000 e quincy ave ', 'denver', 'C0', '80237', 1);
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `enabled`) VALUES (9, '101 s bonnyton ave', 'castle rock', 'CO', '80104', 1);
 
 COMMIT;
 
@@ -384,8 +386,8 @@ USE `bbqdb`;
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `enabled`, `role`, `image`, `address_id`) VALUES (1, 'Jason', 'ad', 'jason', '$2a$10$CIcKUjwsptPmuJ8rEFpikuby4glXmR45MYb0AwU7sarTtrAMYMXNu', 'fake@gmail.com', 1, 'ROLE_ADMIN', NULL, 1);
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `enabled`, `role`, `image`, `address_id`) VALUES (2, 'Carl', 'Roberts', 'croberts', 'robertcarl', 'carlrobert@mail.com', 1, 'ROLE_USER', NULL, NULL);
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `enabled`, `role`, `image`, `address_id`) VALUES (3, 'Lou', 'Charles', 'charleslou', 'clou', 'lcharles@mail.com', 1, 'ROLE_USER', NULL, NULL);
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `enabled`, `role`, `image`, `address_id`) VALUES (4, 'David', 'admin', 'david', '$2a$10$CIcKUjwsptPmuJ8rEFpikuby4glXmR45MYb0AwU7sarTtrAMYMXNu', 'admin@gmail.com', 1, 'ROLE_ADMIN', NULL, NULL);
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `enabled`, `role`, `image`, `address_id`) VALUES (5, 'Chris', 'h', 'chris', '$2a$10$CIcKUjwsptPmuJ8rEFpikuby4glXmR45MYb0AwU7sarTtrAMYMXNu', 'chris@gmail.com', 1, 'ROLE_ADMIN', NULL, NULL);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `enabled`, `role`, `image`, `address_id`) VALUES (4, 'David', 'admin', 'david', '$2a$10$CIcKUjwsptPmuJ8rEFpikuby4glXmR45MYb0AwU7sarTtrAMYMXNu', 'admin@gmail.com', 1, 'ROLE_ADMIN', NULL, 8);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `enabled`, `role`, `image`, `address_id`) VALUES (5, 'Chris', 'h', 'chris', '$2a$10$CIcKUjwsptPmuJ8rEFpikuby4glXmR45MYb0AwU7sarTtrAMYMXNu', 'chris@gmail.com', 1, 'ROLE_ADMIN', NULL, 9);
 
 COMMIT;
 
