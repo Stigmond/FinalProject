@@ -1,10 +1,11 @@
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
+import { ActivatedRoute, Router } from '@angular/router';
+
 import { Address } from './../../models/address';
 import { Restaurant } from './../../models/restaurant';
 import { RestaurantService } from './../../services/restaurant.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-admin',
@@ -16,10 +17,16 @@ export class AdminComponent implements OnInit {
 restaurants = [];
 users = [];
 
-  constructor(private RestaurantService: RestaurantService, private userService: UserService, private currentRoute: ActivatedRoute) { }
+  constructor(private RestaurantService: RestaurantService, private userService: UserService, private currentRoute: ActivatedRoute, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem('role') === 'ROLE_ADMIN') {
+    console.log('WELCOME ADMIN!');
+  } else {
+    console.log('UNAUTHORIZED USER!');
+    this.router.navigateByUrl('login');
   }
+}
 
   restaurantIndex(): void{
     this.RestaurantService.index().subscribe(
