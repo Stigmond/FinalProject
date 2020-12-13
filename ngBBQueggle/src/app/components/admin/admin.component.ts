@@ -16,6 +16,7 @@ export class AdminComponent implements OnInit {
 
 restaurants = [];
 users = [];
+selectedTab: string = 'restaurants';
 
   constructor(private RestaurantService: RestaurantService, private userService: UserService, private currentRoute: ActivatedRoute, private authService: AuthService, private router: Router) { }
 

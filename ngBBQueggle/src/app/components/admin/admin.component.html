@@ -1,11 +1,60 @@
-<p>admin works!</p>
 
-<button (click)="showRestaurants()">Show Disabled Restaurants</button>
-<div *ngFor="let restaurant of restaurants">
-  <p *ngIf="restaurant.enabled === false">{{restaurant.name}}</p>
+<div class="container">
+
+  <div class="row">
+    <div class="col">
+      <h1 class="text-center">ADMIN PAGE</h1>
+    </div>
+  </div>
+
+  <div class="row">
+
+  <div id="leftCol" class="col">
+
+  <h2>LEFT COLUMN</h2>
+
+  <div class="row">
+    <ul ngbNav #nav="ngbNav" class="nav-tabs">
+      <li ngbNavItem>
+        <a ngbNavLink (click)="selectedTab='users'">USERS</a>
+        <ng-template ngbNavContent></ng-template>
+      </li>
+      <li ngbNavItem>
+        <a ngbNavLink (click)="selectedTab='restaurants'">RESTAURANTS</a>
+        <ng-template ngbNavContent></ng-template>
+      </li>
+      <li ngbNavItem>
+        <a ngbNavLink (click)="selectedTab='reserved'">RESERVED</a>
+        <ng-template ngbNavContent></ng-template>
+      </li>
+    </ul>
+    <div [ngbNavOutlet]="nav"></div>
+  </div>
+
+  </div>
+
+
+  <div id="rightCol" class="col">
+    <h2>RIGHT COLUMN</h2>
+
+    <div class="row">
+
+      <div class="col" *ngIf="selectedTab === 'users'">
+        <h1>USER TAB</h1>
+      </div>
+
+      <div class="col" *ngIf="selectedTab === 'restaurants'">
+        <div class="row">
+          <h1>RESTAURANTS TAB</h1>
+        </div>
+      </div>
+
+      <div class="col" *ngIf="selectedTab === 'reserved'">
+        <h1>RESERVED</h1>>
+      </div>
+
+    </div>
+  </div>
+
 </div>
-
-<button (click)="showUsers()">Show Enabled Users</button>
-<div *ngFor="let user of users">
-  <p *ngIf="user.enabled === true">{{user.firstName}} {{user.lastName}}</p>
 </div>
