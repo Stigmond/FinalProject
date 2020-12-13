@@ -7,7 +7,8 @@
 </button>
 
 <div class="collapse navbar-collapse container-fluid" id="navbarColor01">
-  <ul style="float: right;">
+  <ul class="navbar-nav ml-auto">
+  <!-- <ul class ="no-bullets" style="float: right;"> -->
     <!-- <li class="nav-item active">
       <a class="nav-link" href="beerIndex.do"><i class="fa fa-fw fa-beer"></i>Beers</a>
     </li>
@@ -24,19 +25,21 @@
       <a class="nav-link" href="getUser.do?id=${loginUser.id }"><i class="fa fa-fw fa-address-card"></i>Profile<span class="sr-only">(current)</span></a>
     </li> -->
 
+
+
     <li *ngIf="! loggedIn()">
       <!-- <a class="nav-link" [routerLink]="['/login']">Log In</a> -->
       <app-login></app-login>
     </li>
             <li *ngIf="! loggedIn()">
-              <a class="nav-link" [routerLink]="['/register']">Register for a free</a>
+              <a class="nav-link" [routerLink]="['/register']">Register for a free Account</a>
               <!-- <button (click) = [routerLink]="['/register']">Register</button> -->
             </li>
     <!-- <li *ngIf="loggedIn()">
       <a class="nav-link" [routerLink]="['/person/username']">User Profile</a>
     </li> -->
   </ul>
-  <ul style="float: left;">
+  <ul class="no-bullets" style="float: left;">
     <li *ngIf="loggedIn()">
       <a class="btn btn-light" [routerLink]="['/userProfile']">User Profile</a>
     </li>
@@ -46,12 +49,13 @@
       <app-logout></app-logout>
     </li>
   </ul>
+</div>
   <!-- <form class="form-inline" action="searchAll.do" method = "GET">
     <input class="form-control mr-sm-2"  type="text" name = "username" placeholder="Username" aria-label="Username" />
     <input class="form-control mr-sm-2"  type="text" name = "username" placeholder="Username" aria-label="Username" />
     <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
   </form> -->
-</div>
+
 </nav>
 
 

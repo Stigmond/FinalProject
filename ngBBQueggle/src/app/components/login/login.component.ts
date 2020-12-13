@@ -24,12 +24,12 @@ export class LoginComponent implements OnInit {
   console.log("Logging in user: ");
   this.authService.login(user.username, user.password).subscribe(
     next => {
-      console.log('RegisterComponent.register(): user logged in, routing to /home.');
+      console.log('LoginComponent.login(): user logged in, routing to /home.');
       console.log(user);
       this.router.navigateByUrl('/home');
     },
     error => {
-      console.error('RegisterComponent.register(): error logging in.');
+      console.error('loginComponent.register(): error logging in.');
     }
   );
   }
