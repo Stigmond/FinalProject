@@ -72,6 +72,7 @@ export class UserProfileComponent implements OnInit {
               // }
 
               update() {
+                this.editedUser = this.editedUser
                 console.log('Inside component update');
                 console.log(this.editedUser);
 
