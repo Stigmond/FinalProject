@@ -116,5 +116,11 @@ public class RestaurantServiceImpl implements RestaurantService {
 		result = repo.findByAddress_StateAndStyle_Id(state, styleId);
 		return result;
 	}
+	public List<Restaurant> showStateRestaurantsByMainDish(String state, String mainDish) {
+		List<Restaurant> result = new ArrayList<>();
+		mainDish = "%" + mainDish + "%";
+		result = repo.queryByStateAndMainDish(state, mainDish, mainDish);
+		return result;
+	}
 
 }

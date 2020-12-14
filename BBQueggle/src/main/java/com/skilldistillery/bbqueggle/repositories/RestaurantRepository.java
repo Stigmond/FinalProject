@@ -22,4 +22,7 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Integer>
 	List<Restaurant> findByAddress_StateAndStyle_Id(String state, Integer styleId);
 		
 	Restaurant findByPitmaster_Id(Integer pitmaster);
+	
+	@Query("SELECT r FROM Restaurant r JOIN r.mainDishes rmd WHERE r.address.state = :state AND (rmd.name LIKE :name OR rmd.description LIKE :description)")
+	List<Restaurant> queryByStateAndMainDish(@Param("state") String state, @Param("name") String name, @Param("description") String description);
 }
