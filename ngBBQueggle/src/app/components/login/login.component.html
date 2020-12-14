@@ -1,8 +1,8 @@
 <form class="form-inline">
 
-  <input [(ngModel)]="userLogin.username" type="text" name="username" placeholder="Username"> <br>
-  <input [(ngModel)]="userLogin.password" type="password" name="password" placeholder="Password"> <br>
-  <button (click)="login(userLogin)">Login</button>
+  <input class="input"[(ngModel)]="userLogin.username" type="text" name="username" placeholder="Username"> <br>
+  <input class="input"[(ngModel)]="userLogin.password" type="password" name="password" placeholder="Password"> <br>
+  <button class="btn btn-light"(click)="login(userLogin)">Login</button>
 </form>
 
 
