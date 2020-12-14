@@ -32,6 +32,7 @@ public class RestaurantController {
 	
 	RestaurantRankerImpl restRank = new RestaurantRankerImpl();
 	
+	
 
 	@GetMapping("restaurants")
 	public List<Restaurant> allRestaurants() {
@@ -53,7 +54,7 @@ public class RestaurantController {
 
 	@PostMapping("restaurants")
 	public Restaurant createRestaurant(@RequestBody Restaurant restaurant, HttpServletResponse response,
-			HttpServletRequest request, Principal principal) {
+			HttpServletRequest request, Principal principal) {		
 		Restaurant createdRestaurant = null;
 		try {
 			createdRestaurant = svc.createRestaurant(principal.getName(),restaurant);

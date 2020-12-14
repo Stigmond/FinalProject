@@ -17,9 +17,12 @@ export class AdminComponent implements OnInit {
 
 restaurants = [];
 users: User[];
-selectedTab: string = 'restaurants';
+selectedTab: string = 'users';
 selectedUser: User;
 selectedRestaurant: Restaurant;
+updatedRestaurant: Restaurant;
+toEdit: boolean = false;
+
 
   constructor(private RestaurantService: RestaurantService, private userService: UserService, private currentRoute: ActivatedRoute, private authService: AuthService, private router: Router) { }
 
@@ -27,6 +30,7 @@ selectedRestaurant: Restaurant;
     if (localStorage.getItem('role') === 'ROLE_ADMIN') {
     console.log('WELCOME ADMIN!');
     this.userIndex();
+    this.restaurantIndex();
   } else {
     console.log('UNAUTHORIZED USER!');
     this.router.navigateByUrl('home');
@@ -72,7 +76,9 @@ selectedRestaurant: Restaurant;
 
 
 
-
+  info(): void{
+    console.log(this.selectedRestaurant);
+  }
 
   showRestaurants(): void{
     this.restaurantIndex();
