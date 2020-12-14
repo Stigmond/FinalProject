@@ -14,8 +14,8 @@ export class RestaurantInfoComponent implements OnInit {
   restaurant: Restaurant;
   selectedTab: string;
 
-  latitude =39.594710;
-  longitude= -104.876650;
+  // latitude =39.594710;
+  // longitude= -104.876650;
 
 
   constructor(private restService: RestaurantService, private currentRoute: ActivatedRoute) { }
