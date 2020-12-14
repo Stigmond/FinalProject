@@ -69,7 +69,8 @@
       </div>
 
       <div class="col" *ngIf="selectedTab === 'pitmaster'">
-        <p>{{restaurant.pitmaster.firstName}}</p>
+        <img id="pitmasterPic" *ngIf="restaurant.pitmaster.image" class="card-img-top" [src]="restaurant.pitmaster.image">
+        <h4 id="pitmasterName">{{restaurant.pitmaster.firstName}} {{restaurant.pitmaster.lastName}}</h4>
         <p>{{restaurant.pitmaster.description}}</p>
         <p></p>
         <!-- PUT MAP HERE -->
