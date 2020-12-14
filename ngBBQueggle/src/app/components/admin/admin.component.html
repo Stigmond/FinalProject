@@ -64,7 +64,7 @@
             </div>
           </div>
         </div>
-        Enabled<input type="checkbox" [(ngModel)]="selectedUser.enabled" (click)="enableUser()">
+        Enabled<input type="checkbox" [(ngModel)]="selectedUser.enabled" (change)="enableUser()">
       </div>
 
       <div class="col" *ngIf="selectedTab === 'restaurants' && toEdit === false">

@@ -66,6 +66,7 @@ toEdit: boolean = false;
     this.userService.update(this.selectedUser.id, this.selectedUser).subscribe(
       good=>{
         this.selectedUser = good;
+        this.userIndex();
       },
       error=>{
         console.error('failed to enable/disable user');
@@ -81,7 +82,7 @@ toEdit: boolean = false;
         this.selectedRestaurant = good;
       },
       error=>{
-        console.error('failed to enable/disable restaurant');
+        console.error('failed to update restaurant');
         console.error(error);
       }
     );

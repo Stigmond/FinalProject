@@ -7,7 +7,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.bbqueggle.entities.Address;
 import com.skilldistillery.bbqueggle.entities.Restaurant;
+import com.skilldistillery.bbqueggle.repositories.AddressRepository;
 import com.skilldistillery.bbqueggle.repositories.RestaurantRepository;
 
 @Service
@@ -15,6 +17,8 @@ public class RestaurantServiceImpl implements RestaurantService {
 
 	@Autowired
 	private RestaurantRepository repo;
+	@Autowired
+	private AddressRepository addRepo;
 
 	@Override
 	public List<Restaurant> index() {
@@ -38,6 +42,39 @@ public class RestaurantServiceImpl implements RestaurantService {
 		repo.saveAndFlush(restaurant);
 		return repo.save(restaurant);
 	}
+
+//	@Override
+//	public Restaurant updateRestaurant(String username, Restaurant restaurant, Integer id) {
+//		Optional<Restaurant> restaurantOpt = repo.findById(id);
+//		Restaurant managedRestaurant = null;
+//		if (restaurantOpt.isPresent()) {
+//			managedRestaurant = restaurantOpt.get();
+//
+//			if (restaurant.getName() != null) {
+//				managedRestaurant.setName(restaurant.getName());
+//			}
+//			if (restaurant.getPhoneNumber() != null) {
+//				managedRestaurant.setPhoneNumber(restaurant.getPhoneNumber());
+//			}
+//			if (restaurant.getDescription() != null) {
+//				managedRestaurant.setDescription(restaurant.getDescription());
+//			}
+//			if (restaurant.getWebsite() != null) {
+//				managedRestaurant.setWebsite(restaurant.getWebsite());
+//			}
+//			if (restaurant.getLogo() != null) {
+//				managedRestaurant.setLogo(restaurant.getLogo());
+//			}
+//			if (restaurant.getDineIn() != null) {
+//				managedRestaurant.setDineIn(restaurant.getDineIn());
+//			}
+//			if (restaurant.getHours() != null) {
+//				managedRestaurant.setHours(restaurant.getHours());
+//			}
+//			repo.flush();
+//		}
+//		return managedRestaurant;
+//	}
 
 	@Override
 	public Restaurant updateRestaurant(String username, Restaurant restaurant, Integer id) {
@@ -67,11 +104,19 @@ public class RestaurantServiceImpl implements RestaurantService {
 			if (restaurant.getHours() != null) {
 				managedRestaurant.setHours(restaurant.getHours());
 			}
+			if (restaurant.getEnabled() != null) {
+				managedRestaurant.setEnabled(restaurant.getEnabled());
+			}
+			if (restaurant.getAddress() != null) {
+				Address managedAddress = addRepo.findById(restaurant.getAddress().getId());
+				managedAddress = restaurant.getAddress();
+				addRepo.saveAndFlush(managedAddress);
+			}
 			repo.flush();
 		}
 		return managedRestaurant;
 	}
-
+	
 	public boolean deleteRestaurant(String username, Integer id) {
 		boolean deleted = false;
 		Optional<Restaurant> restaurantOpt = repo.findById(id);
