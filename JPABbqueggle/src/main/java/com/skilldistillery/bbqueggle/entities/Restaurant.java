@@ -56,19 +56,19 @@ public class Restaurant {
 	private List<Review> reviews;
 
 	@JsonIgnore
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "chain_id")
 	private Chain chain;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany
 	@JoinTable(name = "side_dish_has_restaurant", inverseJoinColumns = @JoinColumn(name = "side_dish_id"), joinColumns = @JoinColumn(name = "restaurant_id"))
 	private List<SideDish> sideDishes;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany
 	@JoinTable(name = "sauce_has_restaurant", inverseJoinColumns = @JoinColumn(name = "sauce_id"), joinColumns = @JoinColumn(name = "restaurant_id"))
 	private List<Sauce> sauces;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany
 	@JoinTable(name = "main_dish_has_restaurant", inverseJoinColumns = @JoinColumn(name = "main_dish_id"), joinColumns = @JoinColumn(name = "restaurant_id"))
 	private List<MainDish> mainDishes;
 

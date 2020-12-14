@@ -34,6 +34,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
 	@Override
 	public Restaurant createRestaurant(String username, Restaurant restaurant) {
+		System.out.println(restaurant);
 		repo.saveAndFlush(restaurant);
 		return repo.save(restaurant);
 	}
