@@ -32,6 +32,7 @@ public class RestaurantController {
 	
 	RestaurantRankerImpl restRank = new RestaurantRankerImpl();
 	
+	
 
 	@GetMapping("restaurants")
 	public List<Restaurant> allRestaurants() {
@@ -53,7 +54,7 @@ public class RestaurantController {
 
 	@PostMapping("restaurants")
 	public Restaurant createRestaurant(@RequestBody Restaurant restaurant, HttpServletResponse response,
-			HttpServletRequest request, Principal principal) {
+			HttpServletRequest request, Principal principal) {		
 		Restaurant createdRestaurant = null;
 		try {
 			createdRestaurant = svc.createRestaurant(principal.getName(),restaurant);
@@ -158,6 +159,17 @@ public class RestaurantController {
 		if (result.isEmpty()) {
 			response.setStatus(404);
 			return null;
+		}
+		return restRank.rankRestaurants(result);
+	}
+	
+	@GetMapping("restaurants/search/{state}/mainDish/{mainDish}")
+	public List<Restaurant> findRestaurantsByMainDish(@PathVariable String state, @PathVariable String mainDish, HttpServletResponse response) {
+		List<Restaurant> result = new ArrayList<>();
+		state = state.toUpperCase();
+		result = svc.showStateRestaurantsByMainDish(state, mainDish);
+		if (result.isEmpty()) {
+			return result;
 		}
 		return restRank.rankRestaurants(result);
 	}
