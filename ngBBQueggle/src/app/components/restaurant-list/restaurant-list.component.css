@@ -1,0 +1,48 @@
+
+#rightCol {
+  position: relative;
+}
+#restDesc {
+  margin-top: 15px;
+}
+
+agm-map {
+  height: 400px;
+}
+
+.background {
+  background: url("https://media.timeout.com/images/105413472/1372/772/image.jpg")
+    no-repeat center center fixed;
+  background-size: cover;
+  /* width:1139px;
+  height:800px; */
+
+}
+#bg {
+
+  height: 668px;
+}
+#tabla {
+
+border:solid black;
+margin-top:150px;
+height:200px;
+}
+tr{
+  background-color: white;
+}
+h2{
+  color: white;
+}
+h5{
+  color: white;
+}
+ul.no-bullets {
+  list-style-type: none; /* Remove bullets */
+  padding: 10px; /* Remove padding */
+  margin: 0; /* Remove margins */
+  position: relative;
+  display: inline;
+  float: left;
+}
+
