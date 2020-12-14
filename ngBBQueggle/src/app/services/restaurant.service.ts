@@ -34,6 +34,16 @@ export class RestaurantService {
     );
   }
 
+
+  // show(id: number): Observable<Restaurant> {
+  //   return this.http.get<Restaurant>(this.url + '/' + id + '?sorted=true').pipe(
+  //     catchError((err: any) => {
+  //       console.log(err);
+  //       return throwError('RestaurantService.show(): error');
+  //     })
+  //   );
+  // }
+
   show(id: number): Observable<Restaurant> {
     const credentials = this.authService.getCredentials();
     const httpOptions = {
@@ -50,7 +60,7 @@ export class RestaurantService {
       })
     );
     } else {
-      this.router.navigateByUrl('login');
+      this.router.navigateByUrl('home');
     }
   }
 
