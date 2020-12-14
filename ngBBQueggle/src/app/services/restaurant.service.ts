@@ -120,6 +120,14 @@ export class RestaurantService {
     })
     );
   }
+  findRestaurantsByMainDish(state: string, mainDish: string): Observable<Restaurant[]>{
+    return this.http.get<Restaurant[]>(this.url + '/search/' + state + '/mainDish/' + mainDish).pipe(
+      catchError((err:any)=>{
+      console.log(err);
+      return throwError('RestaurantService.findRestaurantByMainDish(): error');
+    })
+    );
+  }
 
   findRestaurantsByStyle(state: string, style: string): Observable<Restaurant[]>{
     return this.http.get<Restaurant[]>(this.url + '/search/' + state + '/style/' + style).pipe(

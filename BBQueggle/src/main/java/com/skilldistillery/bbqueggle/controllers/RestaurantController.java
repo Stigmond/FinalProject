@@ -162,4 +162,15 @@ public class RestaurantController {
 		return restRank.rankRestaurants(result);
 	}
 	
+	@GetMapping("restaurants/search/{state}/mainDish/{mainDish}")
+	public List<Restaurant> findRestaurantsByMainDish(@PathVariable String state, @PathVariable String mainDish, HttpServletResponse response) {
+		List<Restaurant> result = new ArrayList<>();
+		state = state.toUpperCase();
+		result = svc.showStateRestaurantsByMainDish(state, mainDish);
+		if (result.isEmpty()) {
+			return result;
+		}
+		return restRank.rankRestaurants(result);
+	}
+	
 }

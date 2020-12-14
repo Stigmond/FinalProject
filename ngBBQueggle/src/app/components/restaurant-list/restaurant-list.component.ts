@@ -145,6 +145,19 @@ export class RestaurantListComponent implements OnInit {
         }
       );
     }
+    findRestaurantsByMainDish():  void{
+      this.RestaurantService.findRestaurantsByMainDish(this.selectedAd, this.searchTerm).subscribe(
+        good=>{
+          this.restaurants = good;
+          console.log('restaurant selected');
+        },
+        error=>{
+          console.error('failed to select restaurant');
+          console.error(error);
+
+        }
+      );
+    }
     findRestaurantsByStyle(): void{
       this.RestaurantService.findRestaurantsByStyle(this.selectedAd, this.searchTerm).subscribe(
         good=>{
@@ -165,6 +178,11 @@ export class RestaurantListComponent implements OnInit {
         console.log("here");
 
         this.findRestaurantsBySideDish();
+      }
+      if(this.searchType === 'main dish'){
+        console.log("here");
+
+        this.findRestaurantsByMainDish();
       }
       else if(this.searchType === 'style'){
         console.log("here");

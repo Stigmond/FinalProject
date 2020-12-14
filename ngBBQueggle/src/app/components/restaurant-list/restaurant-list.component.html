@@ -1,7 +1,7 @@
 <h2>Restaurant Search</h2>
 <div>
   <div class="row">
-      <div ngbDropdown class="d-inline-block">
+      <div ngbDropdown class="dropdown show">
           <h5><label for="state" class="col-sm-2 control-label">State</label></h5>
           <div class="col-sm-10">
             <select [(ngModel)]="selectedAd" class="form-control" id="state" name="state">
@@ -61,13 +61,14 @@
             </select>
           </div>
           </div>
-          <div ngbDropdown class="d-inline-block">
+          <div ngbDropdown class="dropdown show">
             <h5><label for="searchType" class="col-sm-2 control-label">Type</label></h5>
             <div class="col-sm-15">
               <select [(ngModel)]="searchType"class="form-control" name="searchType">
                 <option value="state">State</option>
                 <option value="style">Style</option>
                 <option value="meat type">Meat Type</option>
+                <option value="main dish">Main Dish</option>
                 <option value="name">Name</option>
                 <option value="side dish">Side Dish</option>
                 </select>
@@ -77,9 +78,9 @@
         <input height="20"type="text"[(ngModel)]="searchTerm"placeholder="Search Term" >
          <button (click)='search()'>Search</button>
          <div *ngFor="let Restaurant of restaurants">
-         <p *ngIf="Restaurant.enabled === false">{{Restaurant.name}}</p>
+         <p *ngIf="Restaurant.enabled === false">{{Restaurant.name}}</p>        </div>
         </div>
-      </div>
+        <td *ngIf="searchTerm === null">none found</td>
       <!-- <div *ngIf="!restaurants">
         <p>No results found</p>
       </div> -->
@@ -97,6 +98,7 @@
               <tr *ngFor = "let Restaurant of restaurants">
            <td><a href="http://localhost:4210/#/info/{{Restaurant.id}}">{{Restaurant.name}}</a></td>
           <td> <img [src]="Restaurant.logo" width="50" height="50"></td>
+
         </tr>
         </tbody>
            </table>
