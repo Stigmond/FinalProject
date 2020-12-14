@@ -28,7 +28,10 @@ export class RegisterComponent implements OnInit {
   users: User[] = [];
   addresses: Address[] = [];
 
-  constructor(private authService: AuthService, private router: Router, private userService: UserService, private addressService: AddressService) { }
+  constructor(private authService: AuthService,
+     private router: Router,
+     private userService: UserService,
+     private addressService: AddressService) { }
 
   ngOnInit(): void {
     this.loadUser();

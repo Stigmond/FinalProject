@@ -46,6 +46,7 @@ export class UserProfileComponent implements OnInit {
         data => {
           this.user = data;
           this.selected = this.user;
+          this.editedUser = this.user;
           this.editedAddress = this.user.address;
           console.log(data);
         },

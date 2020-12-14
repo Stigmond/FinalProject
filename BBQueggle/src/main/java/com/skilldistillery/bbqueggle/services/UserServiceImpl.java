@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.bbqueggle.entities.User;
+import com.skilldistillery.bbqueggle.repositories.AddressRepository;
 import com.skilldistillery.bbqueggle.repositories.UserRepository;
 
 @Service
@@ -14,6 +15,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository userRepo;
+	
+	@Autowired
+	private AddressRepository addressRepo;
 
 	@Override
 	public List<User> index(String username) {
@@ -33,6 +37,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User createUser(String username, User newUser) {
+		addressRepo.saveAndFlush(newUser.getAddress());
+		System.out.println("*************************************************" + newUser.getAddress());
 		userRepo.saveAndFlush(newUser);
 		return userRepo.save(newUser);
 	}
@@ -69,7 +75,7 @@ public class UserServiceImpl implements UserService {
 				managedUser.setImage(user.getImage());
 			}
 			if (user.getAddress() != null) {
-				managedUser.setAddress(user.getAddress());
+				managedUser.setAddress(addressRepo.findById(user.getAddress().getId()));
 			}
 
 			userRepo.flush();
