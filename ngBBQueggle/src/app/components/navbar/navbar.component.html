@@ -36,7 +36,15 @@
      <!-- <li *ngIf="loggedIn()">
        <a class="nav-link" [routerLink]="['/person/username']">User Profile</a>
      </li> -->
+
    </ul>
+
+   <ul class="no-bullets" style="float: right;">
+    <li *ngIf="loggedIn()" && >
+      <a class="btn btn-light" [routerLink]="['/userProfile']">User Profile</a>
+    </li>
+  </ul>
+
    <ul class="no-bullets" style="float: right;">
     <li *ngIf="loggedIn()">
       <a class="btn btn-light" [routerLink]="['/userProfile']">User Profile</a>
