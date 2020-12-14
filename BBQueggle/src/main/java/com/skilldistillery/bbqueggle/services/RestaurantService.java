@@ -25,4 +25,6 @@ public interface RestaurantService {
 	List<Restaurant> showStateRestaurantsByMeatType(String state, String meatType);
 	
 	List<Restaurant> showStateRestaurantsByStyle(String state, Integer styleId);
+	
+	List<Restaurant> showStateRestaurantsByMainDish(String state, String mainDish);
 }
