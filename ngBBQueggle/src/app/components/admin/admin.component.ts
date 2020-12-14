@@ -74,7 +74,18 @@ toEdit: boolean = false;
     );
   }
 
-
+  enableRestaurant(): void{
+    console.log(this.updatedRestaurant);
+    this.RestaurantService.update(this.updatedRestaurant.id, this.updatedRestaurant).subscribe(
+      good=>{
+        this.selectedRestaurant = good;
+      },
+      error=>{
+        console.error('failed to enable/disable restaurant');
+        console.error(error);
+      }
+    );
+  }
 
   info(): void{
     console.log(this.selectedRestaurant);

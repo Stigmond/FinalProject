@@ -9,8 +9,6 @@
 
   <div id="leftCol" class="col">
 
-  <h2>LEFT COLUMN</h2>
-
   <div class="row">
     <ul ngbNav #nav="ngbNav" class="nav-tabs">
 
@@ -19,8 +17,8 @@
         <ng-template ngbNavContent></ng-template>
         <div *ngIf="selectedTab==='users'">
           <div class="list-group" *ngFor="let user of users">
-            <a *ngIf="user.enabled===true" href="#" class="list-group-item list-group-item-action list-group-item-success" (click)="selectedUser=user">{{user.lastName}}, {{user.firstName}}  <em>[{{user.username}}]</em></a>
-            <a *ngIf="user.enabled===false" href="#" class="list-group-item list-group-item-action list-group-item-danger" (click)="selectedUser=user">{{user.lastName}}, {{user.firstName}}  <em>[{{user.username}}]</em></a>
+            <a *ngIf="user.enabled===true" class="list-group-item list-group-item-action list-group-item-success" (click)="selectedUser=user">{{user.lastName}}, {{user.firstName}}  <em>[{{user.username}}]</em></a>
+            <a *ngIf="user.enabled===false" class="list-group-item list-group-item-action list-group-item-danger" (click)="selectedUser=user">{{user.lastName}}, {{user.firstName}}  <em>[{{user.username}}]</em></a>
           </div>
         </div>
 
@@ -37,15 +35,12 @@
         </div>
 
 
-
-
-
       </li>
-      <li ngbNavItem>
+      <!-- <li ngbNavItem>
         <a ngbNavLink (click)="selectedTab='reserved'">RESERVED</a>
         <ng-template ngbNavContent></ng-template>
 
-      </li>
+      </li> -->
     </ul>
     <div [ngbNavOutlet]="nav"></div>
   </div>
@@ -54,15 +49,21 @@
 
 
   <div id="rightCol" class="col">
-    <h2>RIGHT COLUMN</h2>
 
     <div class="row">
 
       <div class="col" *ngIf="selectedTab === 'users' && selectedUser">
-        <h2>USER TAB</h2>
-        <p>{{selectedUser.username}}</p>
-        <p>{{selectedUser.firstName}}</p>
-        <p>{{selectedUser.lastName}}</p>
+        <div class="row">
+          <div *ngIf="selectedUser" class="card" style="width: 30rem;">
+            <!-- <img class="card-img-top" [src]="selectedUser.image"> //RESERVED FOR IMPLEMENTATION OF IMAGES-->
+            <div class="card-body">
+              <h3 class="card-title">{{selectedUser.username}}</h3>
+              <p class="card-text">{{selectedUser.firstName}} {{selectedUser.lastName}}</p>
+              <p *ngIf="selectedUser.address" class="card-text">{{selectedUser.address.street}}<br>{{selectedUser.address.city}}, {{selectedUser.address.state}}<br>{{selectedUser.address.zip}}</p>
+              <p class="card-text">E-mail: {{selectedUser.email}}</p>
+            </div>
+          </div>
+        </div>
         Enabled<input type="checkbox" [(ngModel)]="selectedUser.enabled" (click)="enableUser()">
       </div>
 
@@ -170,15 +171,20 @@
           <div class="form-group">
             <label for="website">Website</label>
             <input type="website" class="form-control" name="website" placeholder="{{selectedRestaurant.website}}" [(ngModel)]="updatedRestaurant.website">
-          </div>
 
 
+          <label for="hours">Hours</label>
+          <textarea name="hours" [(ngModel)]="updatedRestaurant.hours" class="form-control" placeholder="{{selectedRestaurant.hours}}"></textarea>
+
+          <label for="description">About</label>
+          <textarea name="about" [(ngModel)]="updatedRestaurant.description" class="form-control" placeholder="{{selectedRestaurant.description}}"></textarea>
+        </div>
           <div class="form-check">
-
             <input type="checkbox" name="enabled" [(ngModel)]="updatedRestaurant.enabled">
             <label class="form-check-label" for="enabled">Enabled</label>
+
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" (click)="enableRestaurant()" class="btn btn-primary">Submit</button>
         </form>
       </div>
 
@@ -190,9 +196,9 @@
 
 
 
-      <div class="col" *ngIf="selectedTab === 'reserved'">
+      <!-- <div class="col" *ngIf="selectedTab === 'reserved'">
         <h2>RESERVED</h2>
-      </div>
+      </div> -->
 
     </div>
   </div>
