@@ -13,6 +13,7 @@ import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@ang
 import { createArrayBindingPattern } from 'typescript';
 import { Style } from 'src/app/models/style';
 import { MainDishService } from 'src/app/services/maindish.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -47,7 +48,7 @@ export class AddRestaurantComponent implements OnInit {
   newAddress: Address = new Address();
 
 
-  constructor(private restService: RestaurantService, private styleServ: StyleService, private sideDishServ: SideDishService, private mainDishServ: MainDishService, private sauceServ: SauceService, private formBuilder: FormBuilder) {
+  constructor(private restService: RestaurantService, private styleServ: StyleService, private sideDishServ: SideDishService, private mainDishServ: MainDishService, private sauceServ: SauceService, private formBuilder: FormBuilder, private router: Router) {
     this.stylesForm = this.formBuilder.group({
       selectedStyles: this.formBuilder.array([], [Validators.required])
     })
@@ -62,7 +63,11 @@ export class AddRestaurantComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.index();
+    if (localStorage.getItem('role') === 'ROLE_ADMIN' || localStorage.getItem('role') === 'ROLE_USER') {
+      this.index();
+    } else {
+      this.router.navigateByUrl('home');
+    }
   }
 
 
