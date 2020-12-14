@@ -29,11 +29,11 @@
         <ng-template ngbNavContent></ng-template>
       </li>
       <li ngbNavItem>
-        <a ngbNavLink (click)="selectedTab='map'">MAP</a>
+        <a ngbNavLink (click)="selectedTab='reviews'">REVIEWS</a>
         <ng-template ngbNavContent></ng-template>
       </li>
-      <li ngbNavItem>
-        <a ngbNavLink (click)="selectedTab='reviews'">REVIEWS</a>
+      <li *ngIf="restaurant.pitmaster" ngbNavItem>
+        <a ngbNavLink (click)="selectedTab='pitmaster'">PITMASTER</a>
         <ng-template ngbNavContent></ng-template>
       </li>
     </ul>
@@ -68,7 +68,11 @@
 
       </div>
 
-      <div class="col" *ngIf="selectedTab === 'map'">
+      <div class="col" *ngIf="selectedTab === 'pitmaster'">
+        <img id="pitmasterPic" *ngIf="restaurant.pitmaster.image" class="card-img-top" [src]="restaurant.pitmaster.image">
+        <h4 id="pitmasterName">{{restaurant.pitmaster.firstName}} {{restaurant.pitmaster.lastName}}</h4>
+        <p>{{restaurant.pitmaster.description}}</p>
+        <p></p>
         <!-- PUT MAP HERE -->
         <!-- <agm-map [latitude]="latitude" [longitude]="longitude" >
           <agm-marker>[latitude]="latitude" [longitude]="longitude" </agm-marker>
