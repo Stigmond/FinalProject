@@ -38,11 +38,12 @@
 
 
 <button *ngIf="add === false && edit === false" (click)="add = true">Add Review</button>
-
+<div *ngIf="canEdit === true">
 <div class="row" *ngIf="edit === false && add === true">
   <div class="col">
     <h4 class="text-center">ADD REVIEW</h4>
   </div>
+</div>
 </div>
 
 <div class="row" *ngIf="edit === false && add === true">

@@ -20,10 +20,10 @@ export class UserProfileComponent implements OnInit {
 
   // updateUser: User = null;
   user = new User();
-  selected: User = null;
+  selected: User;
 
-  editedUser: User = null;
-  editedAddress: Address = null;
+  editedUser: User;
+  editedAddress: Address;
 
   users: User[] = [];
   addresses: Address[] = [];
