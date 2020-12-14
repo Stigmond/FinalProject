@@ -72,7 +72,15 @@ export class RestaurantService {
   }
 
   update(id: number, restaurant: Restaurant){
-    return this.http.put<Restaurant>(this.url + '/' + id, restaurant).pipe(
+    const credentials = this.authService.getCredentials();
+    const httpOptions = {
+    headers: new HttpHeaders({
+      Authorization: `Basic ${credentials}`,
+      'Content-type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+    return this.http.put<Restaurant>(this.url + '/' + id, restaurant, httpOptions).pipe(
       catchError((err:any)=>{
       console.log(err);
       return throwError('RestaurantService.update(): error');
