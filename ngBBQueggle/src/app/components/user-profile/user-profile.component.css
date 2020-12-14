@@ -4,3 +4,12 @@
   background-size: cover;
 
 }
+
+ul.no-bullets {
+  list-style-type: none; /* Remove bullets */
+  padding: 10px; /* Remove padding */
+  margin: 0; /* Remove margins */
+  position: relative;
+  display: inline;
+  float: left;
+}
