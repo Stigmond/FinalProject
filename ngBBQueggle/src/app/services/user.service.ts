@@ -74,7 +74,15 @@ export class UserService {
   }
 
   update(id: number, user: User){
-    return this.http.put<User>(this.url + '/' + id, User).pipe(
+    const credentials = this.authService.getCredentials();
+    const httpOptions = {
+    headers: new HttpHeaders({
+      Authorization: `Basic ${credentials}`,
+      'Content-type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+    return this.http.put<User>(this.url + id, User, httpOptions).pipe(
       catchError((err:any)=>{
       console.log(err);
       return throwError('Userservice.update(): error');

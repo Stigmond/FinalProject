@@ -62,7 +62,7 @@ logout() {
   localStorage.removeItem('credentials');
   localStorage.removeItem('userId');
   localStorage.removeItem('role');
-  this.router.navigateByUrl('login');
+  this.router.navigateByUrl('home');
   }
 
 checkLogin() {

@@ -149,51 +149,51 @@ export class AddRestaurantComponent implements OnInit {
     console.log(this.sideDishesForm.value);
     console.log(this.mainDishesForm.value);
 
-  // //Add Styles to Restaurant
-  // this.styleResult = (this.stylesForm.get('selectedStyles').value);
+  //Add Styles to Restaurant
+  this.styleResult = (this.stylesForm.get('selectedStyles').value);
 
-  //  for (var i = 0; i < this.styleResult.length; i++) {
+   for (var i = 0; i < this.styleResult.length; i++) {
 
-  //     for (var j = 0; j < this.stylesArray.length; j++) {
-  //       if (parseInt(this.styleResult[i]) === this.stylesArray[j].id) {
-  //         this.styleToPush.push(this.stylesArray[j]);
-  //       }
-  //     }
-  //   }
+      for (var j = 0; j < this.stylesArray.length; j++) {
+        if (parseInt(this.styleResult[i]) === this.stylesArray[j].id) {
+          this.styleToPush.push(this.stylesArray[j]);
+        }
+      }
+    }
 
-  //   this.newRestaurant.styles = this.styleToPush;
+    this.newRestaurant.styles = this.styleToPush;
 
-  // //Add Main Dishes to Restaurant
-  // this.mainDishResult = (this.mainDishesForm.get('selectedMains').value);
+  //Add Main Dishes to Restaurant
+  this.mainDishResult = (this.mainDishesForm.get('selectedMains').value);
 
-  // for (var i = 0; i < this.mainDishResult.length; i++) {
+  for (var i = 0; i < this.mainDishResult.length; i++) {
 
-  //    for (var j = 0; j < this.mainDishesArray.length; j++) {
-  //      if (parseInt(this.mainDishResult[i]) === this.mainDishesArray[j].id) {
-  //        this.mainDishToPush.push(this.mainDishesArray[j]);
-  //      }
-  //    }
-  //  }
+     for (var j = 0; j < this.mainDishesArray.length; j++) {
+       if (parseInt(this.mainDishResult[i]) === this.mainDishesArray[j].id) {
+         this.mainDishToPush.push(this.mainDishesArray[j]);
+       }
+     }
+   }
 
-  //  this.newRestaurant.mainDishes = this.mainDishToPush;
+   this.newRestaurant.mainDishes = this.mainDishToPush;
 
-  //   //Add Side Dishes to Restaurant
+    //Add Side Dishes to Restaurant
 
-  // this.sideDishResult = (this.sideDishesForm.get('selectedSides').value);
+  this.sideDishResult = (this.sideDishesForm.get('selectedSides').value);
 
-  // for (var i = 0; i < this.sideDishResult.length; i++) {
+  for (var i = 0; i < this.sideDishResult.length; i++) {
 
-  //    for (var j = 0; j < this.sideDishesArray.length; j++) {
-  //      if (parseInt(this.sideDishResult[i]) === this.sideDishesArray[j].id) {
-  //        this.sideDishToPush.push(this.sideDishesArray[j]);
-  //      }
-  //    }
-  //  }
+     for (var j = 0; j < this.sideDishesArray.length; j++) {
+       if (parseInt(this.sideDishResult[i]) === this.sideDishesArray[j].id) {
+         this.sideDishToPush.push(this.sideDishesArray[j]);
+       }
+     }
+   }
 
-  //  this.newRestaurant.sideDishes = this.sideDishToPush;
-  //  console.log(this.newRestaurant);
+   this.newRestaurant.sideDishes = this.sideDishToPush;
+   console.log(this.newRestaurant);
 
-  //  //Push Restaurant
+   //Push Restaurant
 
   this.restService.create(this.newRestaurant).subscribe(
     (success) => {
