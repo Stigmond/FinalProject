@@ -25,11 +25,15 @@ export class ReviewsComponent implements OnInit {
   updatedReview: Review = new Review();
   deleted: boolean;
   add: boolean = false;
+  canEdit: boolean = false;
 
   constructor(private reviewService: ReviewService, private restService: RestaurantService, private userService: UserService, private currentRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.restaurantId = parseInt(this.currentRoute.snapshot.paramMap.get('restId'));
+    if (localStorage.getItem('role') === 'ROLE_ADMIN' || localStorage.getItem('role') === 'ROLE_USER'){
+      this.canEdit = true;
+    }
     this.getRestaurant(this.restaurantId);
     this.loadReviews(this.restaurantId);
     this.getScore(this.restaurantId);
