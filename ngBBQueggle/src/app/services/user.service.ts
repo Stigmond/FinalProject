@@ -82,7 +82,7 @@ export class UserService {
       'X-Requested-With': 'XMLHttpRequest'
       })
     };
-    return this.http.put<User>(this.url + id, User, httpOptions).pipe(
+    return this.http.put<User>(this.url + id, user, httpOptions).pipe(
       catchError((err:any)=>{
       console.log(err);
       return throwError('Userservice.update(): error');
