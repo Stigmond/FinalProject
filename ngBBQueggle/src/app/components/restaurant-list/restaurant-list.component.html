@@ -3,13 +3,13 @@
 
 <!-- <h2>Restaurant Search</h2> -->
 <div>
-  <div class="row">
+  <div class="form-inline">
       <div ngbDropdown class="dropdown show">
         <h5><label for="state" class="col-sm-2 control-label"></label></h5>
         <div class="col-sm-10">
             <ul class="no-bullets">
             <li>
-              <select [(ngModel)]="selectedAd" class="form-control" id="state" name="state">
+              <select [(ngModel)]="selectedAd" class="form-control" value="Search State" id="state" name="state">
               <option value="">N/A</option>
               <option value="AK">Alaska</option>
               <option value="AL">Alabama</option>
@@ -68,7 +68,7 @@
             </ul>
           </div>
           </div>
-          <div ngbDropdown class="dropdown show">
+          <div ngbDropdown class="dropdown show" class="form-inline">
             <h5><label for="searchType" class="col-sm-2 control-label"></label></h5>
             <div class="col-sm-15">
               <ul class="no-bullets" style="float: right;">

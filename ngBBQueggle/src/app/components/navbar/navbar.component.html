@@ -39,15 +39,15 @@
 
    </ul>
 
-   <ul class="no-bullets" style="float: right;">
-    <li *ngIf="loggedIn()" && >
-      <a class="btn btn-light" [routerLink]="['/userProfile']">User Profile</a>
-    </li>
-  </ul>
 
    <ul class="no-bullets" style="float: right;">
     <li *ngIf="loggedIn()">
-      <a class="btn btn-light" [routerLink]="['/userProfile']">User Profile</a>
+      <a class="btn btn-light" style ="width: 140px"[routerLink]="['/userProfile']">User Profile</a>
+    </li>
+  </ul>
+   <ul class="no-bullets" style="float: right;">
+    <li *ngIf="loggedIn()">
+      <a class="btn btn-light" style ="width: 140px"[routerLink]="['/addRestaurant']">Add Restaurant</a>
     </li>
   </ul>
   <ul class="no-bullets" style="float: right;">

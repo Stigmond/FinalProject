@@ -6,9 +6,7 @@
   margin-top: 15px;
 }
 
-agm-map {
-  height: 400px;
-}
+
 
 .background {
   background: url("https://media.timeout.com/images/105413472/1372/772/image.jpg")
@@ -44,5 +42,30 @@ ul.no-bullets {
   position: relative;
   display: inline;
   float: left;
+  left: 50%;
+}
+
+#searchBarWrap{
+  display:inline-flex;
+}
+
+
+#searchBar{
+  border:#BA4A00 solid;
+  border-width: .2em;
+  border-radius: .7em 0 0 .7em;
+  padding: .2em .2em .2em .5em;
+  width: 225px;
+}
+
+#searchBtn{
+  border:#BA4A00 solid;
+  border-width: .2em;
+  border-radius: 0 .7em .7em 0;
+  background-color: #BA4A00;
+  color:white;
+  font-weight:bold;
+  padding-bottom: .2em;
+
 }
 
