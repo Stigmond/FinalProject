@@ -11,7 +11,11 @@
 .background {
   background: url("https://media.timeout.com/images/105413472/1372/772/image.jpg")
     no-repeat center center fixed;
-  background-size: cover;
+
+    /* background: url("https://cdn.vox-cdn.com/thumbor/uO4ohGK0yLqXvRAtvu4fiZJ1-G0=/0x0:2048x1367/1200x900/filters:focal(861x520:1187x846):no_upscale()/cdn.vox-cdn.com/uploads/chorus_image/image/62256847/10847519_736732843109711_8431590107408228396_o.0.0.jpg")
+    no-repeat center center fixed;
+  background-size: cover; */
+
   /* width:1139px;
   height:800px; */
 
@@ -22,7 +26,7 @@
 }
 #tabla {
 
-border:solid black;
+/* border:solid black; */
 /* margin-top:px; */
 height:75px;
 }
@@ -116,5 +120,29 @@ color: blue;
 
 input {
   height: 40px;
+}
+
+.btn{
+  /* padding: bottom 15px; */
+  margin-bottom: 4px;
+  height:37px;
+}
+
+.text {
+  margin-left: 1px;
+  margin-top: 5px;
+  border: none;
+  height: 37px;
+}
+
+.table-center {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 20vh;
+
 }
 
