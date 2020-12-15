@@ -54,14 +54,14 @@ class RestaurantTest {
 		assertEquals("CO", restaurant.getAddress().getState());
 		assertEquals("80904", restaurant.getAddress().getZip());
 	}
-	
-	@Test
-	void test3() {
-		assertNotNull(restaurant);
-		assertNotNull(restaurant.getReviews());
-		assertTrue(restaurant.getReviews().size() > 0);
-		assertEquals("tasty food", restaurant.getReviews().get(0).getReview());
-	}
+//	
+//	@Test
+//	void test3() {
+//		assertNotNull(restaurant);
+//		assertNotNull(restaurant.getReviews());
+//		assertTrue(restaurant.getReviews().size() > 0);
+//		assertEquals("tasty food", restaurant.getReviews().get(0).getReview());
+//	}
 	
 	@Test
 	void test4() {
@@ -70,28 +70,28 @@ class RestaurantTest {
 		assertEquals("Rudy's \"Country Store\" and Bar-B-Q", restaurant.getChain().getName());
 	}
 	
-	@Test
-	void test5() {
-		assertNotNull(restaurant);
-		assertNotNull(restaurant.getSideDishes());
-		assertTrue(restaurant.getSideDishes().size() > 0);
-		assertEquals("JUMBO SMOKED POTATO WITH 2 MEATS", restaurant.getSideDishes().get(0).getName());
-	}
-	@Test
-	void test6() {
-		assertNotNull(restaurant);
-		assertNotNull(restaurant.getSauces());
-		assertTrue(restaurant.getSauces().size() > 0);
-		assertEquals("ORIGINAL BAR-B-Q SAUCE", restaurant.getSauces().get(0).getName());
-	}
+//	@Test
+//	void test5() {
+//		assertNotNull(restaurant);
+//		assertNotNull(restaurant.getSideDishes());
+//		assertTrue(restaurant.getSideDishes().size() > 0);
+//		assertEquals("JUMBO SMOKED POTATO WITH 2 MEATS", restaurant.getSideDishes().get(0).getName());
+//	}
+//	@Test
+//	void test6() {
+//		assertNotNull(restaurant);
+//		assertNotNull(restaurant.getSauces());
+//		assertTrue(restaurant.getSauces().size() > 0);
+//		assertEquals("ORIGINAL BAR-B-Q SAUCE", restaurant.getSauces().get(0).getName());
+//	}
 	
-	@Test
-	void test7() {
-		assertNotNull(restaurant);
-		assertNotNull(restaurant.getMainDishes());
-		assertTrue(restaurant.getMainDishes().size() > 0);
-		assertEquals("Pork Spare Ribs", restaurant.getMainDishes().get(0).getName());
-	}
+//	@Test
+//	void test7() {
+//		assertNotNull(restaurant);
+//		assertNotNull(restaurant.getMainDishes());
+//		assertTrue(restaurant.getMainDishes().size() > 0);
+//		assertEquals("Pork Spare Ribs", restaurant.getMainDishes().get(0).getName());
+//	}
 	
 	@Test
 	void test8() {
