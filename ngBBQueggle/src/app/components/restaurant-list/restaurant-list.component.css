@@ -118,3 +118,16 @@ input {
   height: 40px;
 }
 
+.btn{
+  /* padding: bottom 15px; */
+  margin-bottom: 4px;
+  height:37px;
+}
+
+.text {
+  margin-left: 1px;
+  margin-top: 5px;
+  border: none;
+  height: 37px;
+}
+
