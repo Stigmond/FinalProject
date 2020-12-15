@@ -2,14 +2,15 @@
   <div class="container">
 
 <!-- <h2>Restaurant Search</h2> -->
-<div>
+<div class="search">
   <div class="form-inline">
-      <div ngbDropdown class="dropdown show">
-        <h5><label for="state" class="col-sm-2 control-label"></label></h5>
-        <div class="col-sm-10">
-            <ul class="no-bullets">
+
+  <div >
+    <!-- <h5><label for="state" ></label></h5> -->
+    <div >
+      <ul class="no-bullets">
             <li>
-              <select [(ngModel)]="selectedAd" class="form-control" value="Search State" id="state" name="state">
+              <select [(ngModel)]="selectedAd" class="form-control" value="Search State" id="state" name="state" style="width: 200px;">
               <option value="">N/A</option>
               <option value="AK">Alaska</option>
               <option value="AL">Alabama</option>
@@ -68,12 +69,12 @@
             </ul>
           </div>
           </div>
-          <div ngbDropdown class="dropdown show" class="form-inline">
-            <h5><label for="searchType" class="col-sm-2 control-label"></label></h5>
-            <div class="col-sm-15">
-              <ul class="no-bullets" style="float: right;">
+          <div  class="form-inline">
+            <!-- <h5><label for="searchType" class="col-sm-2 control-label"></label></h5> -->
+            <div >
+              <ul class="no-bullets" >
                 <li>
-              <select [(ngModel)]="searchType"class="form-control" name="searchType">
+              <select [(ngModel)]="searchType"class="form-control" style="width: 200px;" name="searchType">
                 <option value="state">State</option>
                 <option value="style">Style</option>
                 <option value="meat type">Meat Type</option>
@@ -84,14 +85,15 @@
                 </li>
                 </ul>
               </div>
-      <ul class="no-bullets" style="float: right;">
+      <ul class="no-bullets">
         <li>
-        <input height="20"type="text"[(ngModel)]="searchTerm"placeholder="Search Term" >
-         <button (click)='search()'>Search</button>
+        <input class="input"type="text"[(ngModel)]="searchTerm"placeholder="Search Term"style="width: 200px;" >
+         <button class="btn btn-light ml-1" (click)='search()'>Search</button>
          <div *ngFor="let Restaurant of restaurants">
            <p *ngIf="Restaurant.enabled === false">{{Restaurant.name}}</p>        </div>
           </li>
           </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -129,7 +131,7 @@
            </div>
           </div>
           </div>
-          </div>
+
           <!-- <div *ngIf="selected">
            <a href="http://localhost:4210/#/info/selected.id"></a>
          </div> -->
