@@ -7,12 +7,13 @@ import { catchError} from 'rxjs/operators';
 import { style } from '@angular/animations';
 import { AuthService } from './auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RestaurantService {
-  private baseUrl = 'http://localhost:8090/';
+  private baseUrl = environment.baseUrl;                    // Production
   url = this.baseUrl + 'api/restaurants';
 
   constructor(private http: HttpClient, private authService: AuthService, private router: Router) { }

@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Style } from '../models/style';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ import { Style } from '../models/style';
 export class StyleService {
   constructor(private http: HttpClient, private authService: AuthService) {}
 
-  private baseUrl = 'http://localhost:8090/';
+  private baseUrl = environment.baseUrl;                    // Production
 
   private url = this.baseUrl + 'api/style';
 
