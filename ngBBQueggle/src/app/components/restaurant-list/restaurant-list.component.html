@@ -106,7 +106,7 @@
       <ul class="no-bullets">
         <li>
 
-        <input height="20"type="text"[(ngModel)]="searchTerm"placeholder="Search Term" >
+        <input class="text" height="20"type="text"[(ngModel)]="searchTerm"placeholder="Search Term" >
          <button class="btn btn-light ml-1" height="20"(click)='search()'>Search</button>
          <!-- <div *ngFor="let Restaurant of restaurants">
            <p *ngIf="Restaurant.enabled === false">{{Restaurant.name}}</p>
@@ -117,6 +117,7 @@
         </div>
       </div>
     </div>
+    <div class="table-center">
           <div class="row" id="redak1">
           <div class="col-md-offset-3 col-md-6" id="bg">
           <div class="table-responsive">
@@ -134,12 +135,13 @@
                 <td><img [src]="Restaurant.logo" width="125" height="125"></td>
                 <td><a href="http://localhost:4210/#/info/{{Restaurant.id}}">{{Restaurant.name}}</a></td>
                 <td>{{Restaurant.address.city}}</td>
-                <!-- <td>{{Restaurant.rating.score}}</td> -->
+                <!-- <td>{{Restaurant.review.score}}</td> -->
+
 
               </tr>
               </tbody>
               </table>
-
+              </div>
            </div>
            </div>
           </div>
