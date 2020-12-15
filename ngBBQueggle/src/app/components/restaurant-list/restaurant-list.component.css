@@ -23,7 +23,7 @@
 #tabla {
 
 border:solid black;
-margin-top:150px;
+/* margin-top:px; */
 height:75px;
 }
 tr{
@@ -58,11 +58,43 @@ ul.no-bullets {
   justify-content: center;
   align-items: center;
   text-align: center;
-  min-height: 100vh;
+  min-height: 10vh;
 
 }
 
+.name {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 20vh;
+  /* font-size: xx-large; */
 
+}
+
+.point {
+  font-size: 60pt;
+}
+
+.blue {
+color: blue;
+}
+
+.red {
+  color: red;
+
+}
+
+.yellow {
+  color: yellow;
+
+}
+
+.green {
+  color: green
+
+}
 #searchBar{
   border:#BA4A00 solid;
   border-width: .2em;
