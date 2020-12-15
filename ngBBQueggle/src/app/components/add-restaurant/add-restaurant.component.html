@@ -128,7 +128,7 @@
     <form [formGroup]="stylesForm" (ngSubmit)="submit()">
 <hr>
         <div class="form-group">
-            <label for="style">Style(s):</label>
+            <label for="style"><b>Style(s):</b></label>
             <div *ngFor="let style of stylesArray">
               <label>
                 <input type="checkbox" [value]="style.id" (change)="onStyleCheckboxChange($event)" />
@@ -138,7 +138,17 @@
         </div>
 
         <div class="form-group">
-          <label for="style">Side(s):</label>
+          <label for="mains"><b>Main(s):</b></label>
+          <div *ngFor="let main of mainDishesArray">
+            <label>
+              <input type="checkbox" [value]="main.id" (change)="onMainCheckboxChange($event)" />
+              {{main.name}}
+            </label>
+          </div>
+      </div>
+
+        <div class="form-group">
+          <label for="sides"><b>Side(s):</b></label>
           <div *ngFor="let side of sideDishesArray">
             <label>
               <input type="checkbox" [value]="side.id" (change)="onSideCheckboxChange($event)" />
@@ -147,15 +157,6 @@
           </div>
       </div>
 
-      <div class="form-group">
-        <label for="style">Main(s):</label>
-        <div *ngFor="let main of mainDishesArray">
-          <label>
-            <input type="checkbox" [value]="main.id" (change)="onMainCheckboxChange($event)" />
-            {{main.name}}
-          </label>
-        </div>
-    </div>
     <button class="btn btn-info my-4 btn-block" type="submit">Add</button>
 
     </form>
