@@ -26,7 +26,7 @@
 }
 #tabla {
 
-border:solid black;
+/* border:solid black; */
 /* margin-top:px; */
 height:75px;
 }
@@ -133,5 +133,16 @@ input {
   margin-top: 5px;
   border: none;
   height: 37px;
+}
+
+.table-center {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 20vh;
+
 }
 
