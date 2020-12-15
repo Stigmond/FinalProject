@@ -204,7 +204,7 @@ export class AddRestaurantComponent implements OnInit {
     (success) => {
       console.log(success);
       console.log('creation success!');
-      window.alert('Restaurant Created Successfully!');
+      window.alert('Restaurant Created and Will be Reviewed by Admin for Posting');
     },
     (fail) => {
       console.error('problem with adding Restaurant');

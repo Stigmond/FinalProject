@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Restaurant } from 'src/app/models/restaurant';
 import { RestaurantService } from 'src/app/services/restaurant.service';
 
@@ -18,7 +18,7 @@ export class RestaurantInfoComponent implements OnInit {
   // longitude= -104.876650;
 
 
-  constructor(private restService: RestaurantService, private currentRoute: ActivatedRoute) { }
+  constructor(private restService: RestaurantService, private currentRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.restaurantId = parseInt(this.currentRoute.snapshot.paramMap.get('restId'));
@@ -31,9 +31,11 @@ export class RestaurantInfoComponent implements OnInit {
     data=>{
       this.restaurant = data;
       console.log(this.restaurant);
+      if (this.restaurant.enabled === false) {
+        this.router.navigateByUrl('home')
+      }
       this.restaurant.phoneNumber = this.formatPhoneNumber(this.restaurant.phoneNumber);
       console.log('reviewsComponent.getRestaurant(): Restaurant retrieved');
-
     },
     err=>{
       console.error('reviewsComponent.getRestaurant(): retrieve failed');

@@ -6,6 +6,13 @@
       <div class="card">
         <div class="card-header">
           <h5 class="title">Edit Profile</h5>
+
+          <ul class="no-bullets" style="float: right;">
+            <li *ngIf="selected.role == 'ROLE_ADMIN'">
+              <a class="btn btn-dark" [routerLink]="['/admin']">Admin Tools</a>
+            </li>
+          </ul>
+
         </div>
         <div class="card-body">
           <form>

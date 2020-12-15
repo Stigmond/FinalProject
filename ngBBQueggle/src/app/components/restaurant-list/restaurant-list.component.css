@@ -1,14 +1,12 @@
-
+/*
 #rightCol {
   position: relative;
 }
 #restDesc {
   margin-top: 15px;
-}
+} */
 
-agm-map {
-  height: 400px;
-}
+
 
 .background {
   background: url("https://media.timeout.com/images/105413472/1372/772/image.jpg")
@@ -25,11 +23,12 @@ agm-map {
 #tabla {
 
 border:solid black;
-margin-top:150px;
-height:200px;
+/* margin-top:px; */
+height:75px;
 }
 tr{
   background-color: white;
+  opacity: 70%
 }
 h2{
   color: white;
@@ -37,12 +36,85 @@ h2{
 h5{
   color: white;
 }
+/* .form-inline{
+  padding: 10px;
+} */
 ul.no-bullets {
   list-style-type: none; /* Remove bullets */
-  padding: 10px; /* Remove padding */
+  padding: 0px; /* Remove padding */
   margin: 0; /* Remove margins */
-  position: relative;
+  /* position: relative; */
   display: inline;
-  float: left;
+
+
+}
+.search{
+  /* position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 10vh;
+
+}
+
+.name {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 20vh;
+  /* font-size: xx-large; */
+
+}
+
+.point {
+  font-size: 60pt;
+}
+
+.blue {
+color: blue;
+}
+
+.red {
+  color: red;
+
+}
+
+.yellow {
+  color: yellow;
+
+}
+
+.green {
+  color: green
+
+}
+#searchBar{
+  border:#BA4A00 solid;
+  border-width: .2em;
+  border-radius: .7em 0 0 .7em;
+  padding: .2em .2em .2em .5em;
+  width: 225px;
+}
+
+#searchBtn{
+  border:#BA4A00 solid;
+  border-width: .2em;
+  border-radius: 0 .7em .7em 0;
+  background-color: #BA4A00;
+  color:white;
+  font-weight:bold;
+  padding-bottom: .2em;
+
+}
+
+input {
+  height: 40px;
 }
 

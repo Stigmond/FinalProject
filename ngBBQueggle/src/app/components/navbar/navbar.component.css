@@ -6,6 +6,29 @@ ul.no-bullets {
   display: inline;
   float: left;
 }
+.point {
+  font-size: 60pt;
+
+}
+
+.blue {
+color: blue;
+}
+
+.red {
+  color: red;
+
+}
+
+.yellow {
+  color: yellow;
+
+}
+
+.green {
+  color: green
+
+}
 
 /* #stats li
 {
