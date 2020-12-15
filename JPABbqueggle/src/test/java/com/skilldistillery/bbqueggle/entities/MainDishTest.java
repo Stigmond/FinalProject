@@ -44,7 +44,7 @@ class MainDishTest {
 	@Test
 	void test() {
 		assertNotNull(mainDish);
-		assertEquals("Pork Spare Ribs", mainDish.getName());
+		assertEquals("Pork Ribs", mainDish.getName());
 		assertEquals("Pork", mainDish.getMeatType());
 		assertEquals("Pork spare ribs are taken from the belly side of the pig's rib "
 				+ "cage above the sternum (breast bone) and below the back ribs which "

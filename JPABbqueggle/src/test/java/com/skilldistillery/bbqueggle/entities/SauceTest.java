@@ -43,7 +43,7 @@ class SauceTest {
 	@Test
 	void test() {
 		assertNotNull(sauce);
-		assertEquals("ORIGINAL BAR-B-Q SAUCE", sauce.getName());
+		assertEquals("Texas Style Mop", sauce.getName());
 	}
 	@Test
 	void test2() {

@@ -46,7 +46,7 @@ class UserTest {
 	@Test
 	void test() {
 		assertNotNull(user);
-		assertEquals("admin", user.getUsername());
+		assertEquals("jason", user.getUsername());
 		assertEquals("fake@gmail.com", user.getEmail());
 		}
 	@Test

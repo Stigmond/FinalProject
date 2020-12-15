@@ -46,8 +46,8 @@ class SideDishTest {
 	@Test
 	void test() {
 		assertNotNull(sideDish);
-		assertEquals("JUMBO SMOKED POTATO WITH 2 MEATS", sideDish.getName());
-		assertEquals("Potato stacked with meat of your choice and cheese", sideDish.getDescription());
+		assertEquals("French fries", sideDish.getName());
+//		assertEquals("Potato stacked with meat of your choice and cheese", sideDish.getDescription());
 		}
 	@Test
 	void test2() {
