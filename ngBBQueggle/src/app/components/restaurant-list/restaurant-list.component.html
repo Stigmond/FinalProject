@@ -119,7 +119,7 @@
     </div>
     <div class="table-center">
           <div class="row" id="redak1">
-          <div class="col-md-offset-3 col-md-6" id="bg">
+          <!-- <div class="col-md-offset-3 col-md-6" id="bg"> -->
           <div class="table-responsive">
             <!-- <h2>Search Result</h2> -->
               <table class="table table-bordered" id="tabla">
@@ -133,7 +133,7 @@
             <tbody *ngFor = "let Restaurant of restaurants">
               <tr *ngIf="Restaurant.enabled === true">
                 <td><img [src]="Restaurant.logo" width="125" height="125"></td>
-                <td><a href="http://localhost:4210/#/info/{{Restaurant.id}}">{{Restaurant.name}}</a></td>
+                <td><a href="http://3.18.133.40:8080/BBQueggle/#/info/{{Restaurant.id}}">{{Restaurant.name}}</a></td>
                 <td>{{Restaurant.address.city}}</td>
                 <!-- <td>{{Restaurant.review.score}}</td> -->
 
@@ -141,11 +141,24 @@
               </tr>
               </tbody>
               </table>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
               </div>
            </div>
            </div>
           </div>
-          </div>
+          <!-- </div> -->
 
           <!-- <div *ngIf="selected">
            <a href="http://localhost:4210/#/info/selected.id"></a>
