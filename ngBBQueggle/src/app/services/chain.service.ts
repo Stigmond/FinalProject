@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChainService {
-  private baseUrl = 'http://localhost:8090/';
+  private baseUrl = environment.baseUrl;                    // Production
   url = this.baseUrl + 'api/chain/'
 
   constructor(private http: HttpClient) { }

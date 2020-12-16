@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from 'src/environments/environment';
 import { Address } from './../../models/address';
 import { Restaurant } from './../../models/restaurant';
 import { RestaurantService } from './../../services/restaurant.service';
@@ -17,6 +18,7 @@ export class RestaurantListComponent implements OnInit {
   searchTerm: string = null;
   newRestaurant: Restaurant = new Restaurant();
   searchType: string = null;
+  baseUrl = environment.baseUrl;
 
     constructor(private RestaurantService: RestaurantService, private currentRoute: ActivatedRoute) { }
 

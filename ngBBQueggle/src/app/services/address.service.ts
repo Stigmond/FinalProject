@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { Address } from '../models/address';
 
 @Injectable({
@@ -10,8 +11,7 @@ import { Address } from '../models/address';
 export class AddressService {
   constructor(private http: HttpClient) {}
 
-  private baseUrl = 'http://localhost:8090/';
-
+  private baseUrl = environment.baseUrl;                    // Production
   private url = this.baseUrl + 'api/address';
 
   index(): Observable<Address[]> {

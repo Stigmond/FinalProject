@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError} from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class PitmasterService {
-  private baseUrl = 'http://localhost:8090/';
+  private baseUrl = environment.baseUrl;                    // Production
   url = this.baseUrl + 'api/pitmaster/';
 
   constructor(private http: HttpClient) { }

@@ -11,7 +11,7 @@
 .background {
   background: url("https://media.timeout.com/images/105413472/1372/772/image.jpg")
     no-repeat center center fixed;
-
+  background-size: cover;
     /* background: url("https://cdn.vox-cdn.com/thumbor/uO4ohGK0yLqXvRAtvu4fiZJ1-G0=/0x0:2048x1367/1200x900/filters:focal(861x520:1187x846):no_upscale()/cdn.vox-cdn.com/uploads/chorus_image/image/62256847/10847519_736732843109711_8431590107408228396_o.0.0.jpg")
     no-repeat center center fixed;
   background-size: cover; */
@@ -20,10 +20,10 @@
   height:800px; */
 
 }
-#bg {
+/* #bg {
 
   height: 668px;
-}
+} */
 #tabla {
 
 /* border:solid black; */
@@ -32,7 +32,7 @@ height:75px;
 }
 tr{
   background-color: white;
-  opacity: 70%
+  opacity: 0.7 !important;
 }
 h2{
   color: white;
