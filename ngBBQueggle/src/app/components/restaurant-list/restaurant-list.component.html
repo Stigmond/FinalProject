@@ -133,11 +133,8 @@
             <tbody *ngFor = "let Restaurant of restaurants">
               <tr *ngIf="Restaurant.enabled === true">
                 <td><img [src]="Restaurant.logo" width="125" height="125"></td>
-                <td><a href="http://3.18.133.40:8080/BBQueggle/#/info/{{Restaurant.id}}">{{Restaurant.name}}</a></td>
+                <td><a [routerLink]="['/info', Restaurant.id]">{{Restaurant.name}}</a></td>
                 <td>{{Restaurant.address.city}}</td>
-                <!-- <td>{{Restaurant.review.score}}</td> -->
-
-
               </tr>
               </tbody>
               </table>

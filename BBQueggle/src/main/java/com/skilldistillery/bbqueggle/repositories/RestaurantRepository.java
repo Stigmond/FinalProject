@@ -16,7 +16,7 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Integer>
 	
 	List<Restaurant> findByAddress_StateAndMainDishes_MeatType(String state, String meatType);
 		
-	@Query("SELECT r FROM Restaurant r JOIN r.sideDishes rsd WHERE r.address.state = :state AND (rsd.name LIKE :name OR rsd.description LIKE :description)")
+	@Query("SELECT DISTINCT(r) FROM Restaurant r JOIN r.sideDishes rsd WHERE r.address.state = :state AND (rsd.name LIKE :name OR rsd.description LIKE :description)")
 	List<Restaurant> queryByStateAndSideDish(@Param("state") String state, @Param("name") String name, @Param("description") String description);
 
 	List<Restaurant> findByAddress_StateAndStyle_Id(String state, Integer styleId);

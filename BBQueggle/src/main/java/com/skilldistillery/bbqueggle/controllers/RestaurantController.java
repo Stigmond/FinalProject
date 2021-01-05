@@ -148,6 +148,7 @@ public class RestaurantController {
 		if (result.isEmpty()) {
 			return result;
 		}
+		System.out.println("*****RESULTS: " + result);
 		return restRank.rankRestaurants(result);
 	}
 	
