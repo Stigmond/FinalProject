@@ -11,10 +11,10 @@ import { RestaurantService } from './../../services/restaurant.service';
   styleUrls: ['./restaurant-list.component.css']
 })
 export class RestaurantListComponent implements OnInit {
-  restaurants = [];
+  restaurants = null;
   address = [];
   selected: Restaurant = null;
-  selectedAd: string = null;
+  selectedAd: string = "";
   searchTerm: string = null;
   newRestaurant: Restaurant = new Restaurant();
   searchType: string = null;
@@ -24,6 +24,14 @@ export class RestaurantListComponent implements OnInit {
 
     ngOnInit(): void {
       this.RestaurantService.index();
+    }
+
+    reset(): void {
+      this.restaurants = null;
+      this.selected = null;
+      this.selectedAd = "";
+      this.searchTerm = null;
+      this.searchType = null;
     }
 
     index(): void{
@@ -159,6 +167,7 @@ export class RestaurantListComponent implements OnInit {
 
         }
       );
+
     }
     findRestaurantsByStyle(): void{
       this.RestaurantService.findRestaurantsByStyle(this.selectedAd, this.searchTerm).subscribe(
